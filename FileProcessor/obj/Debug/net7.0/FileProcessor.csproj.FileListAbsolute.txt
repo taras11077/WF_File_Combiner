@@ -1,0 +1,12 @@
+D:\step\repos\HW\WF\FileCombiner\FileProcessor\bin\Debug\net7.0\FileProcessor.deps.json
+D:\step\repos\HW\WF\FileCombiner\FileProcessor\bin\Debug\net7.0\FileProcessor.dll
+D:\step\repos\HW\WF\FileCombiner\FileProcessor\bin\Debug\net7.0\FileProcessor.pdb
+D:\step\repos\HW\WF\FileCombiner\FileProcessor\obj\Debug\net7.0\FileProcessor.csproj.AssemblyReference.cache
+D:\step\repos\HW\WF\FileCombiner\FileProcessor\obj\Debug\net7.0\FileProcessor.GeneratedMSBuildEditorConfig.editorconfig
+D:\step\repos\HW\WF\FileCombiner\FileProcessor\obj\Debug\net7.0\FileProcessor.AssemblyInfoInputs.cache
+D:\step\repos\HW\WF\FileCombiner\FileProcessor\obj\Debug\net7.0\FileProcessor.AssemblyInfo.cs
+D:\step\repos\HW\WF\FileCombiner\FileProcessor\obj\Debug\net7.0\FileProcessor.csproj.CoreCompileInputs.cache
+D:\step\repos\HW\WF\FileCombiner\FileProcessor\obj\Debug\net7.0\FileProcessor.dll
+D:\step\repos\HW\WF\FileCombiner\FileProcessor\obj\Debug\net7.0\refint\FileProcessor.dll
+D:\step\repos\HW\WF\FileCombiner\FileProcessor\obj\Debug\net7.0\FileProcessor.pdb
+D:\step\repos\HW\WF\FileCombiner\FileProcessor\obj\Debug\net7.0\ref\FileProcessor.dll

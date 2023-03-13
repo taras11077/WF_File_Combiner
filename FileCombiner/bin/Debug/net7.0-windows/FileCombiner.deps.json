@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v7.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v7.0": {
+      "FileCombiner/1.0.0": {
+        "dependencies": {
+          "FileProcessor": "1.0.0"
+        },
+        "runtime": {
+          "FileCombiner.dll": {}
+        }
+      },
+      "FileProcessor/1.0.0": {
+        "runtime": {
+          "FileProcessor.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "FileCombiner/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "FileProcessor/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
