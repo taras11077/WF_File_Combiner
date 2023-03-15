@@ -28,122 +28,135 @@
         /// </summary>
         private void InitializeComponent()
         {
-            lvRemovedItems = new ListView();
+            components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmFileCleanerMain));
+            iconImgList = new ImageList(components);
             btnSetDirPatterns = new Button();
-            listBox1 = new ListBox();
-            btnAnalyze = new Button();
-            listBox2 = new ListBox();
+            lstbDirPatterns = new ListBox();
+            btnFind = new Button();
+            lstbFilePatterns = new ListBox();
             btnSetFilePatterns = new Button();
             btnClear = new Button();
-            label1 = new Label();
             label2 = new Label();
             progressBar1 = new ProgressBar();
             chbMoveToTrash = new CheckBox();
             btnSetRootDir = new Button();
             lblPathRootDir = new Label();
-            lblProcessing = new Label();
+            lblProgress = new Label();
             lblRemovedListTitle = new Label();
-            folderBrowserDialog1 = new FolderBrowserDialog();
+            fbSetRootDirDialog = new FolderBrowserDialog();
+            lvwRemovedItems = new ListView();
+            chbSelectAll = new CheckBox();
+            lvwResultInfo = new ListView();
+            btnClose = new Button();
             SuspendLayout();
             // 
-            // lvRemovedItems
+            // iconImgList
             // 
-            lvRemovedItems.CheckBoxes = true;
-            lvRemovedItems.LabelWrap = false;
-            lvRemovedItems.Location = new Point(5, 40);
-            lvRemovedItems.Name = "lvRemovedItems";
-            lvRemovedItems.Size = new Size(987, 319);
-            lvRemovedItems.TabIndex = 0;
-            lvRemovedItems.UseCompatibleStateImageBehavior = false;
-            lvRemovedItems.View = View.List;
+            iconImgList.ColorDepth = ColorDepth.Depth8Bit;
+            iconImgList.ImageStream = (ImageListStreamer)resources.GetObject("iconImgList.ImageStream");
+            iconImgList.TransparentColor = Color.Transparent;
+            iconImgList.Images.SetKeyName(0, "file.png");
+            iconImgList.Images.SetKeyName(1, "folder-invoices--v1.png");
+            iconImgList.Images.SetKeyName(2, "delete.png");
+            iconImgList.Images.SetKeyName(3, "delete-sign--v1.png");
+            iconImgList.Images.SetKeyName(4, "image-file.png");
+            iconImgList.Images.SetKeyName(5, "picture--v1.png");
+            iconImgList.Images.SetKeyName(6, "cancel--v1.png");
+            iconImgList.Images.SetKeyName(7, "briefcase.png");
             // 
             // btnSetDirPatterns
             // 
-            btnSetDirPatterns.Location = new Point(5, 418);
+            btnSetDirPatterns.BackColor = SystemColors.InactiveCaption;
+            btnSetDirPatterns.Location = new Point(8, 420);
             btnSetDirPatterns.Name = "btnSetDirPatterns";
-            btnSetDirPatterns.Size = new Size(131, 25);
+            btnSetDirPatterns.Size = new Size(200, 30);
             btnSetDirPatterns.TabIndex = 1;
             btnSetDirPatterns.Text = "Set Dir patterns";
-            btnSetDirPatterns.UseVisualStyleBackColor = true;
+            btnSetDirPatterns.UseVisualStyleBackColor = false;
+            btnSetDirPatterns.Click += btnSetDirPatterns_Click;
+            btnSetDirPatterns.MouseEnter += btnSetRootDir_MouseEnter;
+            btnSetDirPatterns.MouseLeave += btnSetRootDir_MouseLeave;
             // 
-            // listBox1
+            // lstbDirPatterns
             // 
-            listBox1.FormattingEnabled = true;
-            listBox1.ItemHeight = 20;
-            listBox1.Location = new Point(5, 449);
-            listBox1.Name = "listBox1";
-            listBox1.Size = new Size(197, 84);
-            listBox1.TabIndex = 2;
+            lstbDirPatterns.FormattingEnabled = true;
+            lstbDirPatterns.ItemHeight = 20;
+            lstbDirPatterns.Location = new Point(8, 459);
+            lstbDirPatterns.Name = "lstbDirPatterns";
+            lstbDirPatterns.Size = new Size(200, 104);
+            lstbDirPatterns.TabIndex = 2;
             // 
-            // btnAnalyze
+            // btnFind
             // 
-            btnAnalyze.Location = new Point(249, 553);
-            btnAnalyze.Name = "btnAnalyze";
-            btnAnalyze.Size = new Size(197, 25);
-            btnAnalyze.TabIndex = 3;
-            btnAnalyze.Text = "ANALYZE";
-            btnAnalyze.UseVisualStyleBackColor = true;
+            btnFind.BackColor = SystemColors.InactiveCaption;
+            btnFind.Location = new Point(842, 423);
+            btnFind.Name = "btnFind";
+            btnFind.Size = new Size(150, 35);
+            btnFind.TabIndex = 3;
+            btnFind.Text = "FIND";
+            btnFind.UseVisualStyleBackColor = false;
+            btnFind.Click += btnFind_Click;
+            btnFind.MouseEnter += btnSetRootDir_MouseEnter;
+            btnFind.MouseLeave += btnSetRootDir_MouseLeave;
             // 
-            // listBox2
+            // lstbFilePatterns
             // 
-            listBox2.FormattingEnabled = true;
-            listBox2.ItemHeight = 20;
-            listBox2.Location = new Point(249, 449);
-            listBox2.Name = "listBox2";
-            listBox2.Size = new Size(197, 84);
-            listBox2.TabIndex = 4;
+            lstbFilePatterns.FormattingEnabled = true;
+            lstbFilePatterns.ItemHeight = 20;
+            lstbFilePatterns.Location = new Point(252, 459);
+            lstbFilePatterns.Name = "lstbFilePatterns";
+            lstbFilePatterns.Size = new Size(200, 104);
+            lstbFilePatterns.TabIndex = 4;
             // 
             // btnSetFilePatterns
             // 
-            btnSetFilePatterns.Location = new Point(249, 418);
+            btnSetFilePatterns.BackColor = SystemColors.InactiveCaption;
+            btnSetFilePatterns.Location = new Point(250, 420);
             btnSetFilePatterns.Name = "btnSetFilePatterns";
-            btnSetFilePatterns.Size = new Size(131, 25);
+            btnSetFilePatterns.Size = new Size(200, 30);
             btnSetFilePatterns.TabIndex = 5;
             btnSetFilePatterns.Text = "Set File patterns";
-            btnSetFilePatterns.UseVisualStyleBackColor = true;
+            btnSetFilePatterns.UseVisualStyleBackColor = false;
+            btnSetFilePatterns.Click += btnSetFilePatterns_Click;
+            btnSetFilePatterns.MouseEnter += btnSetRootDir_MouseEnter;
+            btnSetFilePatterns.MouseLeave += btnSetRootDir_MouseLeave;
             // 
             // btnClear
             // 
-            btnClear.BackColor = Color.IndianRed;
-            btnClear.Location = new Point(791, 560);
+            btnClear.BackColor = SystemColors.InactiveCaption;
+            btnClear.Location = new Point(842, 528);
             btnClear.Name = "btnClear";
-            btnClear.Size = new Size(190, 29);
+            btnClear.Size = new Size(150, 35);
             btnClear.TabIndex = 6;
             btnClear.Text = "CLEAR";
             btnClear.UseVisualStyleBackColor = false;
             btnClear.Click += btnClear_Click;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.BackColor = SystemColors.ControlLight;
-            label1.Location = new Point(529, 418);
-            label1.Name = "label1";
-            label1.Size = new Size(48, 20);
-            label1.TabIndex = 7;
-            label1.Text = "Count";
+            btnClear.MouseEnter += btnSetRootDir_MouseEnter;
+            btnClear.MouseLeave += btnSetRootDir_MouseLeave;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(529, 438);
+            label2.Location = new Point(496, 430);
             label2.Name = "label2";
-            label2.Size = new Size(64, 20);
+            label2.Size = new Size(82, 20);
             label2.TabIndex = 8;
-            label2.Text = "Full size:";
+            label2.Text = "Result Info:";
             // 
             // progressBar1
             // 
-            progressBar1.Location = new Point(540, 603);
+            progressBar1.Location = new Point(12, 607);
             progressBar1.Name = "progressBar1";
-            progressBar1.Size = new Size(441, 20);
+            progressBar1.Size = new Size(792, 20);
             progressBar1.TabIndex = 9;
             // 
             // chbMoveToTrash
             // 
             chbMoveToTrash.AutoSize = true;
-            chbMoveToTrash.Location = new Point(859, 530);
+            chbMoveToTrash.Location = new Point(855, 498);
             chbMoveToTrash.Name = "chbMoveToTrash";
+            chbMoveToTrash.RightToLeft = RightToLeft.Yes;
             chbMoveToTrash.Size = new Size(122, 24);
             chbMoveToTrash.TabIndex = 10;
             chbMoveToTrash.Text = "Move to trash";
@@ -151,30 +164,38 @@
             // 
             // btnSetRootDir
             // 
-            btnSetRootDir.Location = new Point(5, 375);
+            btnSetRootDir.BackColor = SystemColors.InactiveCaption;
+            btnSetRootDir.Location = new Point(8, 373);
             btnSetRootDir.Name = "btnSetRootDir";
-            btnSetRootDir.Size = new Size(155, 27);
+            btnSetRootDir.Size = new Size(200, 30);
             btnSetRootDir.TabIndex = 11;
             btnSetRootDir.Text = "Set Root Dir";
-            btnSetRootDir.UseVisualStyleBackColor = true;
+            btnSetRootDir.UseVisualStyleBackColor = false;
+            btnSetRootDir.Click += btnSetRootDir_Click;
+            btnSetRootDir.MouseEnter += btnSetRootDir_MouseEnter;
+            btnSetRootDir.MouseLeave += btnSetRootDir_MouseLeave;
             // 
             // lblPathRootDir
             // 
             lblPathRootDir.AutoSize = true;
-            lblPathRootDir.Location = new Point(184, 378);
+            lblPathRootDir.BackColor = SystemColors.InactiveCaption;
+            lblPathRootDir.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
+            lblPathRootDir.ForeColor = SystemColors.InactiveCaption;
+            lblPathRootDir.Location = new Point(252, 376);
             lblPathRootDir.Name = "lblPathRootDir";
-            lblPathRootDir.Size = new Size(174, 20);
+            lblPathRootDir.Size = new Size(198, 23);
             lblPathRootDir.TabIndex = 12;
             lblPathRootDir.Text = "C:\\Users\\Master\\Desktop";
             // 
-            // lblProcessing
+            // lblProgress
             // 
-            lblProcessing.AutoSize = true;
-            lblProcessing.Location = new Point(540, 580);
-            lblProcessing.Name = "lblProcessing";
-            lblProcessing.Size = new Size(107, 20);
-            lblProcessing.TabIndex = 13;
-            lblProcessing.Text = "Progress status";
+            lblProgress.AutoSize = true;
+            lblProgress.BackColor = Color.Transparent;
+            lblProgress.Location = new Point(357, 584);
+            lblProgress.Name = "lblProgress";
+            lblProgress.Size = new Size(134, 20);
+            lblProgress.TabIndex = 13;
+            lblProgress.Text = "Progress status: 0%";
             // 
             // lblRemovedListTitle
             // 
@@ -185,50 +206,104 @@
             lblRemovedListTitle.TabIndex = 14;
             lblRemovedListTitle.Text = "Removed Items:";
             // 
+            // lvwRemovedItems
+            // 
+            lvwRemovedItems.CheckBoxes = true;
+            lvwRemovedItems.Location = new Point(12, 53);
+            lvwRemovedItems.Name = "lvwRemovedItems";
+            lvwRemovedItems.Scrollable = false;
+            lvwRemovedItems.Size = new Size(980, 299);
+            lvwRemovedItems.SmallImageList = iconImgList;
+            lvwRemovedItems.TabIndex = 15;
+            lvwRemovedItems.UseCompatibleStateImageBehavior = false;
+            lvwRemovedItems.ItemCheck += lvwRemovedItems_ItemCheck;
+            lvwRemovedItems.ItemChecked += lvwRemovedItems_ItemChecked;
+            // 
+            // chbSelectAll
+            // 
+            chbSelectAll.AutoSize = true;
+            chbSelectAll.Location = new Point(870, 358);
+            chbSelectAll.Name = "chbSelectAll";
+            chbSelectAll.RightToLeft = RightToLeft.Yes;
+            chbSelectAll.Size = new Size(107, 24);
+            chbSelectAll.TabIndex = 16;
+            chbSelectAll.Text = "SELECT ALL";
+            chbSelectAll.UseVisualStyleBackColor = true;
+            chbSelectAll.CheckedChanged += chbSelectAll_CheckedChanged;
+            // 
+            // lvwResultInfo
+            // 
+            lvwResultInfo.Location = new Point(496, 461);
+            lvwResultInfo.Name = "lvwResultInfo";
+            lvwResultInfo.Scrollable = false;
+            lvwResultInfo.Size = new Size(310, 105);
+            lvwResultInfo.TabIndex = 17;
+            lvwResultInfo.UseCompatibleStateImageBehavior = false;
+            lvwResultInfo.View = View.Details;
+            // 
+            // btnClose
+            // 
+            btnClose.BackColor = SystemColors.InactiveCaption;
+            btnClose.Location = new Point(842, 598);
+            btnClose.Name = "btnClose";
+            btnClose.Size = new Size(150, 35);
+            btnClose.TabIndex = 19;
+            btnClose.Text = "CLOSE";
+            btnClose.UseVisualStyleBackColor = false;
+            btnClose.Click += btnClose_Click;
+            btnClose.MouseEnter += btnSetRootDir_MouseEnter;
+            btnClose.MouseLeave += btnSetRootDir_MouseLeave;
+            // 
             // FrmFileCleanerMain
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(1004, 645);
+            Controls.Add(btnClose);
+            Controls.Add(lvwResultInfo);
+            Controls.Add(chbSelectAll);
+            Controls.Add(lvwRemovedItems);
             Controls.Add(lblRemovedListTitle);
-            Controls.Add(lblProcessing);
+            Controls.Add(lblProgress);
             Controls.Add(lblPathRootDir);
             Controls.Add(btnSetRootDir);
             Controls.Add(chbMoveToTrash);
             Controls.Add(progressBar1);
             Controls.Add(label2);
-            Controls.Add(label1);
             Controls.Add(btnClear);
             Controls.Add(btnSetFilePatterns);
-            Controls.Add(listBox2);
-            Controls.Add(btnAnalyze);
-            Controls.Add(listBox1);
+            Controls.Add(lstbFilePatterns);
+            Controls.Add(btnFind);
+            Controls.Add(lstbDirPatterns);
             Controls.Add(btnSetDirPatterns);
-            Controls.Add(lvRemovedItems);
             Name = "FrmFileCleanerMain";
             ShowInTaskbar = false;
             Text = "FrmFileCleanerMain";
+            Load += FrmFileCleanerMain_Load;
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-
-        private ListView lvRemovedItems;
         private Button btnSetDirPatterns;
-        private ListBox listBox1;
-        private Button btnAnalyze;
-        private ListBox listBox2;
+        private ListBox lstbDirPatterns;
+        private Button btnFind;
+        private ListBox lstbFilePatterns;
         private Button btnSetFilePatterns;
         private Button btnClear;
-        private Label label1;
         private Label label2;
         private ProgressBar progressBar1;
         private CheckBox chbMoveToTrash;
         private Button btnSetRootDir;
         private Label lblPathRootDir;
-        private Label lblProcessing;
+        private Label lblProgress;
         private Label lblRemovedListTitle;
-        private FolderBrowserDialog folderBrowserDialog1;
+        private FolderBrowserDialog fbSetRootDirDialog;
+        private ImageList iconImgList;
+        private ListView lvwRemovedItems;
+        private CheckBox chbSelectAll;
+        private ListView lvwResultInfo;
+        private Button btnClose;
     }
 }

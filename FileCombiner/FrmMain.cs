@@ -14,6 +14,22 @@ namespace FileCombiner
         {
             FrmFileCleanerMain frm = new FrmFileCleanerMain();
             frm.ShowDialog();
+
+        }
+
+        private void btnAnalyzer_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnRenamer_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

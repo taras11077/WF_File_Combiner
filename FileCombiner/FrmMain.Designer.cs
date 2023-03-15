@@ -29,11 +29,14 @@
         private void InitializeComponent()
         {
             btnFileCleaner = new Button();
+            btnAnalyzer = new Button();
+            btnRenamer = new Button();
+            btnClose = new Button();
             SuspendLayout();
             // 
             // btnFileCleaner
             // 
-            btnFileCleaner.Location = new Point(297, 65);
+            btnFileCleaner.Location = new Point(24, 37);
             btnFileCleaner.Name = "btnFileCleaner";
             btnFileCleaner.Size = new Size(136, 29);
             btnFileCleaner.TabIndex = 1;
@@ -41,11 +44,46 @@
             btnFileCleaner.UseVisualStyleBackColor = true;
             btnFileCleaner.Click += btnFileCleaner_Click_1;
             // 
+            // btnAnalyzer
+            // 
+            btnAnalyzer.Location = new Point(24, 93);
+            btnAnalyzer.Name = "btnAnalyzer";
+            btnAnalyzer.Size = new Size(136, 29);
+            btnAnalyzer.TabIndex = 2;
+            btnAnalyzer.Text = "ANALYZER";
+            btnAnalyzer.UseVisualStyleBackColor = true;
+            btnAnalyzer.Click += btnAnalyzer_Click;
+            // 
+            // btnRenamer
+            // 
+            btnRenamer.Location = new Point(24, 157);
+            btnRenamer.Name = "btnRenamer";
+            btnRenamer.Size = new Size(139, 29);
+            btnRenamer.TabIndex = 3;
+            btnRenamer.Text = "RENAMER";
+            btnRenamer.UseVisualStyleBackColor = true;
+            btnRenamer.Click += btnRenamer_Click;
+            // 
+            // btnClose
+            // 
+            btnClose.BackColor = Color.SteelBlue;
+            btnClose.Location = new Point(357, 399);
+            btnClose.Name = "btnClose";
+            btnClose.Size = new Size(94, 29);
+            btnClose.TabIndex = 4;
+            btnClose.Text = "CLOSE";
+            btnClose.UseVisualStyleBackColor = false;
+            btnClose.Click += btnClose_Click;
+            // 
             // FrmMain
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(473, 450);
+            Controls.Add(btnClose);
+            Controls.Add(btnRenamer);
+            Controls.Add(btnAnalyzer);
             Controls.Add(btnFileCleaner);
             Name = "FrmMain";
             Text = "Form1";
@@ -54,5 +92,8 @@
 
         #endregion
         private Button btnFileCleaner;
+        private Button btnAnalyzer;
+        private Button btnRenamer;
+        private Button btnClose;
     }
 }
