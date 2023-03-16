@@ -117,9 +117,9 @@ namespace FileCombiner.FileCleaner
             if (fbSetRootDirDialog.ShowDialog() == DialogResult.Cancel)
                 return;
 
-            lblPathRootDir.Text = fbSetRootDirDialog.SelectedPath;
-            lblPathRootDir.BackColor = Color.Bisque;
-            lblPathRootDir.ForeColor = Color.Black;
+            txtbPathRootDir.Text = fbSetRootDirDialog.SelectedPath;
+            txtbPathRootDir.BackColor = Color.Bisque;
+            txtbPathRootDir.ForeColor = Color.Black;
         }
         private void btnAddDirPatterns_Click(object sender, EventArgs e)
         {
@@ -162,7 +162,7 @@ namespace FileCombiner.FileCleaner
         {
             StartProgressBar();
 
-            string path = lblPathRootDir.Text;
+            string path = txtbPathRootDir.Text;
             Finder finder = new Finder();
             finder.DirMasks = dirPatterns.ToArray();
             finder.FileMasks = filePatterns.ToArray();
@@ -309,7 +309,7 @@ namespace FileCombiner.FileCleaner
                         lvwRemovedItems.Items.Remove(item);
                     }
                 }
-                MessageBox.Show("Deleted");
+                MessageBox.Show("Selected items removed");
             }
             catch (Exception ex)
             {
@@ -402,6 +402,6 @@ namespace FileCombiner.FileCleaner
             (sender as Button)!.BackColor = Color.LightSteelBlue;
         }
 
-
+        
     }
 }

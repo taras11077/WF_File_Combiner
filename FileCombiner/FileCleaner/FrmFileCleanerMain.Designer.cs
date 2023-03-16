@@ -41,7 +41,6 @@
             progressBar1 = new ProgressBar();
             chbMoveToTrash = new CheckBox();
             btnSetRootDir = new Button();
-            lblPathRootDir = new Label();
             lblProgress = new Label();
             lblRemovedListTitle = new Label();
             fbSetRootDirDialog = new FolderBrowserDialog();
@@ -55,6 +54,8 @@
             btnRemoveFilePatterns = new Button();
             lblSetDirPatterns = new Label();
             lblSetFilePatterns = new Label();
+            txtbPathRootDir = new TextBox();
+            label1 = new Label();
             SuspendLayout();
             // 
             // iconImgList
@@ -183,18 +184,6 @@
             btnSetRootDir.MouseEnter += btnSetRootDir_MouseEnter;
             btnSetRootDir.MouseLeave += btnSetRootDir_MouseLeave;
             // 
-            // lblPathRootDir
-            // 
-            lblPathRootDir.AutoSize = true;
-            lblPathRootDir.BackColor = SystemColors.Window;
-            lblPathRootDir.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            lblPathRootDir.ForeColor = SystemColors.ActiveCaption;
-            lblPathRootDir.Location = new Point(517, 409);
-            lblPathRootDir.Name = "lblPathRootDir";
-            lblPathRootDir.Size = new Size(174, 20);
-            lblPathRootDir.TabIndex = 12;
-            lblPathRootDir.Text = "C:\\Users\\Master\\Desktop";
-            // 
             // lblProgress
             // 
             lblProgress.AutoSize = true;
@@ -320,6 +309,23 @@
             lblSetFilePatterns.Size = new Size(118, 20);
             lblSetFilePatterns.TabIndex = 25;
             lblSetFilePatterns.Text = "Set File patterns:";
+            
+            // 
+            // txtbPathRootDir
+            // 
+            txtbPathRootDir.Location = new Point(517, 402);
+            txtbPathRootDir.Name = "txtbPathRootDir";
+            txtbPathRootDir.Size = new Size(475, 27);
+            txtbPathRootDir.TabIndex = 26;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(517, 368);
+            label1.Name = "label1";
+            label1.Size = new Size(118, 20);
+            label1.TabIndex = 27;
+            label1.Text = "Set File patterns:";
             // 
             // FrmFileCleanerMain
             // 
@@ -327,6 +333,8 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(1004, 653);
+            Controls.Add(label1);
+            Controls.Add(txtbPathRootDir);
             Controls.Add(lblSetFilePatterns);
             Controls.Add(lblSetDirPatterns);
             Controls.Add(btnRemoveFilePatterns);
@@ -339,7 +347,6 @@
             Controls.Add(lvwRemovedItems);
             Controls.Add(lblRemovedListTitle);
             Controls.Add(lblProgress);
-            Controls.Add(lblPathRootDir);
             Controls.Add(btnSetRootDir);
             Controls.Add(chbMoveToTrash);
             Controls.Add(progressBar1);
@@ -369,7 +376,6 @@
         private ProgressBar progressBar1;
         private CheckBox chbMoveToTrash;
         private Button btnSetRootDir;
-        private Label lblPathRootDir;
         private Label lblProgress;
         private Label lblRemovedListTitle;
         private FolderBrowserDialog fbSetRootDirDialog;
@@ -384,5 +390,7 @@
         private Button btnRemoveFilePatterns;
         private Label lblSetDirPatterns;
         private Label lblSetFilePatterns;
+        private TextBox txtbPathRootDir;
+        private Label label1;
     }
 }
