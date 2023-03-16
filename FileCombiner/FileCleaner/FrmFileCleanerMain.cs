@@ -30,7 +30,7 @@ namespace FileCombiner.FileCleaner
         private int checkedCount = 0;
         private int checkedSize = 0;
 
-        private string[] dirPatterns =
+        private List<string> dirPatterns = new()
             {
                 //".vs",
                 //".DS_Store",
@@ -41,12 +41,13 @@ namespace FileCombiner.FileCleaner
                 "icons"
             };
 
-        private string[] filePatterns =
+        private List<string> filePatterns = new()
             {
                 //"*.resx",
                 //"*.cs",
                 "*.png",
             };
+
 
 
 
@@ -117,14 +118,41 @@ namespace FileCombiner.FileCleaner
             lblPathRootDir.BackColor = Color.Bisque;
             lblPathRootDir.ForeColor = Color.Black;
         }
+        private void btnAddDirPatterns_Click(object sender, EventArgs e)
+        {
+            if (txtbDirPatterns.Text.Length == 0)
+                return;
 
-        private void btnSetDirPatterns_Click(object sender, EventArgs e)
-        {
-            lstbDirPatterns.DataSource = dirPatterns;
+            dirPatterns.Add(txtbDirPatterns.Text);
+            lstbDirPatterns.Items.Add(txtbDirPatterns.Text);
+
+            txtbDirPatterns.Clear();
         }
-        private void btnSetFilePatterns_Click(object sender, EventArgs e)
+        private void btnRemoveDirPatterns_Click(object sender, EventArgs e)
         {
-            lstbFilePatterns.DataSource = filePatterns;
+            if (lstbDirPatterns.SelectedItem == null)
+                return;
+
+            dirPatterns?.Remove(lstbDirPatterns.SelectedItem.ToString()!);
+            lstbDirPatterns.Items?.Remove(lstbDirPatterns.SelectedItem.ToString()!); 
+        }
+        private void btnAddFilePatterns_Click(object sender, EventArgs e)
+        {
+            if (txtbFilePatterns.Text.Length == 0)
+                return;
+
+            filePatterns.Add(txtbFilePatterns.Text);
+            lstbFilePatterns.Items.Add(txtbFilePatterns.Text);
+
+            txtbFilePatterns.Clear();
+        }
+        private void btnRemoveFilePatterns_Click(object sender, EventArgs e)
+        {
+            if (lstbFilePatterns.SelectedItem == null)
+                return;
+
+            filePatterns?.Remove(lstbFilePatterns.SelectedItem.ToString()!);
+            lstbFilePatterns.Items?.Remove(lstbFilePatterns.SelectedItem.ToString()!);
         }
 
         private void btnFind_Click(object sender, EventArgs e)
@@ -133,8 +161,8 @@ namespace FileCombiner.FileCleaner
 
             string path = lblPathRootDir.Text;
             Finder finder = new Finder();
-            finder.DirMasks = dirPatterns;
-            finder.FileMasks = filePatterns;
+            finder.DirMasks = dirPatterns.ToArray();
+            finder.FileMasks = filePatterns.ToArray();
 
             finder.FindAll(path);
 
@@ -143,7 +171,6 @@ namespace FileCombiner.FileCleaner
             GenerateItem();
             InitListViewResultInfo();
         }
-
         private void GenerateItem()
         {
             ResultContainer.Dirs.ForEach(dir =>
@@ -302,8 +329,8 @@ namespace FileCombiner.FileCleaner
             //foreach (FileInfo file in files)
             foreach (ListViewItem item in lvwRemovedItems.Items)
                 if (files.Contains(item.Tag))
+                    //if (file == item.Tag)
                     item.Checked = true;
-            //if (file == item.Tag)
 
 
             foreach (DirectoryInfo dir in dirs)
@@ -316,11 +343,6 @@ namespace FileCombiner.FileCleaner
                 CheckFiles(d);
 
             InitListViewResultInfo();
-        }
-        private void lvwRemovedItems_ItemCheck(object sender, ItemCheckEventArgs e)
-        {
-
-
         }
 
 
@@ -363,7 +385,7 @@ namespace FileCombiner.FileCleaner
         // изменение цвета кнопок при наведении курсора
         private void btnSetRootDir_MouseEnter(object sender, EventArgs e)
         {
-            if (sender as Button == btnSetRootDir || sender as Button == btnSetDirPatterns || sender as Button == btnSetFilePatterns || sender as Button == btnClose)
+            if (sender as Button == btnSetRootDir || sender as Button == btnAddDirPatterns || sender as Button == btnRemoveDirPatterns || sender as Button == btnAddFilePatterns || sender as Button == btnRemoveFilePatterns || sender as Button == btnClose)
                 (sender as Button)!.BackColor = Color.SteelBlue;
             else if (sender as Button == btnFind)
                 (sender as Button)!.BackColor = Color.DarkSeaGreen;
@@ -375,5 +397,7 @@ namespace FileCombiner.FileCleaner
         {
             (sender as Button)!.BackColor = Color.LightSteelBlue;
         }
+
+
     }
 }

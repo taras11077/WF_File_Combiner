@@ -31,11 +31,11 @@
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmFileCleanerMain));
             iconImgList = new ImageList(components);
-            btnSetDirPatterns = new Button();
+            btnAddDirPatterns = new Button();
             lstbDirPatterns = new ListBox();
             btnFind = new Button();
             lstbFilePatterns = new ListBox();
-            btnSetFilePatterns = new Button();
+            btnAddFilePatterns = new Button();
             btnClear = new Button();
             label2 = new Label();
             progressBar1 = new ProgressBar();
@@ -49,6 +49,12 @@
             chbSelectAll = new CheckBox();
             lvwResultInfo = new ListView();
             btnClose = new Button();
+            txtbDirPatterns = new TextBox();
+            txtbFilePatterns = new TextBox();
+            btnRemoveDirPatterns = new Button();
+            btnRemoveFilePatterns = new Button();
+            lblSetDirPatterns = new Label();
+            lblSetFilePatterns = new Label();
             SuspendLayout();
             // 
             // iconImgList
@@ -65,32 +71,33 @@
             iconImgList.Images.SetKeyName(6, "cancel--v1.png");
             iconImgList.Images.SetKeyName(7, "briefcase.png");
             // 
-            // btnSetDirPatterns
+            // btnAddDirPatterns
             // 
-            btnSetDirPatterns.BackColor = SystemColors.InactiveCaption;
-            btnSetDirPatterns.Location = new Point(8, 420);
-            btnSetDirPatterns.Name = "btnSetDirPatterns";
-            btnSetDirPatterns.Size = new Size(200, 30);
-            btnSetDirPatterns.TabIndex = 1;
-            btnSetDirPatterns.Text = "Set Dir patterns";
-            btnSetDirPatterns.UseVisualStyleBackColor = false;
-            btnSetDirPatterns.Click += btnSetDirPatterns_Click;
-            btnSetDirPatterns.MouseEnter += btnSetRootDir_MouseEnter;
-            btnSetDirPatterns.MouseLeave += btnSetRootDir_MouseLeave;
+            btnAddDirPatterns.BackColor = SystemColors.InactiveCaption;
+            btnAddDirPatterns.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            btnAddDirPatterns.Location = new Point(8, 447);
+            btnAddDirPatterns.Name = "btnAddDirPatterns";
+            btnAddDirPatterns.Size = new Size(115, 30);
+            btnAddDirPatterns.TabIndex = 1;
+            btnAddDirPatterns.Text = "Add";
+            btnAddDirPatterns.UseVisualStyleBackColor = false;
+            btnAddDirPatterns.Click += btnAddDirPatterns_Click;
+            btnAddDirPatterns.MouseEnter += btnSetRootDir_MouseEnter;
+            btnAddDirPatterns.MouseLeave += btnSetRootDir_MouseLeave;
             // 
             // lstbDirPatterns
             // 
             lstbDirPatterns.FormattingEnabled = true;
             lstbDirPatterns.ItemHeight = 20;
-            lstbDirPatterns.Location = new Point(8, 459);
+            lstbDirPatterns.Location = new Point(12, 488);
             lstbDirPatterns.Name = "lstbDirPatterns";
-            lstbDirPatterns.Size = new Size(200, 104);
+            lstbDirPatterns.Size = new Size(220, 104);
             lstbDirPatterns.TabIndex = 2;
             // 
             // btnFind
             // 
             btnFind.BackColor = SystemColors.InactiveCaption;
-            btnFind.Location = new Point(842, 423);
+            btnFind.Location = new Point(517, 517);
             btnFind.Name = "btnFind";
             btnFind.Size = new Size(150, 35);
             btnFind.TabIndex = 3;
@@ -104,28 +111,29 @@
             // 
             lstbFilePatterns.FormattingEnabled = true;
             lstbFilePatterns.ItemHeight = 20;
-            lstbFilePatterns.Location = new Point(252, 459);
+            lstbFilePatterns.Location = new Point(272, 488);
             lstbFilePatterns.Name = "lstbFilePatterns";
-            lstbFilePatterns.Size = new Size(200, 104);
+            lstbFilePatterns.Size = new Size(220, 104);
             lstbFilePatterns.TabIndex = 4;
             // 
-            // btnSetFilePatterns
+            // btnAddFilePatterns
             // 
-            btnSetFilePatterns.BackColor = SystemColors.InactiveCaption;
-            btnSetFilePatterns.Location = new Point(250, 420);
-            btnSetFilePatterns.Name = "btnSetFilePatterns";
-            btnSetFilePatterns.Size = new Size(200, 30);
-            btnSetFilePatterns.TabIndex = 5;
-            btnSetFilePatterns.Text = "Set File patterns";
-            btnSetFilePatterns.UseVisualStyleBackColor = false;
-            btnSetFilePatterns.Click += btnSetFilePatterns_Click;
-            btnSetFilePatterns.MouseEnter += btnSetRootDir_MouseEnter;
-            btnSetFilePatterns.MouseLeave += btnSetRootDir_MouseLeave;
+            btnAddFilePatterns.BackColor = SystemColors.InactiveCaption;
+            btnAddFilePatterns.Font = new Font("Segoe UI", 7.9F, FontStyle.Regular, GraphicsUnit.Point);
+            btnAddFilePatterns.Location = new Point(272, 447);
+            btnAddFilePatterns.Name = "btnAddFilePatterns";
+            btnAddFilePatterns.Size = new Size(115, 30);
+            btnAddFilePatterns.TabIndex = 5;
+            btnAddFilePatterns.Text = "Add";
+            btnAddFilePatterns.UseVisualStyleBackColor = false;
+            btnAddFilePatterns.Click += btnAddFilePatterns_Click;
+            btnAddFilePatterns.MouseEnter += btnSetRootDir_MouseEnter;
+            btnAddFilePatterns.MouseLeave += btnSetRootDir_MouseLeave;
             // 
             // btnClear
             // 
             btnClear.BackColor = SystemColors.InactiveCaption;
-            btnClear.Location = new Point(842, 528);
+            btnClear.Location = new Point(827, 557);
             btnClear.Name = "btnClear";
             btnClear.Size = new Size(150, 35);
             btnClear.TabIndex = 6;
@@ -138,7 +146,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(496, 430);
+            label2.Location = new Point(494, 288);
             label2.Name = "label2";
             label2.Size = new Size(82, 20);
             label2.TabIndex = 8;
@@ -154,7 +162,7 @@
             // chbMoveToTrash
             // 
             chbMoveToTrash.AutoSize = true;
-            chbMoveToTrash.Location = new Point(855, 498);
+            chbMoveToTrash.Location = new Point(682, 568);
             chbMoveToTrash.Name = "chbMoveToTrash";
             chbMoveToTrash.RightToLeft = RightToLeft.Yes;
             chbMoveToTrash.Size = new Size(122, 24);
@@ -165,9 +173,9 @@
             // btnSetRootDir
             // 
             btnSetRootDir.BackColor = SystemColors.InactiveCaption;
-            btnSetRootDir.Location = new Point(8, 373);
+            btnSetRootDir.Location = new Point(517, 447);
             btnSetRootDir.Name = "btnSetRootDir";
-            btnSetRootDir.Size = new Size(200, 30);
+            btnSetRootDir.Size = new Size(150, 30);
             btnSetRootDir.TabIndex = 11;
             btnSetRootDir.Text = "Set Root Dir";
             btnSetRootDir.UseVisualStyleBackColor = false;
@@ -178,12 +186,12 @@
             // lblPathRootDir
             // 
             lblPathRootDir.AutoSize = true;
-            lblPathRootDir.BackColor = SystemColors.InactiveCaption;
-            lblPathRootDir.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
-            lblPathRootDir.ForeColor = SystemColors.InactiveCaption;
-            lblPathRootDir.Location = new Point(252, 376);
+            lblPathRootDir.BackColor = SystemColors.Window;
+            lblPathRootDir.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            lblPathRootDir.ForeColor = SystemColors.ActiveCaption;
+            lblPathRootDir.Location = new Point(517, 409);
             lblPathRootDir.Name = "lblPathRootDir";
-            lblPathRootDir.Size = new Size(198, 23);
+            lblPathRootDir.Size = new Size(174, 20);
             lblPathRootDir.TabIndex = 12;
             lblPathRootDir.Text = "C:\\Users\\Master\\Desktop";
             // 
@@ -191,7 +199,7 @@
             // 
             lblProgress.AutoSize = true;
             lblProgress.BackColor = Color.Transparent;
-            lblProgress.Location = new Point(357, 584);
+            lblProgress.Location = new Point(358, 630);
             lblProgress.Name = "lblProgress";
             lblProgress.Size = new Size(134, 20);
             lblProgress.TabIndex = 13;
@@ -216,7 +224,6 @@
             lvwRemovedItems.SmallImageList = iconImgList;
             lvwRemovedItems.TabIndex = 15;
             lvwRemovedItems.UseCompatibleStateImageBehavior = false;
-            lvwRemovedItems.ItemCheck += lvwRemovedItems_ItemCheck;
             lvwRemovedItems.ItemChecked += lvwRemovedItems_ItemChecked;
             // 
             // chbSelectAll
@@ -233,7 +240,7 @@
             // 
             // lvwResultInfo
             // 
-            lvwResultInfo.Location = new Point(496, 461);
+            lvwResultInfo.Location = new Point(682, 447);
             lvwResultInfo.Name = "lvwResultInfo";
             lvwResultInfo.Scrollable = false;
             lvwResultInfo.Size = new Size(310, 105);
@@ -244,7 +251,7 @@
             // btnClose
             // 
             btnClose.BackColor = SystemColors.InactiveCaption;
-            btnClose.Location = new Point(842, 598);
+            btnClose.Location = new Point(827, 606);
             btnClose.Name = "btnClose";
             btnClose.Size = new Size(150, 35);
             btnClose.TabIndex = 19;
@@ -254,12 +261,78 @@
             btnClose.MouseEnter += btnSetRootDir_MouseEnter;
             btnClose.MouseLeave += btnSetRootDir_MouseLeave;
             // 
+            // txtbDirPatterns
+            // 
+            txtbDirPatterns.Location = new Point(9, 402);
+            txtbDirPatterns.Name = "txtbDirPatterns";
+            txtbDirPatterns.Size = new Size(223, 27);
+            txtbDirPatterns.TabIndex = 20;
+            // 
+            // txtbFilePatterns
+            // 
+            txtbFilePatterns.Location = new Point(272, 402);
+            txtbFilePatterns.Name = "txtbFilePatterns";
+            txtbFilePatterns.Size = new Size(220, 27);
+            txtbFilePatterns.TabIndex = 21;
+            // 
+            // btnRemoveDirPatterns
+            // 
+            btnRemoveDirPatterns.BackColor = SystemColors.InactiveCaption;
+            btnRemoveDirPatterns.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            btnRemoveDirPatterns.Location = new Point(117, 447);
+            btnRemoveDirPatterns.Name = "btnRemoveDirPatterns";
+            btnRemoveDirPatterns.Size = new Size(115, 30);
+            btnRemoveDirPatterns.TabIndex = 22;
+            btnRemoveDirPatterns.Text = "Remove";
+            btnRemoveDirPatterns.UseVisualStyleBackColor = false;
+            btnRemoveDirPatterns.Click += btnRemoveDirPatterns_Click;
+            btnRemoveDirPatterns.MouseEnter += btnSetRootDir_MouseEnter;
+            btnRemoveDirPatterns.MouseLeave += btnSetRootDir_MouseLeave;
+            // 
+            // btnRemoveFilePatterns
+            // 
+            btnRemoveFilePatterns.BackColor = SystemColors.InactiveCaption;
+            btnRemoveFilePatterns.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            btnRemoveFilePatterns.Location = new Point(377, 447);
+            btnRemoveFilePatterns.Name = "btnRemoveFilePatterns";
+            btnRemoveFilePatterns.Size = new Size(115, 30);
+            btnRemoveFilePatterns.TabIndex = 23;
+            btnRemoveFilePatterns.Text = "Remove";
+            btnRemoveFilePatterns.UseVisualStyleBackColor = false;
+            btnRemoveFilePatterns.Click += btnRemoveFilePatterns_Click;
+            btnRemoveFilePatterns.MouseEnter += btnSetRootDir_MouseEnter;
+            btnRemoveFilePatterns.MouseLeave += btnSetRootDir_MouseLeave;
+            // 
+            // lblSetDirPatterns
+            // 
+            lblSetDirPatterns.AutoSize = true;
+            lblSetDirPatterns.Location = new Point(47, 368);
+            lblSetDirPatterns.Name = "lblSetDirPatterns";
+            lblSetDirPatterns.Size = new Size(156, 20);
+            lblSetDirPatterns.TabIndex = 24;
+            lblSetDirPatterns.Text = "Set Directory patterns:";
+            // 
+            // lblSetFilePatterns
+            // 
+            lblSetFilePatterns.AutoSize = true;
+            lblSetFilePatterns.Location = new Point(324, 368);
+            lblSetFilePatterns.Name = "lblSetFilePatterns";
+            lblSetFilePatterns.Size = new Size(118, 20);
+            lblSetFilePatterns.TabIndex = 25;
+            lblSetFilePatterns.Text = "Set File patterns:";
+            // 
             // FrmFileCleanerMain
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
-            ClientSize = new Size(1004, 645);
+            ClientSize = new Size(1004, 653);
+            Controls.Add(lblSetFilePatterns);
+            Controls.Add(lblSetDirPatterns);
+            Controls.Add(btnRemoveFilePatterns);
+            Controls.Add(btnRemoveDirPatterns);
+            Controls.Add(txtbFilePatterns);
+            Controls.Add(txtbDirPatterns);
             Controls.Add(btnClose);
             Controls.Add(lvwResultInfo);
             Controls.Add(chbSelectAll);
@@ -272,11 +345,11 @@
             Controls.Add(progressBar1);
             Controls.Add(label2);
             Controls.Add(btnClear);
-            Controls.Add(btnSetFilePatterns);
+            Controls.Add(btnAddFilePatterns);
             Controls.Add(lstbFilePatterns);
             Controls.Add(btnFind);
             Controls.Add(lstbDirPatterns);
-            Controls.Add(btnSetDirPatterns);
+            Controls.Add(btnAddDirPatterns);
             Name = "FrmFileCleanerMain";
             ShowInTaskbar = false;
             Text = "FrmFileCleanerMain";
@@ -286,11 +359,11 @@
         }
 
         #endregion
-        private Button btnSetDirPatterns;
+        private Button btnAddDirPatterns;
         private ListBox lstbDirPatterns;
         private Button btnFind;
         private ListBox lstbFilePatterns;
-        private Button btnSetFilePatterns;
+        private Button btnAddFilePatterns;
         private Button btnClear;
         private Label label2;
         private ProgressBar progressBar1;
@@ -305,5 +378,11 @@
         private CheckBox chbSelectAll;
         private ListView lvwResultInfo;
         private Button btnClose;
+        private TextBox txtbDirPatterns;
+        private TextBox txtbFilePatterns;
+        private Button btnRemoveDirPatterns;
+        private Button btnRemoveFilePatterns;
+        private Label lblSetDirPatterns;
+        private Label lblSetFilePatterns;
     }
 }
