@@ -19,16 +19,17 @@ using Button = System.Windows.Forms.Button;
 using System.Text.Json;
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.VisualBasic.ApplicationServices;
+using System.Reflection;
 
 namespace FileCombiner.FileCleaner
 {
     public partial class FrmFileCleanerMain : Form
     {
-        private ObjectContainer ResultContainer = new();
-        private int findedCount = 0;
-        private int findedSize = 0;
-        private int checkedCount = 0;
-        private int checkedSize = 0;
+        private ObjectContainer resultContainer = new();
+        //private int findedCount = 0;
+        //private int findedSize = 0;
+        //private int checkedCount = 0;
+        //private int checkedSize = 0;
 
         private List<string> dirPatterns = new()
             {
@@ -40,15 +41,12 @@ namespace FileCombiner.FileCleaner
                 //"obj"
                 "icons"
             };
-
         private List<string> filePatterns = new()
             {
                 //"*.resx",
                 //"*.cs",
                 "*.png",
             };
-
-
 
 
         public FrmFileCleanerMain()
@@ -59,7 +57,7 @@ namespace FileCombiner.FileCleaner
         private void InitListViewRemovedItems()
         {
             lvwRemovedItems.View = View.Details;
-            lvwRemovedItems.CheckBoxes = true;
+            //lvwRemovedItems.CheckBoxes = true;
 
             lvwRemovedItems.Scrollable = true;
             lvwRemovedItems.MultiSelect = false;
@@ -75,7 +73,6 @@ namespace FileCombiner.FileCleaner
             lvwRemovedItems.Groups.Add(new ListViewGroup("Directories", HorizontalAlignment.Left));
             lvwRemovedItems.Groups.Add(new ListViewGroup("Files", HorizontalAlignment.Left));
         }
-
         private void InitListViewResultInfo()
         {
             lvwResultInfo.View = View.Details;
@@ -102,8 +99,6 @@ namespace FileCombiner.FileCleaner
             @checked.SubItems.Add(CalcCheckItemsFullSize().ToString());
             lvwResultInfo.Items.Add(@checked);
         }
-
-
         private void FrmFileCleanerMain_Load(object sender, EventArgs e)
         {
             InitListViewRemovedItems();
@@ -111,6 +106,7 @@ namespace FileCombiner.FileCleaner
             lstbDirPatterns.Items.AddRange(dirPatterns.ToArray());
             lstbFilePatterns.Items.AddRange(filePatterns.ToArray());
         }
+
 
         private void btnSetRootDir_Click(object sender, EventArgs e)
         {
@@ -168,16 +164,17 @@ namespace FileCombiner.FileCleaner
             finder.FileMasks = filePatterns.ToArray();
 
             finder.FindAll(path);
-
-            ResultContainer = finder.ResultContainer;
+            resultContainer = finder.ResultContainer;
 
             GenerateItem();
             InitListViewResultInfo();
+            lvwRemovedItems.CheckBoxes = true;
+
             MessageBox.Show("Search ended");
         }
         private void GenerateItem()
         {
-            ResultContainer.Dirs.ForEach(dir =>
+            resultContainer.Dirs.ForEach(dir =>
             {
                 ListViewItem item = new ListViewItem()
                 {
@@ -195,7 +192,7 @@ namespace FileCombiner.FileCleaner
                 lvwRemovedItems.Items.Add(item);
             });
 
-            ResultContainer.Files.ForEach(file =>
+            resultContainer.Files.ForEach(file =>
             {
                 ListViewItem item = new ListViewItem()
                 {
@@ -316,35 +313,51 @@ namespace FileCombiner.FileCleaner
                 MessageBox.Show($"{ex.Message}\n File or directory not found!");
             }
 
-            //findedCount = lvwRemovedItems.Items.Count;
-            //findedSize = CalcFindedFullSize();
-
             InitListViewResultInfo();
         }
 
 
 
 
-        private void CheckFiles(DirectoryInfo d)
+        private void CheckFiles(DirectoryInfo d, ItemCheckedEventArgs e)
         {
-            DirectoryInfo[] dirs = d.GetDirectories();
-            FileInfo[] files = d.GetFiles();
+            resultContainer.Files.ForEach(file =>
+            {
+                if (file.FullName.Contains(d.FullName))
+                {
+                    foreach (ListViewItem item in lvwRemovedItems.Items)
+                    {
+                      if (file == (item.Tag as FileInfo))
+                          item.Checked = e.Item.Checked;
+                    }   
+                }
+            });
+
+            resultContainer.Dirs.ForEach(dir =>
+            {
+                if (dir.FullName.Contains(d.FullName) && dir.FullName!= d.FullName)
+                    CheckFiles(dir, e);
+            });
+
+
+            //DirectoryInfo[] dirs = d.GetDirectories();
+            //FileInfo[] files = d.GetFiles();
 
             //foreach (FileInfo file in files)
-            foreach (ListViewItem item in lvwRemovedItems.Items)
-                if (files.Contains(item.Tag))
-                    //if (file == item.Tag)
-                    item.Checked = true;
+            //    foreach (ListViewItem item in lvwRemovedItems.Items)
+            //    {//if (files.Contains(item.Tag))
+            //        if (file == item.Tag)
+            //            item.Checked = true;
+            //    }
 
-
-            foreach (DirectoryInfo dir in dirs)
-                CheckFiles(dir);
+            //foreach (DirectoryInfo dir in dirs)
+            //    CheckFiles(dir);
         }
 
         private void lvwRemovedItems_ItemChecked(object sender, ItemCheckedEventArgs e)
         {
             if (e.Item.Tag is DirectoryInfo d)
-                CheckFiles(d);
+                CheckFiles(d,e);
 
             InitListViewResultInfo();
         }
