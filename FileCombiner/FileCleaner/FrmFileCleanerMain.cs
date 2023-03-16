@@ -107,6 +107,9 @@ namespace FileCombiner.FileCleaner
         private void FrmFileCleanerMain_Load(object sender, EventArgs e)
         {
             InitListViewRemovedItems();
+            InitListViewResultInfo();
+            lstbDirPatterns.Items.AddRange(dirPatterns.ToArray());
+            lstbFilePatterns.Items.AddRange(filePatterns.ToArray());
         }
 
         private void btnSetRootDir_Click(object sender, EventArgs e)
@@ -134,7 +137,7 @@ namespace FileCombiner.FileCleaner
                 return;
 
             dirPatterns?.Remove(lstbDirPatterns.SelectedItem.ToString()!);
-            lstbDirPatterns.Items?.Remove(lstbDirPatterns.SelectedItem.ToString()!); 
+            lstbDirPatterns.Items?.Remove(lstbDirPatterns.SelectedItem.ToString()!);
         }
         private void btnAddFilePatterns_Click(object sender, EventArgs e)
         {
@@ -170,6 +173,7 @@ namespace FileCombiner.FileCleaner
 
             GenerateItem();
             InitListViewResultInfo();
+            MessageBox.Show("Search ended");
         }
         private void GenerateItem()
         {

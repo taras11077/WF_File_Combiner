@@ -97,7 +97,7 @@
             // btnFind
             // 
             btnFind.BackColor = SystemColors.InactiveCaption;
-            btnFind.Location = new Point(517, 517);
+            btnFind.Location = new Point(517, 557);
             btnFind.Name = "btnFind";
             btnFind.Size = new Size(150, 35);
             btnFind.TabIndex = 3;
