@@ -41,7 +41,6 @@
             progressBar1 = new ProgressBar();
             chbMoveToTrash = new CheckBox();
             btnSetRootDir = new Button();
-            lblProgress = new Label();
             lblRemovedListTitle = new Label();
             fbSetRootDirDialog = new FolderBrowserDialog();
             lvwRemovedItems = new ListView();
@@ -56,6 +55,8 @@
             lblSetFilePatterns = new Label();
             txtbPathRootDir = new TextBox();
             label1 = new Label();
+            bindingSource1 = new BindingSource(components);
+            ((System.ComponentModel.ISupportInitialize)bindingSource1).BeginInit();
             SuspendLayout();
             // 
             // iconImgList
@@ -98,7 +99,7 @@
             // btnFind
             // 
             btnFind.BackColor = SystemColors.InactiveCaption;
-            btnFind.Location = new Point(517, 557);
+            btnFind.Location = new Point(842, 400);
             btnFind.Name = "btnFind";
             btnFind.Size = new Size(150, 35);
             btnFind.TabIndex = 3;
@@ -134,7 +135,7 @@
             // btnClear
             // 
             btnClear.BackColor = SystemColors.InactiveCaption;
-            btnClear.Location = new Point(827, 557);
+            btnClear.Location = new Point(842, 556);
             btnClear.Name = "btnClear";
             btnClear.Size = new Size(150, 35);
             btnClear.TabIndex = 6;
@@ -155,7 +156,7 @@
             // 
             // progressBar1
             // 
-            progressBar1.Location = new Point(12, 607);
+            progressBar1.Location = new Point(19, 621);
             progressBar1.Name = "progressBar1";
             progressBar1.Size = new Size(792, 20);
             progressBar1.TabIndex = 9;
@@ -163,7 +164,7 @@
             // chbMoveToTrash
             // 
             chbMoveToTrash.AutoSize = true;
-            chbMoveToTrash.Location = new Point(682, 568);
+            chbMoveToTrash.Location = new Point(870, 526);
             chbMoveToTrash.Name = "chbMoveToTrash";
             chbMoveToTrash.RightToLeft = RightToLeft.Yes;
             chbMoveToTrash.Size = new Size(122, 24);
@@ -174,7 +175,7 @@
             // btnSetRootDir
             // 
             btnSetRootDir.BackColor = SystemColors.InactiveCaption;
-            btnSetRootDir.Location = new Point(517, 447);
+            btnSetRootDir.Location = new Point(517, 402);
             btnSetRootDir.Name = "btnSetRootDir";
             btnSetRootDir.Size = new Size(150, 30);
             btnSetRootDir.TabIndex = 11;
@@ -183,16 +184,6 @@
             btnSetRootDir.Click += btnSetRootDir_Click;
             btnSetRootDir.MouseEnter += btnSetRootDir_MouseEnter;
             btnSetRootDir.MouseLeave += btnSetRootDir_MouseLeave;
-            // 
-            // lblProgress
-            // 
-            lblProgress.AutoSize = true;
-            lblProgress.BackColor = Color.Transparent;
-            lblProgress.Location = new Point(358, 630);
-            lblProgress.Name = "lblProgress";
-            lblProgress.Size = new Size(134, 20);
-            lblProgress.TabIndex = 13;
-            lblProgress.Text = "Progress status: 0%";
             // 
             // lblRemovedListTitle
             // 
@@ -229,7 +220,7 @@
             // 
             // lvwResultInfo
             // 
-            lvwResultInfo.Location = new Point(682, 447);
+            lvwResultInfo.Location = new Point(517, 486);
             lvwResultInfo.Name = "lvwResultInfo";
             lvwResultInfo.Scrollable = false;
             lvwResultInfo.Size = new Size(310, 105);
@@ -240,7 +231,7 @@
             // btnClose
             // 
             btnClose.BackColor = SystemColors.InactiveCaption;
-            btnClose.Location = new Point(827, 606);
+            btnClose.Location = new Point(842, 606);
             btnClose.Name = "btnClose";
             btnClose.Size = new Size(150, 35);
             btnClose.TabIndex = 19;
@@ -309,14 +300,14 @@
             lblSetFilePatterns.Size = new Size(118, 20);
             lblSetFilePatterns.TabIndex = 25;
             lblSetFilePatterns.Text = "Set File patterns:";
-            
             // 
             // txtbPathRootDir
             // 
-            txtbPathRootDir.Location = new Point(517, 402);
+            txtbPathRootDir.Location = new Point(517, 447);
             txtbPathRootDir.Name = "txtbPathRootDir";
             txtbPathRootDir.Size = new Size(475, 27);
             txtbPathRootDir.TabIndex = 26;
+            txtbPathRootDir.Text = "C:\\Users\\Master\\Desktop";
             // 
             // label1
             // 
@@ -332,7 +323,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
-            ClientSize = new Size(1004, 653);
+            ClientSize = new Size(1004, 663);
             Controls.Add(label1);
             Controls.Add(txtbPathRootDir);
             Controls.Add(lblSetFilePatterns);
@@ -346,7 +337,6 @@
             Controls.Add(chbSelectAll);
             Controls.Add(lvwRemovedItems);
             Controls.Add(lblRemovedListTitle);
-            Controls.Add(lblProgress);
             Controls.Add(btnSetRootDir);
             Controls.Add(chbMoveToTrash);
             Controls.Add(progressBar1);
@@ -361,6 +351,7 @@
             ShowInTaskbar = false;
             Text = "FrmFileCleanerMain";
             Load += FrmFileCleanerMain_Load;
+            ((System.ComponentModel.ISupportInitialize)bindingSource1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -376,7 +367,6 @@
         private ProgressBar progressBar1;
         private CheckBox chbMoveToTrash;
         private Button btnSetRootDir;
-        private Label lblProgress;
         private Label lblRemovedListTitle;
         private FolderBrowserDialog fbSetRootDirDialog;
         private ImageList iconImgList;
@@ -392,5 +382,6 @@
         private Label lblSetFilePatterns;
         private TextBox txtbPathRootDir;
         private Label label1;
+        private BindingSource bindingSource1;
     }
 }
