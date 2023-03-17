@@ -99,7 +99,7 @@
             // btnFind
             // 
             btnFind.BackColor = SystemColors.InactiveCaption;
-            btnFind.Location = new Point(842, 400);
+            btnFind.Location = new Point(842, 447);
             btnFind.Name = "btnFind";
             btnFind.Size = new Size(150, 35);
             btnFind.TabIndex = 3;
@@ -175,7 +175,7 @@
             // btnSetRootDir
             // 
             btnSetRootDir.BackColor = SystemColors.InactiveCaption;
-            btnSetRootDir.Location = new Point(517, 402);
+            btnSetRootDir.Location = new Point(517, 447);
             btnSetRootDir.Name = "btnSetRootDir";
             btnSetRootDir.Size = new Size(150, 30);
             btnSetRootDir.TabIndex = 11;
@@ -303,7 +303,7 @@
             // 
             // txtbPathRootDir
             // 
-            txtbPathRootDir.Location = new Point(517, 447);
+            txtbPathRootDir.Location = new Point(517, 402);
             txtbPathRootDir.Name = "txtbPathRootDir";
             txtbPathRootDir.Size = new Size(475, 27);
             txtbPathRootDir.TabIndex = 26;
