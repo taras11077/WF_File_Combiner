@@ -162,6 +162,7 @@ namespace FileCombiner.FileCleaner
             StartProgressBar();
 
             string path = txtbPathRootDir.Text;
+
             Finder finder = new Finder();
             finder.DirMasks = dirPatterns.ToArray();
             finder.FileMasks = filePatterns.ToArray();
@@ -177,6 +178,8 @@ namespace FileCombiner.FileCleaner
         }
         private void GenerateFindedItems()
         {
+            lvwRemovedItems.Items.Clear();
+
             resultContainer.Dirs.ForEach(dir =>
             {
                 GenerateItem(dir);
@@ -223,6 +226,38 @@ namespace FileCombiner.FileCleaner
             lvwRemovedItems.Items.Add(item);
         }
 
+        //Checked
+
+        // изменение свойства Checked вложенних файлов в соответствии с родительской папкой
+        private void CheckFiles(DirectoryInfo d, ItemCheckedEventArgs e)
+        {
+            resultContainer.Files.ForEach(file =>
+            {
+                if (file.FullName.Contains(d.FullName))
+                {
+                    foreach (ListViewItem item in lvwRemovedItems.Items)
+                    {
+                        if (file == (item.Tag as FileInfo))
+                            item.Checked = e.Item.Checked;
+                    }
+                }
+            });
+
+            resultContainer.Dirs.ForEach(dir =>
+            {
+                if (dir.FullName.Contains(d.FullName) && dir.FullName != d.FullName)
+                    CheckFiles(dir, e);
+            });
+        }
+        private void lvwRemovedItems_ItemChecked(object sender, ItemCheckedEventArgs e)
+        {
+            if (e.Item.Tag is DirectoryInfo d)
+                CheckFiles(d, e);
+
+            InitListViewResultInfo();
+        }
+
+
         //Calculation
         int dirSize = 0;
 
@@ -243,7 +278,6 @@ namespace FileCombiner.FileCleaner
 
             return dirSize;
         }
-
         private int CalcFindedFullSize() // расчет размера всех найдених елементов
         {
             int size = 0;
@@ -271,9 +305,6 @@ namespace FileCombiner.FileCleaner
             }
             return size;
         }
-
-
-
         private int CalcCheckedFullSize() // расчет размера всех checked-елементов
         {
             int size = 0;
@@ -314,39 +345,36 @@ namespace FileCombiner.FileCleaner
                 return;
             StartProgressBar();
 
+            Remover remover = new Remover();
+
+            if (chbMoveToTrash.Checked) // если в корзину
+                remover.trash= true;
+
+            // создание списков для Remover (привязка к Listview)
+            foreach (ListViewItem item in lvwRemovedItems.Items)
+            {
+                if (item.Tag is DirectoryInfo d)
+                    remover.ListItems.Dirs.Add(d);
+                else if (item.Tag is FileInfo f)
+                    remover.ListItems.Files.Add(f);
+            }
+
+            foreach (ListViewItem item in lvwRemovedItems.CheckedItems)
+            {
+                if (item.Tag is DirectoryInfo d)
+                    remover.RemovedItems.Dirs.Add(d);
+                else if (item.Tag is FileInfo f)
+                    remover.RemovedItems.Files.Add(f);
+            }
+                       
+
             try
             {
-                foreach (ListViewItem itemCheck in lvwRemovedItems.CheckedItems) // перебор отмеченних елементов
-                {
-                    string? filename = itemCheck.Tag.ToString();
+                remover.Remove(remover.trash);
 
-                    if (lvwRemovedItems.Items.Count != 0 && (filename != null && itemCheck.Tag is FileInfo)) // если елемент - файл, то он удаляется из файловой системи и из ListView
-                    {
-                        if (chbMoveToTrash.Checked)
-                            Microsoft.VisualBasic.FileIO.FileSystem.DeleteFile(filename, UIOption.OnlyErrorDialogs, RecycleOption.SendToRecycleBin);
-                        else
-                            File.Delete(filename);
+                resultContainer = new(remover.ListItems.Dirs, remover.ListItems.Files); // создание нового resulContainer после удаления елементов
+                GenerateFindedItems();                                                  // генепация елементов и создание нового ListView
 
-                        lvwRemovedItems.Items.Remove(itemCheck);
-                    }
-                    else if (filename != null && itemCheck.Tag is DirectoryInfo) // если елемент - папка, то удаляются все вложенние елементи независимо от свойства Checked
-                    {
-                        if (chbMoveToTrash.Checked)
-                        {
-                            Microsoft.VisualBasic.FileIO.FileSystem.DeleteDirectory(filename, UIOption.OnlyErrorDialogs, RecycleOption.SendToRecycleBin);
-
-                            foreach (ListViewItem item in lvwRemovedItems.Items) // удаление из ListView всех вложенних в данную папку елементов независимо от того отмечени ли они на удаление
-                            {
-                                if (item.Tag.ToString() != null && item.Tag.ToString()!.Contains(filename))
-                                    lvwRemovedItems.Items.Remove(item);
-                            }
-                        }
-                        else
-                            Directory.Delete(filename);
-
-                        lvwRemovedItems.Items.Remove(itemCheck);
-                    }
-                }
                 MessageBox.Show("Selected items removed");
             }
             catch (Exception ex)
@@ -355,95 +383,10 @@ namespace FileCombiner.FileCleaner
             }
 
             InitListViewResultInfo();
-        }
-
-        //private void btnClear_Click(object sender, EventArgs e)
-        //{
-        //    if (MessageBox.Show("Are you sure?", "Remove", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) != DialogResult.OK)
-        //        return;
-
-        //    try
-        //    {
-        //        StartProgressBar();
-
-        //        foreach (ListViewItem item in lvwRemovedItems.CheckedItems)
-        //        {
-        //            string? filename = item.Tag.ToString();
-
-        //            if (filename != null && item.Tag is FileInfo)
-        //            {
-        //                if (chbMoveToTrash.Checked)
-        //                    Microsoft.VisualBasic.FileIO.FileSystem.DeleteFile(filename, UIOption.OnlyErrorDialogs, RecycleOption.SendToRecycleBin);
-        //                else
-        //                    File.Delete(filename);
-
-        //                lvwRemovedItems.Items.Remove(item);
-        //            }
-        //        }
-
-        //        foreach (ListViewItem item in lvwRemovedItems.CheckedItems)
-        //        {
-        //            string? filename = item.Tag.ToString();
-
-        //            if (filename != null && item.Tag is DirectoryInfo)
-        //            {
-        //                if (chbMoveToTrash.Checked)
-        //                {
-        //                    Microsoft.VisualBasic.FileIO.FileSystem.DeleteDirectory(filename, UIOption.OnlyErrorDialogs, RecycleOption.SendToRecycleBin);
-        //                }
-        //                else
-        //                    Directory.Delete(filename);
-
-        //                lvwRemovedItems.Items.Remove(item);
-        //            }
-        //        }
-        //        MessageBox.Show("Selected items removed");
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show($"{ex.Message}\n File or directory not found!");
-        //    }
-
-        //    InitListViewResultInfo();
-        //}
-
-        //Checked
-
-        // изменение свойства Checked вложенних файлов в соответствии с родительской папкой
-        private void CheckFiles(DirectoryInfo d, ItemCheckedEventArgs e)
-        {
-            resultContainer.Files.ForEach(file =>
-            {
-                if (file.FullName.Contains(d.FullName))
-                {
-                    foreach (ListViewItem item in lvwRemovedItems.Items)
-                    {
-                        if (file == (item.Tag as FileInfo))
-                            item.Checked = e.Item.Checked;
-                    }
-                }
-            });
-
-            resultContainer.Dirs.ForEach(dir =>
-            {
-                if (dir.FullName.Contains(d.FullName) && dir.FullName != d.FullName)
-                    CheckFiles(dir, e);
-            });
-        }
-
-        private void lvwRemovedItems_ItemChecked(object sender, ItemCheckedEventArgs e)
-        {
-            if (e.Item.Tag is DirectoryInfo d)
-                CheckFiles(d, e);
-
-            InitListViewResultInfo();
-        }
+        }      
 
 
-
-
-
-
+        
 
         //Small details
         private void StartProgressBar()

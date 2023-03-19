@@ -14,5 +14,11 @@ namespace FileProcessor
 
         public ObjectContainer()
         { }
+
+        public ObjectContainer(List<DirectoryInfo> dirs, List<FileInfo> files)
+        {
+            Dirs = dirs;
+            Files = files;
+        }
     }
 }
