@@ -31,25 +31,22 @@ namespace FileCombiner.FileCleaner
 
         private List<string> dirPatterns = new()
             {
-                //".vs",
-                //".DS_Store",
-                //"Debug",
-                //"bin",
-                //"debug",
-                //"obj",
-                //"0_intro",
-                //"1_controls",
-                //"FileCombine",
+                ".vs",
+                ".DS_Store",
+                "Debug",
+                "bin",
+                "debug",
+                "obj",
+                "0_intro",
+                "1_controls",
+                "FileCombine",
                 "icons",
-                //"icons2",
             };
         private List<string> filePatterns = new()
             {
-                //"*.resx",
-                //"*.cs",
+                "*.resx",
+                "*.cs",
                 "*.png",
-                //".gitignore",
-                //"TASK.txt",
             };
 
 
@@ -290,8 +287,8 @@ namespace FileCombiner.FileCleaner
                 {
                     bool flag = true;
                     // если в CheckedItems есть папка(она чекнутая) и ее имя в имени файла, 
-                    //то цикл преривается с флагом false и его размер не учитивается в сумму чекнутих елементов
-                    // если такой папки нет, то цикл проходит до конца и размер файла добавляется в сумму
+                    // то цикл преривается (с флагом=false) и его размер не учитивается в сумму чекнутих елементов
+                    // если такой папки нет, то цикл проходит до конца (flag=true) и размер файла добавляется в сумму
 
                     foreach (ListViewItem item2 in lvwRemovedItems.CheckedItems)
                     {
@@ -315,38 +312,39 @@ namespace FileCombiner.FileCleaner
         {
             if (MessageBox.Show("Are you sure?", "Remove", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) != DialogResult.OK)
                 return;
+            StartProgressBar();
 
             try
             {
-                StartProgressBar();
-
-                foreach (ListViewItem item in lvwRemovedItems.CheckedItems)
+                foreach (ListViewItem itemCheck in lvwRemovedItems.CheckedItems) // перебор отмеченних елементов
                 {
-                    string? filename = item.Tag.ToString();
+                    string? filename = itemCheck.Tag.ToString();
 
-                    if (filename != null && item.Tag is FileInfo)
+                    if (lvwRemovedItems.Items.Count != 0 && (filename != null && itemCheck.Tag is FileInfo)) // если елемент - файл, то он удаляется из файловой системи и из ListView
                     {
                         if (chbMoveToTrash.Checked)
                             Microsoft.VisualBasic.FileIO.FileSystem.DeleteFile(filename, UIOption.OnlyErrorDialogs, RecycleOption.SendToRecycleBin);
                         else
                             File.Delete(filename);
 
-                        lvwRemovedItems.Items.Remove(item);
+                        lvwRemovedItems.Items.Remove(itemCheck);
                     }
-                }
-
-                foreach (ListViewItem item in lvwRemovedItems.CheckedItems)
-                {
-                    string? filename = item.Tag.ToString();
-
-                    if (filename != null && item.Tag is DirectoryInfo)
+                    else if (filename != null && itemCheck.Tag is DirectoryInfo) // если елемент - папка, то удаляются все вложенние елементи независимо от свойства Checked
                     {
                         if (chbMoveToTrash.Checked)
+                        {
                             Microsoft.VisualBasic.FileIO.FileSystem.DeleteDirectory(filename, UIOption.OnlyErrorDialogs, RecycleOption.SendToRecycleBin);
+
+                            foreach (ListViewItem item in lvwRemovedItems.Items) // удаление из ListView всех вложенних в данную папку елементов независимо от того отмечени ли они на удаление
+                            {
+                                if (item.Tag.ToString() != null && item.Tag.ToString()!.Contains(filename))
+                                    lvwRemovedItems.Items.Remove(item);
+                            }
+                        }
                         else
                             Directory.Delete(filename);
 
-                        lvwRemovedItems.Items.Remove(item);
+                        lvwRemovedItems.Items.Remove(itemCheck);
                     }
                 }
                 MessageBox.Show("Selected items removed");
@@ -359,9 +357,59 @@ namespace FileCombiner.FileCleaner
             InitListViewResultInfo();
         }
 
+        //private void btnClear_Click(object sender, EventArgs e)
+        //{
+        //    if (MessageBox.Show("Are you sure?", "Remove", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) != DialogResult.OK)
+        //        return;
 
+        //    try
+        //    {
+        //        StartProgressBar();
+
+        //        foreach (ListViewItem item in lvwRemovedItems.CheckedItems)
+        //        {
+        //            string? filename = item.Tag.ToString();
+
+        //            if (filename != null && item.Tag is FileInfo)
+        //            {
+        //                if (chbMoveToTrash.Checked)
+        //                    Microsoft.VisualBasic.FileIO.FileSystem.DeleteFile(filename, UIOption.OnlyErrorDialogs, RecycleOption.SendToRecycleBin);
+        //                else
+        //                    File.Delete(filename);
+
+        //                lvwRemovedItems.Items.Remove(item);
+        //            }
+        //        }
+
+        //        foreach (ListViewItem item in lvwRemovedItems.CheckedItems)
+        //        {
+        //            string? filename = item.Tag.ToString();
+
+        //            if (filename != null && item.Tag is DirectoryInfo)
+        //            {
+        //                if (chbMoveToTrash.Checked)
+        //                {
+        //                    Microsoft.VisualBasic.FileIO.FileSystem.DeleteDirectory(filename, UIOption.OnlyErrorDialogs, RecycleOption.SendToRecycleBin);
+        //                }
+        //                else
+        //                    Directory.Delete(filename);
+
+        //                lvwRemovedItems.Items.Remove(item);
+        //            }
+        //        }
+        //        MessageBox.Show("Selected items removed");
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show($"{ex.Message}\n File or directory not found!");
+        //    }
+
+        //    InitListViewResultInfo();
+        //}
 
         //Checked
+
+        // изменение свойства Checked вложенних файлов в соответствии с родительской папкой
         private void CheckFiles(DirectoryInfo d, ItemCheckedEventArgs e)
         {
             resultContainer.Files.ForEach(file =>
@@ -382,6 +430,7 @@ namespace FileCombiner.FileCleaner
                     CheckFiles(dir, e);
             });
         }
+
         private void lvwRemovedItems_ItemChecked(object sender, ItemCheckedEventArgs e)
         {
             if (e.Item.Tag is DirectoryInfo d)
@@ -416,6 +465,8 @@ namespace FileCombiner.FileCleaner
 
         private void chbSelectAll_CheckedChanged(object sender, EventArgs e)
         {
+            StartProgressBar();
+
             foreach (ListViewItem item in lvwRemovedItems.Items)
                 item.Checked = chbSelectAll.Checked;
         }
