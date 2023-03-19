@@ -16,11 +16,11 @@ namespace FileProcessor
 
         public void Remove(bool trash)
         {
-            foreach (FileInfo removedFile in RemovedItems.Files) // перебор отмеченних елементов
+            foreach (FileInfo removedFile in RemovedItems.Files) // перебор отмеченних файлов
             {
                 string? filename = removedFile.FullName.ToString();
 
-                if (RemovedItems.Files.Count != 0) // если елемент - файл, то он удаляется из файловой системи и из ListView
+                if (RemovedItems.Files.Count != 0)
                 {
                     if (trash)
                         Microsoft.VisualBasic.FileIO.FileSystem.DeleteFile(filename, UIOption.OnlyErrorDialogs, RecycleOption.SendToRecycleBin);
@@ -30,14 +30,14 @@ namespace FileProcessor
                     ListItems.Files.Remove(removedFile);
                 }
             }
-            foreach (DirectoryInfo removedDir in RemovedItems.Dirs)
+            foreach (DirectoryInfo removedDir in RemovedItems.Dirs) // перебор отмеченних файлов
             {
                 string? dirname = removedDir.FullName.ToString();
                 if (trash)
                 {
                     Microsoft.VisualBasic.FileIO.FileSystem.DeleteDirectory(dirname, UIOption.OnlyErrorDialogs, RecycleOption.SendToRecycleBin);
 
-                    foreach (FileInfo listFile in ListItems.Files) // удаление из ListView всех вложенних в данную папку елементов независимо от того отмечени ли они на удаление
+                    foreach (FileInfo listFile in ListItems.Files) // удаление из ListView всех вложенних в удаляемую папку елементов, независимо от того отмечени ли они на удаление
                     {
                             if (listFile.FullName.ToString()!.Contains(removedDir.FullName.ToString()))
                                 ListItems.Files.Remove(listFile);
