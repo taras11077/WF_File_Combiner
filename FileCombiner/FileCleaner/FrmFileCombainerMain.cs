@@ -22,10 +22,11 @@ using Microsoft.VisualBasic.ApplicationServices;
 using System.Reflection;
 using System.IO;
 using ListView = System.Windows.Forms.ListView;
+using FileCombiner.FileRenamer;
 
 namespace FileCombiner.FileCleaner
 {
-    public partial class FrmFileCleanerMain : Form
+    public partial class FrmFileCombainerMain : Form
     {
         private ObjectContainer resultContainer = new();
 
@@ -50,9 +51,32 @@ namespace FileCombiner.FileCleaner
             };
 
 
-        public FrmFileCleanerMain()
+        public FrmFileCombainerMain(string type)
         {
             InitializeComponent();
+
+            if (type == "clear")
+            {
+                BackColor = Color.RosyBrown;
+                btnRename.Enabled = false;
+                btnArhiver.Enabled = false;
+            }
+            else if (type == "rename")
+            {
+                BackColor = Color.LemonChiffon;
+                btnArhiver.Enabled = false;
+                btnClear.Enabled = false;
+                chbMoveToTrash.Enabled = false;
+
+            }
+            else if (type == "arhive")
+            {
+                BackColor = Color.DarkSeaGreen;
+                btnRename.Enabled = false;
+                btnClear.Enabled = false;
+                chbMoveToTrash.Enabled = false;
+            }
+
         }
         //Init
         private void InitListViewRemovedItems()
@@ -162,6 +186,8 @@ namespace FileCombiner.FileCleaner
             StartProgressBar();
 
             string path = txtbPathRootDir.Text;
+            //if (!Directory.Exists(path))
+                //throw new Exceptions.DirectoryNotFoundException($"Directory {path} not found"); TODO
 
             Finder finder = new Finder();
             finder.DirMasks = dirPatterns.ToArray();
@@ -179,9 +205,11 @@ namespace FileCombiner.FileCleaner
         private void GenerateFindedItems()
         {
             lvwRemovedItems.Items.Clear();
+           
 
             resultContainer.Dirs.ForEach(dir =>
             {
+                dirSize = 0;
                 GenerateItem(dir);
 
             });
@@ -261,7 +289,7 @@ namespace FileCombiner.FileCleaner
         //Calculation
         int dirSize = 0;
 
-        public int CalcDirSize(DirectoryInfo d) //расчет размера директории
+        private int CalcDirSize(DirectoryInfo d) //расчет размера директории
         {
             DirectoryInfo[] dirs = d.GetDirectories();
             FileInfo[] files = d.GetFiles();
@@ -348,7 +376,7 @@ namespace FileCombiner.FileCleaner
             Remover remover = new Remover();
 
             if (chbMoveToTrash.Checked) // если в корзину
-                remover.trash= true;
+                remover.trash = true;
 
             // создание списков для Remover (привязка к Listview)
             foreach (ListViewItem item in lvwRemovedItems.Items)
@@ -366,7 +394,7 @@ namespace FileCombiner.FileCleaner
                 else if (item.Tag is FileInfo f)
                     remover.RemovedItems.Files.Add(f);
             }
-                       
+
 
             try
             {
@@ -383,10 +411,10 @@ namespace FileCombiner.FileCleaner
             }
 
             InitListViewResultInfo();
-        }      
+        }
 
 
-        
+
 
         //Small details
         private void StartProgressBar()
@@ -425,9 +453,13 @@ namespace FileCombiner.FileCleaner
             if (sender as Button == btnSetRootDir || sender as Button == btnAddDirPatterns || sender as Button == btnRemoveDirPatterns || sender as Button == btnAddFilePatterns || sender as Button == btnRemoveFilePatterns || sender as Button == btnClose)
                 (sender as Button)!.BackColor = Color.SteelBlue;
             else if (sender as Button == btnFind)
-                (sender as Button)!.BackColor = Color.DarkSeaGreen;
+                (sender as Button)!.BackColor = Color.SteelBlue;
             else if (sender as Button == btnClear)
                 (sender as Button)!.BackColor = Color.IndianRed;
+            else if (sender as Button == btnRename)
+                (sender as Button)!.BackColor = Color.Khaki;
+            else if (sender as Button == btnArhiver)
+                (sender as Button)!.BackColor = Color.MediumSeaGreen;
         }
 
         private void btnSetRootDir_MouseLeave(object sender, EventArgs e)
@@ -435,6 +467,10 @@ namespace FileCombiner.FileCleaner
             (sender as Button)!.BackColor = Color.LightSteelBlue;
         }
 
-
+        private void btnRename_Click(object sender, EventArgs e)
+        {
+            FrmFileRenamer frm = new FrmFileRenamer();
+            frm.ShowDialog();
+        }
     }
 }

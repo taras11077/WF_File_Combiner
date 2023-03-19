@@ -29,39 +29,42 @@
         private void InitializeComponent()
         {
             btnFileCleaner = new Button();
-            btnAnalyzer = new Button();
+            btnArhive = new Button();
             btnRenamer = new Button();
             btnClose = new Button();
             SuspendLayout();
             // 
             // btnFileCleaner
             // 
+            btnFileCleaner.BackColor = Color.RosyBrown;
             btnFileCleaner.Location = new Point(24, 37);
             btnFileCleaner.Name = "btnFileCleaner";
             btnFileCleaner.Size = new Size(136, 29);
             btnFileCleaner.TabIndex = 1;
             btnFileCleaner.Text = "FILE CLEANER";
-            btnFileCleaner.UseVisualStyleBackColor = true;
+            btnFileCleaner.UseVisualStyleBackColor = false;
             btnFileCleaner.Click += btnFileCleaner_Click_1;
             // 
-            // btnAnalyzer
+            // btnArhive
             // 
-            btnAnalyzer.Location = new Point(24, 93);
-            btnAnalyzer.Name = "btnAnalyzer";
-            btnAnalyzer.Size = new Size(136, 29);
-            btnAnalyzer.TabIndex = 2;
-            btnAnalyzer.Text = "ANALYZER";
-            btnAnalyzer.UseVisualStyleBackColor = true;
-            btnAnalyzer.Click += btnAnalyzer_Click;
+            btnArhive.BackColor = Color.DarkSeaGreen;
+            btnArhive.Location = new Point(27, 153);
+            btnArhive.Name = "btnArhive";
+            btnArhive.Size = new Size(136, 29);
+            btnArhive.TabIndex = 2;
+            btnArhive.Text = "ARHIVER";
+            btnArhive.UseVisualStyleBackColor = false;
+            btnArhive.Click += btnAnalyzer_Click;
             // 
             // btnRenamer
             // 
-            btnRenamer.Location = new Point(24, 157);
+            btnRenamer.BackColor = Color.LemonChiffon;
+            btnRenamer.Location = new Point(24, 92);
             btnRenamer.Name = "btnRenamer";
             btnRenamer.Size = new Size(139, 29);
             btnRenamer.TabIndex = 3;
-            btnRenamer.Text = "RENAMER";
-            btnRenamer.UseVisualStyleBackColor = true;
+            btnRenamer.Text = "FILE RENAMER";
+            btnRenamer.UseVisualStyleBackColor = false;
             btnRenamer.Click += btnRenamer_Click;
             // 
             // btnClose
@@ -83,7 +86,7 @@
             ClientSize = new Size(473, 450);
             Controls.Add(btnClose);
             Controls.Add(btnRenamer);
-            Controls.Add(btnAnalyzer);
+            Controls.Add(btnArhive);
             Controls.Add(btnFileCleaner);
             Name = "FrmMain";
             Text = "Form1";
@@ -92,7 +95,7 @@
 
         #endregion
         private Button btnFileCleaner;
-        private Button btnAnalyzer;
+        private Button btnArhive;
         private Button btnRenamer;
         private Button btnClose;
     }

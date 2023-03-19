@@ -5,7 +5,6 @@ D:\step\repos\HW\WF\FileCombiner\FileCombiner\obj\Debug\net7.0-windows\FileCombi
 D:\step\repos\HW\WF\FileCombiner\FileCombiner\obj\Debug\net7.0-windows\FileCombiner.AssemblyInfoInputs.cache
 D:\step\repos\HW\WF\FileCombiner\FileCombiner\obj\Debug\net7.0-windows\FileCombiner.AssemblyInfo.cs
 D:\step\repos\HW\WF\FileCombiner\FileCombiner\obj\Debug\net7.0-windows\FileCombiner.csproj.CoreCompileInputs.cache
-D:\step\repos\HW\WF\FileCombiner\FileCombiner\obj\Debug\net7.0-windows\FileCombiner.FileCleaner.FrmFileCleanerMain.resources
 D:\step\repos\HW\WF\FileCombiner\FileCombiner\bin\Debug\net7.0-windows\FileCombiner.exe
 D:\step\repos\HW\WF\FileCombiner\FileCombiner\bin\Debug\net7.0-windows\FileCombiner.deps.json
 D:\step\repos\HW\WF\FileCombiner\FileCombiner\bin\Debug\net7.0-windows\FileCombiner.runtimeconfig.json
@@ -20,3 +19,5 @@ D:\step\repos\HW\WF\FileCombiner\FileCombiner\bin\Debug\net7.0-windows\FileProce
 D:\step\repos\HW\WF\FileCombiner\FileCombiner\bin\Debug\net7.0-windows\FileProcessor.pdb
 D:\step\repos\HW\WF\FileCombiner\FileCombiner\obj\Debug\net7.0-windows\FileCombiner.csproj.CopyComplete
 D:\step\repos\HW\WF\FileCombiner\FileCombiner\obj\Debug\net7.0-windows\FileCombiner.Properties.Resources.resources
+D:\step\repos\HW\WF\FileCombiner\FileCombiner\obj\Debug\net7.0-windows\FileCombiner.FileCleaner.FrmFileCombainerMain.resources
+D:\step\repos\HW\WF\FileCombiner\FileCombiner\obj\Debug\net7.0-windows\FileCombiner.FileRenamer.FrmFileRenamer.resources
