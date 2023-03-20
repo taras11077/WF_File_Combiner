@@ -187,21 +187,28 @@ namespace FileCombiner.FileCleaner
             StartProgressBar();
 
             string path = txtbPathRootDir.Text;
-            //if (!Directory.Exists(path))
-                //throw new Exceptions.DirectoryNotFoundException($"Directory {path} not found"); TODO
+            try
+            {
+                if (!Directory.Exists(path))
+                    throw new DirectoryNotFoundException();
 
-            Finder finder = new Finder();
-            finder.DirMasks = dirPatterns.ToArray();
-            finder.FileMasks = filePatterns.ToArray();
+                Finder finder = new Finder();
+                finder.DirMasks = dirPatterns.ToArray();
+                finder.FileMasks = filePatterns.ToArray();
 
-            finder.FindAll(path);
-            resultContainer = finder.ResultContainer;
+                finder.FindAll(path);
+                resultContainer = finder.ResultContainer;
 
-            GenerateFindedItems();
-            InitListViewResultInfo();
-            lvwRemovedItems.CheckBoxes = true;
+                GenerateFindedItems();
+                InitListViewResultInfo();
+                lvwRemovedItems.CheckBoxes = true;
 
-            MessageBox.Show("Search completed successfully");
+                MessageBox.Show("Search completed successfully");
+            }
+            catch (DirectoryNotFoundException)
+            {
+                MessageBox.Show(($"Directory {path} not found"));
+            }
         }
         private void GenerateFindedItems()
         {
