@@ -19,5 +19,5 @@ D:\step\repos\HW\WF\FileCombiner\FileCombiner\bin\Debug\net7.0-windows\FileProce
 D:\step\repos\HW\WF\FileCombiner\FileCombiner\bin\Debug\net7.0-windows\FileProcessor.pdb
 D:\step\repos\HW\WF\FileCombiner\FileCombiner\obj\Debug\net7.0-windows\FileCombiner.csproj.CopyComplete
 D:\step\repos\HW\WF\FileCombiner\FileCombiner\obj\Debug\net7.0-windows\FileCombiner.Properties.Resources.resources
-D:\step\repos\HW\WF\FileCombiner\FileCombiner\obj\Debug\net7.0-windows\FileCombiner.FileCleaner.FrmFileCombainerMain.resources
 D:\step\repos\HW\WF\FileCombiner\FileCombiner\obj\Debug\net7.0-windows\FileCombiner.FileRenamer.FrmFileRenamer.resources
+D:\step\repos\HW\WF\FileCombiner\FileCombiner\obj\Debug\net7.0-windows\FileCombiner.FileCleaner.FrmFileCombinerMain.resources

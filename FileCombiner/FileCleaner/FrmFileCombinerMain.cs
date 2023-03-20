@@ -26,7 +26,7 @@ using FileCombiner.FileRenamer;
 
 namespace FileCombiner.FileCleaner
 {
-    public partial class FrmFileCombainerMain : Form
+    public partial class FrmFileCombinerMain : Form
     {
         private ObjectContainer resultContainer = new();
 
@@ -51,30 +51,31 @@ namespace FileCombiner.FileCleaner
             };
 
 
-        public FrmFileCombainerMain(string type)
+        public FrmFileCombinerMain(FileCombinerMode mode = FileCombinerMode.Cleaner)
         {
             InitializeComponent();
 
-            if (type == "clear")
+            switch(mode)
             {
-                BackColor = Color.RosyBrown;
-                btnRename.Enabled = false;
-                btnArhiver.Enabled = false;
-            }
-            else if (type == "rename")
-            {
-                BackColor = Color.LemonChiffon;
-                btnArhiver.Enabled = false;
-                btnClear.Enabled = false;
-                chbMoveToTrash.Enabled = false;
+                case FileCombinerMode.Cleaner:
+                    BackColor = Color.RosyBrown;
+                    btnRename.Enabled = false;
+                    btnArhiver.Enabled = false;
+                   break;
 
-            }
-            else if (type == "arhive")
-            {
-                BackColor = Color.DarkSeaGreen;
-                btnRename.Enabled = false;
-                btnClear.Enabled = false;
-                chbMoveToTrash.Enabled = false;
+                case FileCombinerMode.Renamer:
+                    BackColor = Color.LemonChiffon;
+                    btnArhiver.Enabled = false;
+                    btnClear.Enabled = false;
+                    chbMoveToTrash.Enabled = false;
+                    break;
+
+                case FileCombinerMode.Arhiver:
+                    BackColor = Color.DarkSeaGreen;
+                    btnRename.Enabled = false;
+                    btnClear.Enabled = false;
+                    chbMoveToTrash.Enabled = false;
+                    break;
             }
 
         }
@@ -206,7 +207,6 @@ namespace FileCombiner.FileCleaner
         {
             lvwRemovedItems.Items.Clear();
            
-
             resultContainer.Dirs.ForEach(dir =>
             {
                 dirSize = 0;
@@ -282,7 +282,7 @@ namespace FileCombiner.FileCleaner
             if (e.Item.Tag is DirectoryInfo d)
                 CheckFiles(d, e);
 
-            InitListViewResultInfo();
+            //InitListViewResultInfo(); // !!! сильно тормозит процесс, может просто переделать на кнопку Update?
         }
 
 
@@ -466,6 +466,9 @@ namespace FileCombiner.FileCleaner
         {
             (sender as Button)!.BackColor = Color.LightSteelBlue;
         }
+
+
+
 
         private void btnRename_Click(object sender, EventArgs e)
         {

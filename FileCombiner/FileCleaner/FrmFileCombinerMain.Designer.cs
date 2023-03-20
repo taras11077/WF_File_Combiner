@@ -1,6 +1,6 @@
 ﻿namespace FileCombiner.FileCleaner
 {
-    partial class FrmFileCombainerMain
+    partial class FrmFileCombinerMain
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmFileCombainerMain));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmFileCombinerMain));
             iconImgList = new ImageList(components);
             btnAddDirPatterns = new Button();
             lstbDirPatterns = new ListBox();

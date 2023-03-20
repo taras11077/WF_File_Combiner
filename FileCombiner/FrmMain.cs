@@ -14,21 +14,21 @@ namespace FileCombiner
 
         private void btnFileCleaner_Click_1(object sender, EventArgs e)
         {
-            FrmFileCombainerMain frm = new FrmFileCombainerMain("clear");
+            FrmFileCombinerMain frm = new FrmFileCombinerMain(FileCombinerMode.Cleaner);
             frm.ShowDialog();
 
         }
 
         private void btnRenamer_Click(object sender, EventArgs e)
         {
-            FrmFileCombainerMain frm = new FrmFileCombainerMain("rename");
+            FrmFileCombinerMain frm = new FrmFileCombinerMain(FileCombinerMode.Renamer);
             frm.ShowDialog();
 
         }
 
         private void btnAnalyzer_Click(object sender, EventArgs e)
         {
-            FrmFileCombainerMain frm = new FrmFileCombainerMain("arhive");
+            FrmFileCombinerMain frm = new FrmFileCombinerMain(FileCombinerMode.Arhiver);
             frm.ShowDialog();
         }
 
