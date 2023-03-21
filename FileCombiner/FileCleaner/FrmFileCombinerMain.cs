@@ -196,7 +196,7 @@ namespace FileCombiner.FileCleaner
                 finder.DirMasks = dirPatterns.ToArray();
                 finder.FileMasks = filePatterns.ToArray();
 
-                finder.FindAll(path);
+                finder.FindAll(path, true);
                 resultContainer = finder.ResultContainer;
 
                 GenerateFindedItems();
@@ -289,7 +289,7 @@ namespace FileCombiner.FileCleaner
             if (e.Item.Tag is DirectoryInfo d)
                 CheckFiles(d, e);
 
-            //InitListViewResultInfo(); // !!! сильно тормозит процесс, может просто переделать на кнопку Update?
+            InitListViewResultInfo(); // !!! сильно тормозит процесс, может просто переделать на кнопку Update?
         }
 
 

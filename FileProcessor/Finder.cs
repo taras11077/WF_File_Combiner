@@ -17,7 +17,7 @@ namespace FileProcessor
         {
             regexFileAnalyzer = new RegexFileAnalyzer();
         }
-        public void FindDirectories(string rootPath)
+        public void FindDirectories(string rootPath, bool recursive)
         {
             DirectoryInfo dir = new DirectoryInfo(rootPath);
 
@@ -27,23 +27,28 @@ namespace FileProcessor
             {
                 if (DirMasks.Contains(d.Name))
                     ResultContainer.Dirs.Add(d);
-                else
-                    FindDirectories(d.FullName);
+                else if(recursive)
+                    FindDirectories(d.FullName, recursive);
             }
         }
-        public void FindFiles(string rootPath)
+        public void FindFiles(string rootPath, bool recursive)
         {
             DirectoryInfo dir = new DirectoryInfo(rootPath);
-
-            DirectoryInfo[] dirs = dir.GetDirectories();
+            
             FileInfo[] files = dir.GetFiles();
-
             ResultContainer.Files.AddRange(regexFileAnalyzer.AnalyzeFiles(files, FileMasks));
 
-            foreach (DirectoryInfo d in dirs)
-                FindFiles(d.FullName);
+            if (recursive)
+            {
+                DirectoryInfo[] dirs = dir.GetDirectories();
+                foreach (DirectoryInfo d in dirs)
+                    FindFiles(d.FullName, recursive);
+            }
         }
-        public void FindAll(string rootPath)
+
+       
+
+        public void FindAll(string rootPath, bool recursive)
         {
             DirectoryInfo dir = new DirectoryInfo(rootPath);
 
@@ -57,10 +62,10 @@ namespace FileProcessor
                 if (DirMasks.Contains(d.Name))
                 {
                     ResultContainer.Dirs.Add(d);
-                    FindFiles(d.FullName);
+                    FindFiles(d.FullName, recursive);
                 }
-                else
-                    FindAll(d.FullName);
+                else if (recursive)
+                    FindFiles(d.FullName, recursive);
             }
         }
     }
