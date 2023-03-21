@@ -55,13 +55,13 @@ namespace FileCombiner.FileCleaner
         {
             InitializeComponent();
 
-            switch(mode)
+            switch (mode)
             {
                 case FileCombinerMode.Cleaner:
                     BackColor = Color.RosyBrown;
                     btnRename.Enabled = false;
                     btnArhiver.Enabled = false;
-                   break;
+                    break;
 
                 case FileCombinerMode.Renamer:
                     BackColor = Color.LemonChiffon;
@@ -213,7 +213,7 @@ namespace FileCombiner.FileCleaner
         private void GenerateFindedItems()
         {
             lvwRemovedItems.Items.Clear();
-           
+
             resultContainer.Dirs.ForEach(dir =>
             {
                 dirSize = 0;
@@ -458,7 +458,7 @@ namespace FileCombiner.FileCleaner
         private void btnSetRootDir_MouseEnter(object sender, EventArgs e)
         {
             if (sender as Button == btnSetRootDir || sender as Button == btnAddDirPatterns || sender as Button == btnRemoveDirPatterns || sender as Button == btnAddFilePatterns || sender as Button == btnRemoveFilePatterns || sender as Button == btnClose)
-                (sender as Button)!.BackColor = Color.SteelBlue;
+                (sender as Button)!.BackColor = Color.LightSteelBlue;
             else if (sender as Button == btnFind)
                 (sender as Button)!.BackColor = Color.SteelBlue;
             else if (sender as Button == btnClear)
@@ -471,7 +471,7 @@ namespace FileCombiner.FileCleaner
 
         private void btnSetRootDir_MouseLeave(object sender, EventArgs e)
         {
-            (sender as Button)!.BackColor = Color.LightSteelBlue;
+            (sender as Button)!.BackColor = Color.Silver;
         }
 
 

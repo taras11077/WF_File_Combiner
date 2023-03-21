@@ -74,7 +74,7 @@
             // 
             // btnAddDirPatterns
             // 
-            btnAddDirPatterns.BackColor = SystemColors.InactiveCaption;
+            btnAddDirPatterns.BackColor = Color.LightGray;
             btnAddDirPatterns.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             btnAddDirPatterns.Location = new Point(12, 435);
             btnAddDirPatterns.Name = "btnAddDirPatterns";
@@ -97,7 +97,7 @@
             // 
             // btnFind
             // 
-            btnFind.BackColor = SystemColors.InactiveCaption;
+            btnFind.BackColor = Color.LightSteelBlue;
             btnFind.Location = new Point(12, 581);
             btnFind.Name = "btnFind";
             btnFind.Size = new Size(466, 35);
@@ -119,7 +119,7 @@
             // 
             // btnAddFilePatterns
             // 
-            btnAddFilePatterns.BackColor = SystemColors.InactiveCaption;
+            btnAddFilePatterns.BackColor = Color.LightGray;
             btnAddFilePatterns.Font = new Font("Segoe UI", 7.9F, FontStyle.Regular, GraphicsUnit.Point);
             btnAddFilePatterns.Location = new Point(258, 435);
             btnAddFilePatterns.Name = "btnAddFilePatterns";
@@ -133,7 +133,7 @@
             // 
             // btnClear
             // 
-            btnClear.BackColor = SystemColors.InactiveCaption;
+            btnClear.BackColor = Color.LightSteelBlue;
             btnClear.Location = new Point(842, 556);
             btnClear.Name = "btnClear";
             btnClear.Size = new Size(150, 35);
@@ -173,7 +173,7 @@
             // 
             // btnSetRootDir
             // 
-            btnSetRootDir.BackColor = SystemColors.InactiveCaption;
+            btnSetRootDir.BackColor = Color.LightSteelBlue;
             btnSetRootDir.Location = new Point(12, 363);
             btnSetRootDir.Name = "btnSetRootDir";
             btnSetRootDir.Size = new Size(150, 30);
@@ -229,7 +229,7 @@
             // 
             // btnClose
             // 
-            btnClose.BackColor = SystemColors.InactiveCaption;
+            btnClose.BackColor = Color.LightSteelBlue;
             btnClose.Location = new Point(842, 616);
             btnClose.Name = "btnClose";
             btnClose.Size = new Size(150, 35);
@@ -258,7 +258,7 @@
             // 
             // btnRemoveDirPatterns
             // 
-            btnRemoveDirPatterns.BackColor = SystemColors.InactiveCaption;
+            btnRemoveDirPatterns.BackColor = Color.LightGray;
             btnRemoveDirPatterns.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             btnRemoveDirPatterns.Location = new Point(117, 435);
             btnRemoveDirPatterns.Name = "btnRemoveDirPatterns";
@@ -272,7 +272,7 @@
             // 
             // btnRemoveFilePatterns
             // 
-            btnRemoveFilePatterns.BackColor = SystemColors.InactiveCaption;
+            btnRemoveFilePatterns.BackColor = Color.LightGray;
             btnRemoveFilePatterns.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             btnRemoveFilePatterns.Location = new Point(363, 435);
             btnRemoveFilePatterns.Name = "btnRemoveFilePatterns";
@@ -295,7 +295,7 @@
             // 
             // btnRename
             // 
-            btnRename.BackColor = SystemColors.InactiveCaption;
+            btnRename.BackColor = Color.LightSteelBlue;
             btnRename.Location = new Point(842, 402);
             btnRename.Name = "btnRename";
             btnRename.Size = new Size(150, 35);
@@ -308,7 +308,7 @@
             // 
             // btnArhiver
             // 
-            btnArhiver.BackColor = SystemColors.InactiveCaption;
+            btnArhiver.BackColor = Color.LightSteelBlue;
             btnArhiver.Location = new Point(842, 453);
             btnArhiver.Name = "btnArhiver";
             btnArhiver.Size = new Size(150, 35);
@@ -318,7 +318,7 @@
             btnArhiver.MouseEnter += btnSetRootDir_MouseEnter;
             btnArhiver.MouseLeave += btnSetRootDir_MouseLeave;
             // 
-            // FrmFileCombainerMain
+            // FrmFileCombinerMain
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -346,7 +346,7 @@
             Controls.Add(btnFind);
             Controls.Add(lstbDirPatterns);
             Controls.Add(btnAddDirPatterns);
-            Name = "FrmFileCombainerMain";
+            Name = "FrmFileCombinerMain";
             ShowInTaskbar = false;
             Text = "FrmFileCombainerMain";
             Load += FrmFileCleanerMain_Load;
