@@ -62,6 +62,7 @@ namespace FileCombiner.FileCleaner
                 case FileCombinerMode.Cleaner:
                     BackColor = Color.RosyBrown;
                     btnRenamer.Enabled = false;
+                    btnRenamerReport.Enabled = false;
                     btnArhiver.Enabled = false;
                     break;
 
@@ -516,7 +517,7 @@ namespace FileCombiner.FileCleaner
         private void btnSetRootDir_MouseEnter(object sender, EventArgs e)
         {
             if (sender as Button == btnSetRootDir || sender as Button == btnAddDirPatterns || sender as Button == btnRemoveDirPatterns || sender as Button == btnAddFilePatterns || sender as Button == btnRemoveFilePatterns || sender as Button == btnClose)
-                (sender as Button)!.BackColor = Color.LightSteelBlue;
+                (sender as Button)!.BackColor = Color.LightSkyBlue;
             else if (sender as Button == btnFindRecursive || sender as Button == btnFindSimple)
                 (sender as Button)!.BackColor = Color.SteelBlue;
             else if (sender as Button == btnClear)

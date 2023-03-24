@@ -58,6 +58,7 @@
             btnFindSimple = new Button();
             btnRenamerReport = new Button();
             button2 = new Button();
+            button1 = new Button();
             ((System.ComponentModel.ISupportInitialize)bindingSource1).BeginInit();
             SuspendLayout();
             // 
@@ -138,7 +139,7 @@
             // 
             btnClear.BackColor = Color.LightSteelBlue;
             btnClear.Cursor = Cursors.IBeam;
-            btnClear.Location = new Point(842, 522);
+            btnClear.Location = new Point(827, 540);
             btnClear.Name = "btnClear";
             btnClear.Size = new Size(150, 35);
             btnClear.TabIndex = 6;
@@ -159,7 +160,7 @@
             // 
             // progressBar1
             // 
-            progressBar1.Location = new Point(12, 631);
+            progressBar1.Location = new Point(20, 631);
             progressBar1.Name = "progressBar1";
             progressBar1.Size = new Size(801, 20);
             progressBar1.TabIndex = 9;
@@ -167,7 +168,7 @@
             // chbMoveToTrash
             // 
             chbMoveToTrash.AutoSize = true;
-            chbMoveToTrash.Location = new Point(855, 492);
+            chbMoveToTrash.Location = new Point(840, 501);
             chbMoveToTrash.Name = "chbMoveToTrash";
             chbMoveToTrash.RightToLeft = RightToLeft.Yes;
             chbMoveToTrash.Size = new Size(122, 24);
@@ -203,7 +204,7 @@
             lvwRemovedItems.Location = new Point(12, 53);
             lvwRemovedItems.Name = "lvwRemovedItems";
             lvwRemovedItems.Scrollable = false;
-            lvwRemovedItems.Size = new Size(980, 299);
+            lvwRemovedItems.Size = new Size(965, 299);
             lvwRemovedItems.SmallImageList = iconImgList;
             lvwRemovedItems.TabIndex = 15;
             lvwRemovedItems.UseCompatibleStateImageBehavior = false;
@@ -212,7 +213,7 @@
             // chbSelectAll
             // 
             chbSelectAll.AutoSize = true;
-            chbSelectAll.Location = new Point(870, 358);
+            chbSelectAll.Location = new Point(855, 358);
             chbSelectAll.Name = "chbSelectAll";
             chbSelectAll.RightToLeft = RightToLeft.Yes;
             chbSelectAll.Size = new Size(107, 24);
@@ -223,7 +224,7 @@
             // 
             // lvwResultInfo
             // 
-            lvwResultInfo.Location = new Point(503, 402);
+            lvwResultInfo.Location = new Point(503, 411);
             lvwResultInfo.Name = "lvwResultInfo";
             lvwResultInfo.Scrollable = false;
             lvwResultInfo.Size = new Size(310, 105);
@@ -234,7 +235,7 @@
             // btnClose
             // 
             btnClose.BackColor = Color.LightSteelBlue;
-            btnClose.Location = new Point(842, 616);
+            btnClose.Location = new Point(827, 631);
             btnClose.Name = "btnClose";
             btnClose.Size = new Size(150, 35);
             btnClose.TabIndex = 19;
@@ -300,7 +301,7 @@
             // btnRenamer
             // 
             btnRenamer.BackColor = Color.LightSteelBlue;
-            btnRenamer.Location = new Point(503, 522);
+            btnRenamer.Location = new Point(503, 540);
             btnRenamer.Name = "btnRenamer";
             btnRenamer.Size = new Size(150, 35);
             btnRenamer.TabIndex = 28;
@@ -313,7 +314,7 @@
             // btnArhiver
             // 
             btnArhiver.BackColor = Color.LightSteelBlue;
-            btnArhiver.Location = new Point(663, 522);
+            btnArhiver.Location = new Point(663, 540);
             btnArhiver.Name = "btnArhiver";
             btnArhiver.Size = new Size(150, 35);
             btnArhiver.TabIndex = 29;
@@ -338,11 +339,11 @@
             // btnRenamerReport
             // 
             btnRenamerReport.BackColor = Color.LightSteelBlue;
-            btnRenamerReport.Location = new Point(503, 563);
+            btnRenamerReport.Location = new Point(503, 581);
             btnRenamerReport.Name = "btnRenamerReport";
             btnRenamerReport.Size = new Size(150, 35);
             btnRenamerReport.TabIndex = 31;
-            btnRenamerReport.Text = "VIEW REPORT";
+            btnRenamerReport.Text = "RENAME REPORT";
             btnRenamerReport.UseVisualStyleBackColor = false;
             btnRenamerReport.Click += btnRenamerReport_Click;
             btnRenamerReport.MouseEnter += btnSetRootDir_MouseEnter;
@@ -351,7 +352,7 @@
             // button2
             // 
             button2.BackColor = Color.LightSteelBlue;
-            button2.Location = new Point(663, 563);
+            button2.Location = new Point(663, 581);
             button2.Name = "button2";
             button2.Size = new Size(150, 35);
             button2.TabIndex = 32;
@@ -360,12 +361,23 @@
             button2.MouseEnter += btnSetRootDir_MouseEnter;
             button2.MouseLeave += btnSetRootDir_MouseLeave;
             // 
+            // button1
+            // 
+            button1.BackColor = Color.LightSteelBlue;
+            button1.Location = new Point(827, 581);
+            button1.Name = "button1";
+            button1.Size = new Size(150, 35);
+            button1.TabIndex = 33;
+            button1.Text = "button1";
+            button1.UseVisualStyleBackColor = false;
+            // 
             // FrmFileCombinerMain
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
-            ClientSize = new Size(1004, 663);
+            ClientSize = new Size(989, 676);
+            Controls.Add(button1);
             Controls.Add(button2);
             Controls.Add(btnRenamerReport);
             Controls.Add(btnFindSimple);
@@ -429,5 +441,6 @@
         private Button btnFindSimple;
         private Button btnRenamerReport;
         private Button button2;
+        private Button button1;
     }
 }
