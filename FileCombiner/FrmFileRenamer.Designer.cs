@@ -59,12 +59,13 @@
             // 
             // btnRename
             // 
+            btnRename.BackColor = Color.LightSteelBlue;
             btnRename.Location = new Point(642, 282);
             btnRename.Name = "btnRename";
             btnRename.Size = new Size(150, 30);
             btnRename.TabIndex = 3;
             btnRename.Text = "RENAME";
-            btnRename.UseVisualStyleBackColor = true;
+            btnRename.UseVisualStyleBackColor = false;
             btnRename.Click += btnRename_Click;
             btnRename.MouseEnter += btnSetRootDir_MouseEnter;
             btnRename.MouseLeave += btnSetRootDir_MouseLeave;
@@ -107,12 +108,13 @@
             // 
             // btnClose
             // 
+            btnClose.BackColor = Color.LightSteelBlue;
             btnClose.Location = new Point(694, 323);
             btnClose.Name = "btnClose";
             btnClose.Size = new Size(94, 29);
             btnClose.TabIndex = 10;
             btnClose.Text = "CLOSE";
-            btnClose.UseVisualStyleBackColor = true;
+            btnClose.UseVisualStyleBackColor = false;
             btnClose.Click += btnClose_Click;
             // 
             // FrmFileRenamer

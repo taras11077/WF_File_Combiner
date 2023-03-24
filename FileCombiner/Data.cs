@@ -1,4 +1,5 @@
 ﻿using FileProcessor;
+using FileProcessor.Renamer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace FileCombiner
 {
     public static class Data
     {
-        public static ObjectContainer dataResultContainer = new();
+        public static Report renamerReport  = new();
 
     }
 }

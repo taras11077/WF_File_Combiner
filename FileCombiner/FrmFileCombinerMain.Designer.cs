@@ -56,6 +56,8 @@
             btnRenamer = new Button();
             btnArhiver = new Button();
             btnFindSimple = new Button();
+            btnRenamerReport = new Button();
+            button2 = new Button();
             ((System.ComponentModel.ISupportInitialize)bindingSource1).BeginInit();
             SuspendLayout();
             // 
@@ -75,7 +77,7 @@
             // 
             // btnAddDirPatterns
             // 
-            btnAddDirPatterns.BackColor = Color.LightGray;
+            btnAddDirPatterns.BackColor = Color.LightSteelBlue;
             btnAddDirPatterns.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             btnAddDirPatterns.Location = new Point(12, 435);
             btnAddDirPatterns.Name = "btnAddDirPatterns";
@@ -98,7 +100,7 @@
             // 
             // btnFindRecursive
             // 
-            btnFindRecursive.BackColor = Color.Silver;
+            btnFindRecursive.BackColor = Color.LightSteelBlue;
             btnFindRecursive.Location = new Point(12, 581);
             btnFindRecursive.Name = "btnFindRecursive";
             btnFindRecursive.Size = new Size(220, 35);
@@ -120,7 +122,7 @@
             // 
             // btnAddFilePatterns
             // 
-            btnAddFilePatterns.BackColor = Color.LightGray;
+            btnAddFilePatterns.BackColor = Color.LightSteelBlue;
             btnAddFilePatterns.Font = new Font("Segoe UI", 7.9F, FontStyle.Regular, GraphicsUnit.Point);
             btnAddFilePatterns.Location = new Point(258, 435);
             btnAddFilePatterns.Name = "btnAddFilePatterns";
@@ -134,8 +136,9 @@
             // 
             // btnClear
             // 
-            btnClear.BackColor = Color.Silver;
-            btnClear.Location = new Point(842, 556);
+            btnClear.BackColor = Color.LightSteelBlue;
+            btnClear.Cursor = Cursors.IBeam;
+            btnClear.Location = new Point(842, 522);
             btnClear.Name = "btnClear";
             btnClear.Size = new Size(150, 35);
             btnClear.TabIndex = 6;
@@ -164,7 +167,7 @@
             // chbMoveToTrash
             // 
             chbMoveToTrash.AutoSize = true;
-            chbMoveToTrash.Location = new Point(855, 526);
+            chbMoveToTrash.Location = new Point(855, 492);
             chbMoveToTrash.Name = "chbMoveToTrash";
             chbMoveToTrash.RightToLeft = RightToLeft.Yes;
             chbMoveToTrash.Size = new Size(122, 24);
@@ -174,7 +177,7 @@
             // 
             // btnSetRootDir
             // 
-            btnSetRootDir.BackColor = Color.Silver;
+            btnSetRootDir.BackColor = Color.LightSteelBlue;
             btnSetRootDir.Location = new Point(12, 363);
             btnSetRootDir.Name = "btnSetRootDir";
             btnSetRootDir.Size = new Size(150, 30);
@@ -220,7 +223,7 @@
             // 
             // lvwResultInfo
             // 
-            lvwResultInfo.Location = new Point(503, 511);
+            lvwResultInfo.Location = new Point(503, 402);
             lvwResultInfo.Name = "lvwResultInfo";
             lvwResultInfo.Scrollable = false;
             lvwResultInfo.Size = new Size(310, 105);
@@ -230,7 +233,7 @@
             // 
             // btnClose
             // 
-            btnClose.BackColor = Color.Silver;
+            btnClose.BackColor = Color.LightSteelBlue;
             btnClose.Location = new Point(842, 616);
             btnClose.Name = "btnClose";
             btnClose.Size = new Size(150, 35);
@@ -259,7 +262,7 @@
             // 
             // btnRemoveDirPatterns
             // 
-            btnRemoveDirPatterns.BackColor = Color.LightGray;
+            btnRemoveDirPatterns.BackColor = Color.LightSteelBlue;
             btnRemoveDirPatterns.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             btnRemoveDirPatterns.Location = new Point(117, 435);
             btnRemoveDirPatterns.Name = "btnRemoveDirPatterns";
@@ -273,7 +276,7 @@
             // 
             // btnRemoveFilePatterns
             // 
-            btnRemoveFilePatterns.BackColor = Color.LightGray;
+            btnRemoveFilePatterns.BackColor = Color.LightSteelBlue;
             btnRemoveFilePatterns.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             btnRemoveFilePatterns.Location = new Point(363, 435);
             btnRemoveFilePatterns.Name = "btnRemoveFilePatterns";
@@ -296,8 +299,8 @@
             // 
             // btnRenamer
             // 
-            btnRenamer.BackColor = Color.Silver;
-            btnRenamer.Location = new Point(842, 402);
+            btnRenamer.BackColor = Color.LightSteelBlue;
+            btnRenamer.Location = new Point(503, 522);
             btnRenamer.Name = "btnRenamer";
             btnRenamer.Size = new Size(150, 35);
             btnRenamer.TabIndex = 28;
@@ -309,8 +312,8 @@
             // 
             // btnArhiver
             // 
-            btnArhiver.BackColor = Color.Silver;
-            btnArhiver.Location = new Point(842, 453);
+            btnArhiver.BackColor = Color.LightSteelBlue;
+            btnArhiver.Location = new Point(663, 522);
             btnArhiver.Name = "btnArhiver";
             btnArhiver.Size = new Size(150, 35);
             btnArhiver.TabIndex = 29;
@@ -321,7 +324,7 @@
             // 
             // btnFindSimple
             // 
-            btnFindSimple.BackColor = Color.Silver;
+            btnFindSimple.BackColor = Color.LightSteelBlue;
             btnFindSimple.Location = new Point(258, 581);
             btnFindSimple.Name = "btnFindSimple";
             btnFindSimple.Size = new Size(220, 35);
@@ -332,12 +335,39 @@
             btnFindSimple.MouseEnter += btnSetRootDir_MouseEnter;
             btnFindSimple.MouseLeave += btnSetRootDir_MouseLeave;
             // 
+            // btnRenamerReport
+            // 
+            btnRenamerReport.BackColor = Color.LightSteelBlue;
+            btnRenamerReport.Location = new Point(503, 563);
+            btnRenamerReport.Name = "btnRenamerReport";
+            btnRenamerReport.Size = new Size(150, 35);
+            btnRenamerReport.TabIndex = 31;
+            btnRenamerReport.Text = "VIEW REPORT";
+            btnRenamerReport.UseVisualStyleBackColor = false;
+            btnRenamerReport.Click += btnRenamerReport_Click;
+            btnRenamerReport.MouseEnter += btnSetRootDir_MouseEnter;
+            btnRenamerReport.MouseLeave += btnSetRootDir_MouseLeave;
+            // 
+            // button2
+            // 
+            button2.BackColor = Color.LightSteelBlue;
+            button2.Location = new Point(663, 563);
+            button2.Name = "button2";
+            button2.Size = new Size(150, 35);
+            button2.TabIndex = 32;
+            button2.Text = "button2";
+            button2.UseVisualStyleBackColor = false;
+            button2.MouseEnter += btnSetRootDir_MouseEnter;
+            button2.MouseLeave += btnSetRootDir_MouseLeave;
+            // 
             // FrmFileCombinerMain
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(1004, 663);
+            Controls.Add(button2);
+            Controls.Add(btnRenamerReport);
             Controls.Add(btnFindSimple);
             Controls.Add(btnArhiver);
             Controls.Add(btnRenamer);
@@ -397,5 +427,7 @@
         private Button btnRenamer;
         private Button btnArhiver;
         private Button btnFindSimple;
+        private Button btnRenamerReport;
+        private Button button2;
     }
 }

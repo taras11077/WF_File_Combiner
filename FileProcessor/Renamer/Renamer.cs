@@ -75,42 +75,76 @@ namespace FileProcessor.Renamer
 
 
 
-        public void NumberModeRename()
+        public Report NumberModeRename()
         {
-            for (int i = 0; i < Files?.Count; i++)
-                NameGenerator.GenerateNewName(Files[i].FullName, $"{i}");
+            Report report = new Report();
+            int i = 0;
+            foreach (FileInfo file in Files)          
+            {
+                try
+                {
+                    NameGenerator.GenerateNewName(file.FullName, $"{i}");
+                    i++;
+                    report.PushSuccess(file);
+                }
+                catch (Exception ex)
+                {
+                    report.PushError(file, ex);
+                }
+            }
+                    
+            return report;
         }
 
-        public void RandomStringModeRename()
+        public Report RandomStringModeRename()
         {
+            Report report = new Report();
+
             Random random = new Random();
             char[] letters = "abcdefghijklmnopqrstuvwxyz".ToCharArray();
 
             foreach (FileInfo file in Files)
             {
-                string randomString = "";
-
-                for (int i = 0; i < 10; i++)
+                try
                 {
-                    int numLetter = random.Next(0, letters.Length - 1);
-                    randomString += letters[numLetter];
-                }
+                    string randomString = "";
 
-                NameGenerator.GenerateNewName(file.FullName, randomString);
+                    for (int i = 0; i < 10; i++)
+                    {
+                        int numLetter = random.Next(0, letters.Length - 1);
+                        randomString += letters[numLetter];
+                    }
+
+                    NameGenerator.GenerateNewName(file.FullName, randomString);
+                    report.PushSuccess(file);
+                }
+                catch (Exception ex)
+                {
+                    report.PushError(file, ex);
+                }
             }
+            return report;
         }
 
-        public void UUIDModeRename()
+        public Report UUIDModeRename()
         {
+            Report report = new Report();
+
             foreach (FileInfo file in Files)
             {
-                string inset = Guid.NewGuid().ToString();
-                NameGenerator.GenerateNewName(file.FullName, inset);
+                try
+                {
+                    string inset = Guid.NewGuid().ToString();
+                    NameGenerator.GenerateNewName(file.FullName, inset);
+
+                    report.PushSuccess(file);
+                }
+                catch (Exception ex)
+                {
+                    report.PushError(file, ex);
+                }
             }
-        }
-
-
-        
-
+            return report;
+        }      
     }
 }

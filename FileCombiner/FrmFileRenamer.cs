@@ -19,10 +19,12 @@ namespace FileCombiner
     public partial class FrmFileRenamer : Form
     {
         private List<FileInfo> RenamedFiles;
+        public Report renamerReport = new Report();
+
         private string[]? modes;
         private string[]? masks;
         private string renameMode = string.Empty;
-        string prefix;
+        string prefix = string.Empty;
 
         private Renamer renamer;
         public FrmFileRenamer(List<FileInfo> renamedFiles)
@@ -92,38 +94,37 @@ namespace FileCombiner
             prefix = txtbSetPrefix.Text;
             if (prefix == null) return;
 
-            if (cmbRenameMask.SelectedItem.ToString() == "{prefix}_{UUID}")
+            if (cmbRenameMask.SelectedItem.ToString() == "{prefix}{UUID}")
                 renamer.SetMask(RenamerMask.UUID);
 
-            else if (cmbRenameMask.SelectedItem.ToString() == "{prefix}_{autoincrement}")
+            else if (cmbRenameMask.SelectedItem.ToString() == "{prefix}{autoincrement}")
                 renamer.SetMask(RenamerMask.AUTOINCREMENT);
         }
 
-        private void RenameByMode(string renameMode)
+        private Report RenameByMode(string renameMode)
         {
             if (renameMode == "ordinal number")
-                renamer.NumberModeRename();
+                renamerReport = renamer.NumberModeRename();
             else if (renameMode == "random string")
-                renamer.RandomStringModeRename();
+                renamerReport = renamer.RandomStringModeRename();
             else if (renameMode == "UUID")
-                renamer.UUIDModeRename();
+                renamerReport = renamer.UUIDModeRename();
+
+            return renamerReport;
         }
 
         private void btnRename_Click(object sender, EventArgs e)
         {
             if (cmbRenameMask.SelectedIndex == -1)
-                RenameByMode(renameMode);
+                renamerReport = RenameByMode(renameMode);
             else
-                renamer.RenameByMask(prefix);
+                renamerReport = renamer.RenameByMask(prefix);
+
+            Data.renamerReport = renamerReport;
 
             MessageBox.Show("Renaming the selected items was a success");
             Close();
         }
-
-
-
-
-
 
 
         // изменение цвета кнопок при наведении курсора

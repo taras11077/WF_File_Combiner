@@ -188,6 +188,35 @@ namespace FileCombiner.FileCleaner
         }
 
         //Finding
+        private void btnFindSimple_Click(object sender, EventArgs e)
+        {
+            StartProgressBar();
+
+            string path = txtbPathRootDir.Text;
+            try
+            {
+                if (!Directory.Exists(path))
+                    throw new DirectoryNotFoundException();
+
+                Finder finder = new Finder(false);
+
+                finder.FileMasks = filePatterns.ToArray();
+
+                finder.FindFiles(path);
+                resultContainer = finder.ResultContainer;
+
+                GenerateFindedItems();
+                InitListViewResultInfo();
+                lvwRemovedItems.CheckBoxes = true;
+
+                MessageBox.Show("Search completed successfully");
+            }
+            catch (DirectoryNotFoundException)
+            {
+                MessageBox.Show(($"Directory {path} not found"));
+            }
+        }
+
         private void btnFind_Click(object sender, EventArgs e)
         {
             StartProgressBar();
@@ -208,7 +237,7 @@ namespace FileCombiner.FileCleaner
                 GenerateFindedItems();
                 InitListViewResultInfo();
                 lvwRemovedItems.CheckBoxes = true;
-                
+
                 MessageBox.Show("Search completed successfully");
             }
             catch (DirectoryNotFoundException)
@@ -427,8 +456,30 @@ namespace FileCombiner.FileCleaner
             InitListViewResultInfo();
         }
 
+        //Rename
+        private void btnRename_Click(object sender, EventArgs e)
+        {
+            // создание списка файлов типа FileInfo из списка CheckedItems для передачи в форму frmRenamer
+            List<FileInfo> renamedFiles = new List<FileInfo>();
+
+            foreach (ListViewItem item in lvwRemovedItems.CheckedItems)
+                if (item.Tag is FileInfo file)
+                    renamedFiles.Add(file);
+
+            // создание и переход в дочернюю форму Renamer c уже готовим списком файлов отобрпнних для переименования
+            FrmFileRenamer frmRenamer = new FrmFileRenamer(renamedFiles);
+            frmRenamer.ShowDialog();
+
+            lvwRemovedItems.Items.Clear();
+        }
 
 
+        //Renamer Report
+        private void btnRenamerReport_Click(object sender, EventArgs e)
+        {
+            FrmRenamerReport frmReport = new FrmRenamerReport(Data.renamerReport);
+            frmReport.ShowDialog();
+        }
 
         //Small details
         private void StartProgressBar()
@@ -470,7 +521,7 @@ namespace FileCombiner.FileCleaner
                 (sender as Button)!.BackColor = Color.SteelBlue;
             else if (sender as Button == btnClear)
                 (sender as Button)!.BackColor = Color.IndianRed;
-            else if (sender as Button == btnRenamer)
+            else if (sender as Button == btnRenamer || sender as Button == btnRenamerReport)
                 (sender as Button)!.BackColor = Color.Khaki;
             else if (sender as Button == btnArhiver)
                 (sender as Button)!.BackColor = Color.MediumSeaGreen;
@@ -478,53 +529,10 @@ namespace FileCombiner.FileCleaner
 
         private void btnSetRootDir_MouseLeave(object sender, EventArgs e)
         {
-            (sender as Button)!.BackColor = Color.Silver;
+            (sender as Button)!.BackColor = Color.LightSteelBlue;
         }
 
 
 
-
-        private void btnRename_Click(object sender, EventArgs e)
-        {
-            // создание списка файлов типа FileInfo из списка CheckedItems для передачи в форму frmRenamer
-            List<FileInfo> renamedFiles = new List<FileInfo>();
-
-            foreach (ListViewItem item in lvwRemovedItems.CheckedItems)
-                if (item.Tag is FileInfo file)
-                    renamedFiles.Add(file);
-
-            // создание и переход в дочернюю форму Renamer c уже готовим списком файлов отобрпнних для переименования
-            FrmFileRenamer frmRenamer = new FrmFileRenamer(renamedFiles);
-            frmRenamer.ShowDialog();
-        }
-
-        private void btnFindSimple_Click(object sender, EventArgs e)
-        {
-            StartProgressBar();
-
-            string path = txtbPathRootDir.Text;
-            try
-            {
-                if (!Directory.Exists(path))
-                    throw new DirectoryNotFoundException();
-
-                Finder finder = new Finder(false);
-
-                finder.FileMasks = filePatterns.ToArray();
-
-                finder.FindFiles(path);
-                resultContainer = finder.ResultContainer;
-
-                GenerateFindedItems();
-                InitListViewResultInfo();
-                lvwRemovedItems.CheckBoxes = true;
-
-                MessageBox.Show("Search completed successfully");
-            }
-            catch (DirectoryNotFoundException)
-            {
-                MessageBox.Show(($"Directory {path} not found"));
-            }
-        }
     }
 }
