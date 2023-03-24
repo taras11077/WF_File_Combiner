@@ -9,15 +9,17 @@ namespace FileProcessor
     public class Finder
     {
         private RegexFileAnalyzer regexFileAnalyzer;
+        private bool recursive;
 
         public string[] DirMasks { get; set; } = { };
         public string[] FileMasks { get; set; } = { };
         public ObjectContainer ResultContainer { get; set; } = new ObjectContainer();
-        public Finder()
+        public Finder(bool recursive)
         {
             regexFileAnalyzer = new RegexFileAnalyzer();
+            this.recursive = recursive;
         }
-        public void FindDirectories(string rootPath, bool recursive)
+        public void FindDirectories(string rootPath)
         {
             DirectoryInfo dir = new DirectoryInfo(rootPath);
 
@@ -28,10 +30,10 @@ namespace FileProcessor
                 if (DirMasks.Contains(d.Name))
                     ResultContainer.Dirs.Add(d);
                 else if(recursive)
-                    FindDirectories(d.FullName, recursive);
+                    FindDirectories(d.FullName);
             }
         }
-        public void FindFiles(string rootPath, bool recursive)
+        public void FindFiles(string rootPath)
         {
             DirectoryInfo dir = new DirectoryInfo(rootPath);
             
@@ -42,13 +44,12 @@ namespace FileProcessor
             {
                 DirectoryInfo[] dirs = dir.GetDirectories();
                 foreach (DirectoryInfo d in dirs)
-                    FindFiles(d.FullName, recursive);
+                    FindFiles(d.FullName);
             }
         }
+              
 
-       
-
-        public void FindAll(string rootPath, bool recursive)
+        public void FindAll(string rootPath)
         {
             DirectoryInfo dir = new DirectoryInfo(rootPath);
 
@@ -62,10 +63,10 @@ namespace FileProcessor
                 if (DirMasks.Contains(d.Name))
                 {
                     ResultContainer.Dirs.Add(d);
-                    FindFiles(d.FullName, recursive);
+                    FindFiles(d.FullName);
                 }
                 else if (recursive)
-                    FindFiles(d.FullName, recursive);
+                    FindFiles(d.FullName);
             }
         }
     }

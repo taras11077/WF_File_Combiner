@@ -69,7 +69,7 @@
             // 
             // btnClose
             // 
-            btnClose.BackColor = Color.SteelBlue;
+            btnClose.BackColor = Color.Silver;
             btnClose.Location = new Point(357, 399);
             btnClose.Name = "btnClose";
             btnClose.Size = new Size(94, 29);

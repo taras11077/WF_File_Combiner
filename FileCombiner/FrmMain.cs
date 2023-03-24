@@ -1,5 +1,6 @@
+using FileCombiner.Enums;
 using FileCombiner.FileCleaner;
-using FileCombiner.FileRenamer;
+using FileProcessor.Renamer;
 using System.Security.Cryptography.X509Certificates;
 
 namespace FileCombiner
@@ -14,22 +15,22 @@ namespace FileCombiner
 
         private void btnFileCleaner_Click_1(object sender, EventArgs e)
         {
-            FrmFileCombinerMain frm = new FrmFileCombinerMain(FileCombinerMode.Cleaner);
-            frm.ShowDialog();
+            FrmFileCombinerMain frmMain = new FrmFileCombinerMain(FileCombinerMode.Cleaner);
+            frmMain.ShowDialog();
 
         }
 
         private void btnRenamer_Click(object sender, EventArgs e)
         {
-            FrmFileCombinerMain frm = new FrmFileCombinerMain(FileCombinerMode.Renamer);
-            frm.ShowDialog();
+            FrmFileCombinerMain frmMain = new FrmFileCombinerMain(FileCombinerMode.Renamer);
+            frmMain.ShowDialog();
 
         }
 
         private void btnAnalyzer_Click(object sender, EventArgs e)
         {
-            FrmFileCombinerMain frm = new FrmFileCombinerMain(FileCombinerMode.Arhiver);
-            frm.ShowDialog();
+            FrmFileCombinerMain frmMain = new FrmFileCombinerMain(FileCombinerMode.Arhiver);
+            frmMain.ShowDialog();
         }
 
 
