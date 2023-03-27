@@ -31,6 +31,7 @@ namespace FileCombiner.FileCleaner
     public partial class FrmFileCombinerMain : Form
     {
         private ObjectContainer resultContainer = new();
+        FileCombinerMode frmMode = 0;
 
         private List<string> dirPatterns = new()
             {
@@ -51,41 +52,12 @@ namespace FileCombiner.FileCleaner
                 "*.cs",
                 "*.png",
             };
-
-
-        public FrmFileCombinerMain(FileCombinerMode mode = FileCombinerMode.Cleaner)
+        public FrmFileCombinerMain(FileCombinerMode frmMode = FileCombinerMode.Cleaner)
         {
             InitializeComponent();
-
-            switch (mode)
-            {
-                case FileCombinerMode.Cleaner:
-                    BackColor = Color.RosyBrown;
-                    btnRenamer.Enabled = false;
-                    btnRenamerReport.Enabled = false;
-                    btnArhiver.Enabled = false;
-                    break;
-
-                case FileCombinerMode.Renamer:
-                    BackColor = Color.LemonChiffon;
-                    btnFindRecursive.Enabled = false;
-                    btnAddDirPatterns.Enabled = false;
-                    btnRemoveDirPatterns.Enabled = false;
-                    btnArhiver.Enabled = false;
-                    btnClear.Enabled = false;
-                    chbMoveToTrash.Enabled = false;
-
-                    break;
-
-                case FileCombinerMode.Arhiver:
-                    BackColor = Color.DarkSeaGreen;
-                    btnRenamer.Enabled = false;
-                    btnClear.Enabled = false;
-                    chbMoveToTrash.Enabled = false;
-                    break;
-            }
-
+            this.frmMode = frmMode;           
         }
+
         //Init
         private void InitListViewRemovedItems()
         {
@@ -135,6 +107,40 @@ namespace FileCombiner.FileCleaner
         }
         private void FrmFileCleanerMain_Load(object sender, EventArgs e)
         {
+            switch (frmMode)
+            {
+                case FileCombinerMode.Cleaner:
+                    BackColor = Color.RosyBrown;
+                    btnRenamer.Enabled = false;
+                    btnReport.Enabled = false;
+                    btnArhiver.Enabled = false;
+                    break;
+
+                case FileCombinerMode.Renamer:
+                    BackColor = Color.LemonChiffon;
+                    btnFindRecursive.Enabled = false;
+                    btnAddDirPatterns.Enabled = false;
+                    btnRemoveDirPatterns.Enabled = false;
+                    btnArhiver.Enabled = false;
+                    btnClear.Enabled = false;
+                    chbMoveToTrash.Enabled = false;
+
+                    break;
+
+                case FileCombinerMode.Arhiver:
+                    BackColor = Color.DarkSeaGreen;
+
+                    btnFindRecursive.Enabled = false;
+                    btnAddFilePatterns.Enabled = false;
+                    btnRemoveFilePatterns.Enabled = true;
+                    btnFindRecursive.Enabled = false;
+
+                    btnRenamer.Enabled = false;
+                    btnClear.Enabled = false;
+                    chbMoveToTrash.Enabled = false;
+                    break;
+            }
+
             InitListViewRemovedItems();
             InitListViewResultInfo();
             lstbDirPatterns.Items.AddRange(dirPatterns.ToArray());
@@ -191,34 +197,15 @@ namespace FileCombiner.FileCleaner
         //Finding
         private void btnFindSimple_Click(object sender, EventArgs e)
         {
-            StartProgressBar();
-
-            string path = txtbPathRootDir.Text;
-            try
-            {
-                if (!Directory.Exists(path))
-                    throw new DirectoryNotFoundException();
-
-                Finder finder = new Finder(false);
-
-                finder.FileMasks = filePatterns.ToArray();
-
-                finder.FindFiles(path);
-                resultContainer = finder.ResultContainer;
-
-                GenerateFindedItems();
-                InitListViewResultInfo();
-                lvwRemovedItems.CheckBoxes = true;
-
-                MessageBox.Show("Search completed successfully");
-            }
-            catch (DirectoryNotFoundException)
-            {
-                MessageBox.Show(($"Directory {path} not found"));
-            }
+            FindItems(false);
         }
 
-        private void btnFind_Click(object sender, EventArgs e)
+        private void btnFindRecursive_Click(object sender, EventArgs e)
+        {
+            FindItems(true);
+        }
+
+        private void FindItems(bool recursive)
         {
             StartProgressBar();
 
@@ -228,7 +215,7 @@ namespace FileCombiner.FileCleaner
                 if (!Directory.Exists(path))
                     throw new DirectoryNotFoundException();
 
-                Finder finder = new Finder(true);
+                Finder finder = new Finder(recursive);
                 finder.DirMasks = dirPatterns.ToArray();
                 finder.FileMasks = filePatterns.ToArray();
 
@@ -246,6 +233,8 @@ namespace FileCombiner.FileCleaner
                 MessageBox.Show(($"Directory {path} not found"));
             }
         }
+
+
         private void GenerateFindedItems()
         {
             lvwRemovedItems.Items.Clear();
@@ -263,37 +252,37 @@ namespace FileCombiner.FileCleaner
                 GenerateItem(file);
             });
         }
-        private void GenerateItem(FileSystemInfo type)
+        private void GenerateItem(FileSystemInfo typeInfo)
         {
 
-            if (type == null)
+            if (typeInfo == null)
                 return;
 
             ListViewItem item = new ListViewItem()
             {
-                Text = type.Name,
-                Tag = type,
+                Text = typeInfo.Name,
+                Tag = typeInfo,
             };
 
             int itemSize;
-            if (type is DirectoryInfo)
+            if (typeInfo is DirectoryInfo)
             {
                 item.Group = lvwRemovedItems.Groups[0];
                 item.ImageIndex = 1;
-                itemSize = CalcDirSize(type as DirectoryInfo);
+                itemSize = CalcDirSize(typeInfo as DirectoryInfo);
             }
             else
             {
                 item.Group = lvwRemovedItems.Groups[1];
                 item.ImageIndex = 0;
-                itemSize = (int)(type as FileInfo).Length;
+                itemSize = (int)(typeInfo as FileInfo).Length;
             }
 
-            item.SubItems[0].Text = type.Name;
+            item.SubItems[0].Text = typeInfo.Name;
             item.SubItems[0].Tag = itemSize; // присвоил size елемента свойству Tag нулевого SubItem
             item.SubItems.Add(itemSize.ToString());
-            item.SubItems.Add(type.LastAccessTime.ToString());
-            item.SubItems.Add(type.FullName);
+            item.SubItems.Add(typeInfo.LastAccessTime.ToString());
+            item.SubItems.Add(typeInfo.FullName);
 
             lvwRemovedItems.Items.Add(item);
         }
@@ -463,12 +452,18 @@ namespace FileCombiner.FileCleaner
             // создание списка файлов типа FileInfo из списка CheckedItems для передачи в форму frmRenamer
             List<FileInfo> renamedFiles = new List<FileInfo>();
 
+            if (lvwRemovedItems.CheckedItems.Count == 0)
+            {
+                MessageBox.Show("Check selected items");
+                return;
+            }
+
             foreach (ListViewItem item in lvwRemovedItems.CheckedItems)
                 if (item.Tag is FileInfo file)
                     renamedFiles.Add(file);
 
-            // создание и переход в дочернюю форму Renamer c уже готовим списком файлов отобрпнних для переименования
-            FrmFileRenamer frmRenamer = new FrmFileRenamer(renamedFiles);
+            // создание и переход в дочернюю форму Renamer c уже готовим списком файлов отобранних для переименования
+            FrmRenamer frmRenamer = new FrmRenamer(renamedFiles);
             frmRenamer.ShowDialog();
 
             lvwRemovedItems.Items.Clear();
@@ -476,11 +471,28 @@ namespace FileCombiner.FileCleaner
 
 
         //Renamer Report
-        private void btnRenamerReport_Click(object sender, EventArgs e)
+        private void btnReport_Click(object sender, EventArgs e)
         {
-            FrmRenamerReport frmReport = new FrmRenamerReport(Data.renamerReport);
-            frmReport.ShowDialog();
+            switch (frmMode)
+            {
+                case FileCombinerMode.Renamer:
+                    FrmRenamerReport renReport = new FrmRenamerReport(Data.renamerReport);
+                    renReport.ShowDialog();
+                    break;
+
+                case FileCombinerMode.Cleaner:
+
+                    break;
+
+                case FileCombinerMode.Arhiver:
+                    FrmArhiverReport arhReport = new FrmArhiverReport(Data.arhiverReport);
+                    arhReport.ShowDialog();
+                    break;
+
+            }
         }
+
+
 
         //Small details
         private void StartProgressBar()
@@ -522,7 +534,7 @@ namespace FileCombiner.FileCleaner
                 (sender as Button)!.BackColor = Color.SteelBlue;
             else if (sender as Button == btnClear)
                 (sender as Button)!.BackColor = Color.IndianRed;
-            else if (sender as Button == btnRenamer || sender as Button == btnRenamerReport)
+            else if (sender as Button == btnRenamer || sender as Button == btnReport)
                 (sender as Button)!.BackColor = Color.Khaki;
             else if (sender as Button == btnArhiver)
                 (sender as Button)!.BackColor = Color.MediumSeaGreen;
@@ -533,6 +545,29 @@ namespace FileCombiner.FileCleaner
             (sender as Button)!.BackColor = Color.LightSteelBlue;
         }
 
+        private void btnArhiver_Click(object sender, EventArgs e)
+        {
+            // создание списка папок типа DirectoryInfo из списка CheckedItems для передачи в форму frmArhiver
+
+            List<DirectoryInfo> arhivedDirs = new List<DirectoryInfo>();
+
+            if (lvwRemovedItems.CheckedItems.Count == 0)
+            {
+                MessageBox.Show("Check selected items");
+                return;
+            }
+
+            foreach (ListViewItem item in lvwRemovedItems.CheckedItems)
+            {
+                if (item.Tag is DirectoryInfo dir)
+                    arhivedDirs.Add(dir);
+            }
+
+            // создание и переход в дочернюю форму frnArhiver c уже готовими списком папок отобранних для архивирования
+
+            FrmArhiver frmArhiver = new FrmArhiver(arhivedDirs);
+            frmArhiver.ShowDialog();
+        }
 
 
     }

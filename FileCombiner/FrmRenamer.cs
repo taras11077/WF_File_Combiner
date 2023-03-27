@@ -16,7 +16,7 @@ using static System.Windows.Forms.ListView;
 
 namespace FileCombiner
 {
-    public partial class FrmFileRenamer : Form
+    public partial class FrmRenamer : Form
     {
         private List<FileInfo> RenamedFiles;
         public Report renamerReport = new Report();
@@ -27,7 +27,7 @@ namespace FileCombiner
         string prefix = string.Empty;
 
         private Renamer renamer;
-        public FrmFileRenamer(List<FileInfo> renamedFiles)
+        public FrmRenamer(List<FileInfo> renamedFiles)
         {
             InitializeComponent();
             RenamedFiles = renamedFiles;
@@ -53,6 +53,7 @@ namespace FileCombiner
                 ListViewItem lvItem = new ListViewItem();
                 lvItem.Text = file.Name;
                 lvItem.Tag = file;
+                lvItem.ImageIndex = 0;
 
                 lvItem.SubItems[0].Text = file.Name;
                 lvItem.SubItems.Add(file.LastAccessTime.ToString());
@@ -125,6 +126,7 @@ namespace FileCombiner
             MessageBox.Show("Renaming the selected items was a success");
             Close();
         }
+
 
 
         // изменение цвета кнопок при наведении курсора

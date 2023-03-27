@@ -66,7 +66,7 @@ namespace FileProcessor
                     FindFiles(d.FullName);
                 }
                 else if (recursive)
-                    FindFiles(d.FullName);
+                    FindAll(d.FullName);
             }
         }
     }

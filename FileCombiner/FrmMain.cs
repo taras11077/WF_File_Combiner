@@ -31,6 +31,9 @@ namespace FileCombiner
         {
             FrmFileCombinerMain frmMain = new FrmFileCombinerMain(FileCombinerMode.Arhiver);
             frmMain.ShowDialog();
+
+            //FrmArhiver frmArhiver = new FrmArhiver();
+            //frmArhiver.ShowDialog();
         }
 
 

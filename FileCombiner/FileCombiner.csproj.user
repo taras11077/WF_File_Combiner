@@ -1,10 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <Compile Update="FrmArhiver.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="FrmArhiverReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="FrmFileCombinerMain.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="FrmFileRenamer.cs">
+    <Compile Update="FrmRenamer.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="FrmMain.cs">

@@ -41,7 +41,7 @@
             btnFileCleaner.Name = "btnFileCleaner";
             btnFileCleaner.Size = new Size(136, 29);
             btnFileCleaner.TabIndex = 1;
-            btnFileCleaner.Text = "FILE CLEANER";
+            btnFileCleaner.Text = "CLEANER";
             btnFileCleaner.UseVisualStyleBackColor = false;
             btnFileCleaner.Click += btnFileCleaner_Click_1;
             // 
@@ -63,7 +63,7 @@
             btnRenamer.Name = "btnRenamer";
             btnRenamer.Size = new Size(139, 29);
             btnRenamer.TabIndex = 3;
-            btnRenamer.Text = "FILE RENAMER";
+            btnRenamer.Text = "RENAMER";
             btnRenamer.UseVisualStyleBackColor = false;
             btnRenamer.Click += btnRenamer_Click;
             // 
