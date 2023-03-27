@@ -123,7 +123,7 @@ namespace FileCombiner
 
             Data.renamerReport = renamerReport;
 
-            MessageBox.Show("Renaming the selected items was a success");
+            MessageBox.Show("Renaming complete");
             Close();
         }
 

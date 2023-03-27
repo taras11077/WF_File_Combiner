@@ -35,7 +35,6 @@
             btnArhive = new Button();
             btnClose = new Button();
             cmbArhiveMode = new ComboBox();
-            btnArhiveReport = new Button();
             fbSetRootDirDialog = new FolderBrowserDialog();
             SuspendLayout();
             // 
@@ -65,7 +64,7 @@
             // 
             // btnArhive
             // 
-            btnArhive.Location = new Point(266, 412);
+            btnArhive.Location = new Point(247, 411);
             btnArhive.Name = "btnArhive";
             btnArhive.Size = new Size(150, 30);
             btnArhive.TabIndex = 1;
@@ -92,23 +91,12 @@
             cmbArhiveMode.TabIndex = 3;
             cmbArhiveMode.Text = "Set Arhive Mode:";
             // 
-            // btnArhiveReport
-            // 
-            btnArhiveReport.Location = new Point(432, 412);
-            btnArhiveReport.Name = "btnArhiveReport";
-            btnArhiveReport.Size = new Size(150, 30);
-            btnArhiveReport.TabIndex = 4;
-            btnArhiveReport.Text = "REPORT";
-            btnArhiveReport.UseVisualStyleBackColor = true;
-            btnArhiveReport.Click += btnArhiveReport_Click;
-            // 
             // FrmArhiver
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.DarkSeaGreen;
             ClientSize = new Size(802, 453);
-            Controls.Add(btnArhiveReport);
             Controls.Add(cmbArhiveMode);
             Controls.Add(btnClose);
             Controls.Add(btnArhive);
@@ -125,7 +113,6 @@
         private Button btnArhive;
         private Button btnClose;
         private ComboBox cmbArhiveMode;
-        private Button btnArhiveReport;
         private FolderBrowserDialog fbSetRootDirDialog;
         private ImageList iconImgList;
     }

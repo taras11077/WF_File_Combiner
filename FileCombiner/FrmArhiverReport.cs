@@ -37,10 +37,11 @@ namespace FileCombiner
             lvwArhiverReport.GridLines = true;
             lvwArhiverReport.FullRowSelect = true;
 
-            lvwArhiverReport.Columns.Add("ProcessedDirectory", 200, HorizontalAlignment.Left);
-            lvwArhiverReport.Columns.Add("ArhiveName", 200, HorizontalAlignment.Left);
-            lvwArhiverReport.Columns.Add("Failed", 75, HorizontalAlignment.Left);
-            lvwArhiverReport.Columns.Add("Exception", 750, HorizontalAlignment.Left);
+            lvwArhiverReport.Columns.Add("ProcessedDirectory", 150, HorizontalAlignment.Left);
+            lvwArhiverReport.Columns.Add("ArhiveFileName", 200, HorizontalAlignment.Left);
+            lvwArhiverReport.Columns.Add("ArhiveSize", 100, HorizontalAlignment.Left);
+            lvwArhiverReport.Columns.Add("Failed archiving", 100,HorizontalAlignment.Left);
+            lvwArhiverReport.Columns.Add("Exception", 300, HorizontalAlignment.Left);
 
             foreach (ArhiveReportItem item in Report.Items)
             {
@@ -48,15 +49,54 @@ namespace FileCombiner
                 lvItem.Text = item.ProcessedDirectory.ToString();
                 lvItem.Tag = item;
 
-                lvItem.SubItems[0].Text = item.ProcessedDirectory.Name.ToString();
-                lvItem.SubItems.Add(item.ArhiveFileName.ToString());
-                lvItem.SubItems.Add(item.Failed.ToString());
-                lvItem.SubItems.Add(item.Exception?.ToString());
+
+                if(item.Failed)
+                {
+                    lvItem.SubItems[0].Text = item.ProcessedDirectory.Name.ToString();
+                    lvItem.SubItems.Add(string.Empty);
+                    lvItem.SubItems.Add(string.Empty);
+                    lvItem.SubItems.Add(item.Failed.ToString());
+                    lvItem.SubItems.Add(item.Exception?.ToString());
+                }
+                else
+                {
+                    lvItem.SubItems[0].Text = item.ProcessedDirectory.Name.ToString();
+                    lvItem.SubItems.Add(item.ArhiveFileName.ToString());
+                    lvItem.SubItems.Add(string.Empty);
+                    lvItem.SubItems.Add(item.Failed.ToString());
+                    lvItem.SubItems.Add(string.Empty);
+                }
+               
+                
 
                 lvwArhiverReport.Items.Add(lvItem);
             }
         }
+        /*
+        private void GenerateItem(DirectoryInfo dir)
+        {
 
+            if (dir == null)
+                return;
+
+            ListViewItem item = new ListViewItem()
+            {
+                Text = dir.Name,
+                Tag = dir,
+                ImageIndex = 1,
+            };
+
+            int itemSize = CalcDirSize(dir);
+
+            item.SubItems[0].Text = dir.Name;
+            item.SubItems[0].Tag = itemSize; // присвоил size елемента свойству Tag нулевого SubItem
+            item.SubItems.Add(itemSize.ToString());
+            item.SubItems.Add(dir.LastAccessTime.ToString());
+            item.SubItems.Add(dir.FullName);
+
+            lvwArhivedItems.Items.Add(item);
+        }
+        */
 
 
         // изменение цвета кнопок при наведении курсора

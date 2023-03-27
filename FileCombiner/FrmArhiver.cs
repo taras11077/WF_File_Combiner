@@ -53,6 +53,8 @@ namespace FileCombiner
 
             GenerateArhivedItems();
         }
+
+
         private void GenerateArhivedItems()
         {
             lvwArhivedItems.Items.Clear();
@@ -63,6 +65,7 @@ namespace FileCombiner
                 GenerateItem(dir);
             });
         }
+
         private void GenerateItem(DirectoryInfo dir)
         {
 
@@ -114,28 +117,30 @@ namespace FileCombiner
         private void btnArhive_Click(object sender, EventArgs e)
         {
             ArchiveEngine archiveEngine = new ArchiveEngine(mode);
-            
+
             ArhiveReport arhiverReport = new ArhiveReport();
 
-                foreach (DirectoryInfo dir in Dirs)
+            foreach (DirectoryInfo dir in Dirs)
+            {
+
+                try
                 {
+                    string outFile = archiveEngine.CompressDirectory(dir.FullName);
+                    arhiveFiles.Add(outFile);
 
-                    try
-                    {
-                        string outFile = archiveEngine.CompressDirectory(dir.FullName);
-                        arhiveFiles.Add(outFile);
-
-                        arhiverReport.PushSuccess(dir, outFile);
-                    }
-                    catch (ArchiverException ex)
-                    {
-                        MessageBox.Show(ex.Message);
-                        arhiverReport.PushError(dir, ex);
-                    }
+                    arhiverReport.PushSuccess(dir, outFile);
                 }
+                catch (ArchiverException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    arhiverReport.PushError(dir, ex);
+                }
+            }
 
             Data.arhiverReport = arhiverReport;
-            MessageBox.Show("Arhiving of selected items was a success");
+            MessageBox.Show("Arhiving completed");
+
+            Close();
         }
 
         private void cmbArhiveMode_SelectedIndexChanged(object sender, EventArgs e)
@@ -150,10 +155,6 @@ namespace FileCombiner
 
         }
 
-        private void btnArhiveReport_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void btnClose_Click(object sender, EventArgs e)
         {

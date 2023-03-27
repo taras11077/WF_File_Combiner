@@ -75,8 +75,11 @@ namespace FileCombiner.FileCleaner
             lvwRemovedItems.Columns.Add("Path", 500, HorizontalAlignment.Left);
             lvwRemovedItems.Columns.Add("Status", 100, HorizontalAlignment.Left);
 
+
             lvwRemovedItems.Groups.Add(new ListViewGroup("Directories", HorizontalAlignment.Left));
             lvwRemovedItems.Groups.Add(new ListViewGroup("Files", HorizontalAlignment.Left));
+
+           
 
         }
         private void InitListViewResultInfo()
@@ -226,7 +229,7 @@ namespace FileCombiner.FileCleaner
                 InitListViewResultInfo();
                 lvwRemovedItems.CheckBoxes = true;
 
-                MessageBox.Show("Search completed successfully");
+                MessageBox.Show("Search completed");
             }
             catch (DirectoryNotFoundException)
             {
@@ -240,21 +243,43 @@ namespace FileCombiner.FileCleaner
             lvwRemovedItems.Items.Clear();
             chbSelectAll.Checked = false;
 
-            resultContainer.Dirs.ForEach(dir =>
+            // вибор режима отображения списка найденних елементов для разних обработчиков файлов
+            // Cleaner - папки и файли
+            // Renamer - только файли
+            // Arhiver - только папки
+            switch (frmMode) 
             {
-                dirSize = 0;
-                GenerateItem(dir);
+                case FileCombinerMode.Cleaner:
+                    resultContainer.Dirs.ForEach(dir =>
+                    {
+                        dirSize = 0;
+                        GenerateItem(dir);
+                    });
 
-            });
+                    resultContainer.Files.ForEach(file =>
+                    {
+                        GenerateItem(file);
+                    });
+                    break;
 
-            resultContainer.Files.ForEach(file =>
-            {
-                GenerateItem(file);
-            });
+                case FileCombinerMode.Renamer:
+                    resultContainer.Files.ForEach(file =>
+                    {
+                        GenerateItem(file);
+                    });
+                    break;
+
+                case FileCombinerMode.Arhiver:
+                    resultContainer.Dirs.ForEach(dir =>
+                    {
+                        dirSize = 0;
+                        GenerateItem(dir);
+                    });
+                    break;
+            }
         }
         private void GenerateItem(FileSystemInfo typeInfo)
-        {
-
+        { // генерация елемента списка с распределением по группам папки/файли
             if (typeInfo == null)
                 return;
 
@@ -528,13 +553,13 @@ namespace FileCombiner.FileCleaner
         // изменение цвета кнопок при наведении курсора
         private void btnSetRootDir_MouseEnter(object sender, EventArgs e)
         {
-            if (sender as Button == btnSetRootDir || sender as Button == btnAddDirPatterns || sender as Button == btnRemoveDirPatterns || sender as Button == btnAddFilePatterns || sender as Button == btnRemoveFilePatterns || sender as Button == btnClose)
+            if (sender as Button == btnSetRootDir || sender as Button == btnAddDirPatterns || sender as Button == btnRemoveDirPatterns || sender as Button == btnAddFilePatterns || sender as Button == btnRemoveFilePatterns || sender as Button == btnClose || sender as Button == btnReport)
                 (sender as Button)!.BackColor = Color.LightSkyBlue;
             else if (sender as Button == btnFindRecursive || sender as Button == btnFindSimple)
                 (sender as Button)!.BackColor = Color.SteelBlue;
             else if (sender as Button == btnClear)
                 (sender as Button)!.BackColor = Color.IndianRed;
-            else if (sender as Button == btnRenamer || sender as Button == btnReport)
+            else if (sender as Button == btnRenamer)
                 (sender as Button)!.BackColor = Color.Khaki;
             else if (sender as Button == btnArhiver)
                 (sender as Button)!.BackColor = Color.MediumSeaGreen;
