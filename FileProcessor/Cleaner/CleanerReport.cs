@@ -7,18 +7,18 @@ using System.Threading.Tasks;
 
 namespace FileProcessor.Cleaner
 {
-    public class CleaningReport
+    public class CleanerReport
     {
-        public List<CleaningReportItem> Items { get; set; } = new List<CleaningReportItem>();
+        public List<CleanerReportItem> Items { get; set; } = new List<CleanerReportItem>();
 
         public void PushSuccess(FileSystemInfo processedItem)
         {
-            Items.Add(new CleaningReportItem(processedItem));
+            Items.Add(new CleanerReportItem(processedItem));
         }
 
         public void PushError(FileSystemInfo processedItem, Exception? ex)
         {
-            Items.Add(new CleaningReportItem(processedItem, true, ex));
+            Items.Add(new CleanerReportItem(processedItem, true, ex));
         }
 
     }

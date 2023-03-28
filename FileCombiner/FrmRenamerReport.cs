@@ -14,9 +14,9 @@ namespace FileCombiner
 {
     public partial class FrmRenamerReport : Form
     {
-        Report Report { get; set; }
+        RenamerReport Report { get; set; }
 
-        public FrmRenamerReport(Report report)
+        public FrmRenamerReport(RenamerReport report)
         {
             InitializeComponent();
             Report = report;
@@ -41,7 +41,7 @@ namespace FileCombiner
             lvwRenamedReport.Columns.Add("Last AccesTime", 150, HorizontalAlignment.Left);
             lvwRenamedReport.Columns.Add("Exception", 750, HorizontalAlignment.Left);
 
-            foreach (ReportItem item in Report.Items)
+            foreach (RenamerReportItem item in Report.Items)
             {
                 ListViewItem lvItem = new ListViewItem();
                 lvItem.Text = item.ProcessedFile.ToString();

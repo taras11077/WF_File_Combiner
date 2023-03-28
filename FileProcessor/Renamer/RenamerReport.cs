@@ -7,18 +7,18 @@ using System.Threading.Tasks;
 
 namespace FileProcessor.Renamer
 {
-    public class Report
+    public class RenamerReport
     {
-        public List<ReportItem> Items { get; set; } = new List<ReportItem>();
+        public List<RenamerReportItem> Items { get; set; } = new List<RenamerReportItem>();
 
         public void PushSuccess(FileInfo processedFile)
         {
-            Items.Add(new ReportItem(processedFile));
+            Items.Add(new RenamerReportItem(processedFile));
         }
 
         public void PushError(FileInfo processedFile, Exception? ex)
         {
-            Items.Add(new ReportItem(processedFile, true, ex));
+            Items.Add(new RenamerReportItem(processedFile, true, ex));
         }
 
     }

@@ -432,7 +432,7 @@ namespace FileCombiner.FileCleaner
 
             try
             {
-                Data.cleaningReport = remover.Remove(remover.trash);
+                Data.cleanerReport = remover.Remove(remover.trash);
 
                 resultContainer = new(remover.ListItems.Dirs, remover.ListItems.Files); // создание нового resulContainer после удаления елементов
                 GenerateFindedItems();                                                  // генепация елементов и создание нового ListView
@@ -481,7 +481,7 @@ namespace FileCombiner.FileCleaner
                     break;
 
                 case FileCombinerMode.Cleaner:
-                    FrmCleaningReport cleanReport = new FrmCleaningReport(Data.cleaningReport);
+                    FrmCleaningReport cleanReport = new FrmCleaningReport(Data.cleanerReport);
                     cleanReport.ShowDialog();
                     break;
 

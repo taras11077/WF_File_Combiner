@@ -19,7 +19,7 @@ namespace FileCombiner
     public partial class FrmRenamer : Form
     {
         private List<FileInfo> RenamedFiles;
-        public Report renamerReport = new Report();
+        public RenamerReport renamerReport = new RenamerReport();
 
         private string[]? modes;
         private string[]? masks;
@@ -102,7 +102,7 @@ namespace FileCombiner
                 renamer.SetMask(RenamerMask.AUTOINCREMENT);
         }
 
-        private Report RenameByMode(string renameMode)
+        private RenamerReport RenameByMode(string renameMode)
         {
             if (renameMode == "ordinal number")
                 renamerReport = renamer.NumberModeRename();

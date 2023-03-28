@@ -8,14 +8,14 @@ using System.Threading.Tasks;
 
 namespace FileProcessor.Cleaner
 {
-    public class CleaningReportItem
+    public class CleanerReportItem
     {
         public FileSystemInfo ProcessedItem { get; set; }
 
         public bool Failed { get; set; } = false;
         public Exception? Exception { get; set; } = null;
 
-        public CleaningReportItem(FileSystemInfo processedItem, bool failed = false, Exception? exception = null)
+        public CleanerReportItem(FileSystemInfo processedItem, bool failed = false, Exception? exception = null)
         {
             ProcessedItem = processedItem;
             Failed = failed;

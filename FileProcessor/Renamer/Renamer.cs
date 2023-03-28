@@ -39,9 +39,9 @@ namespace FileProcessor.Renamer
             };
         }
 
-        public Report RenameByMask(string prefix)
+        public RenamerReport RenameByMask(string prefix)
         {
-            Report report = new Report();
+            RenamerReport report = new RenamerReport();
 
             Files.ForEach(f =>
             {
@@ -75,9 +75,9 @@ namespace FileProcessor.Renamer
 
 
 
-        public Report NumberModeRename()
+        public RenamerReport NumberModeRename()
         {
-            Report report = new Report();
+            RenamerReport report = new RenamerReport();
             int i = 0;
             foreach (FileInfo file in Files)          
             {
@@ -96,9 +96,9 @@ namespace FileProcessor.Renamer
             return report;
         }
 
-        public Report RandomStringModeRename()
+        public RenamerReport RandomStringModeRename()
         {
-            Report report = new Report();
+            RenamerReport report = new RenamerReport();
 
             Random random = new Random();
             char[] letters = "abcdefghijklmnopqrstuvwxyz".ToCharArray();
@@ -126,9 +126,9 @@ namespace FileProcessor.Renamer
             return report;
         }
 
-        public Report UUIDModeRename()
+        public RenamerReport UUIDModeRename()
         {
-            Report report = new Report();
+            RenamerReport report = new RenamerReport();
 
             foreach (FileInfo file in Files)
             {

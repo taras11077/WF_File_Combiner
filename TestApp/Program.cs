@@ -58,7 +58,7 @@ finder.ResultContainer.Files.ForEach(f =>
 //List<FileInfo> files = new List<FileInfo>(dir.GetFiles());
 
 Renamer renamer = new Renamer(finder.ResultContainer.Files, RenamerMask.UUID);
-Report report = renamer.RenameByMask("img_");
+RenamerReport report = renamer.RenameByMask("img_");
 
 
 

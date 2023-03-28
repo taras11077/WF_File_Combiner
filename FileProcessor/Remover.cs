@@ -18,9 +18,9 @@ namespace FileProcessor
         public ObjectContainer RemovedItems { get; set; } = new ObjectContainer();
 
 
-        public CleaningReport Remove(bool trash)
+        public CleanerReport Remove(bool trash)
         {
-            CleaningReport cleaningReport = new CleaningReport();
+            CleanerReport cleaningReport = new CleanerReport();
 
             
             foreach (FileInfo removedFile in RemovedItems.Files) // перебор отмеченних файлов

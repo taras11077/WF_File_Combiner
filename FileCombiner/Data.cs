@@ -12,8 +12,8 @@ namespace FileCombiner
 {
     public static class Data
     {
-        public static Report renamerReport  = new();
+        public static RenamerReport renamerReport  = new();
         public static ArhiveReport arhiverReport = new();
-        public static CleaningReport cleaningReport = new();
+        public static CleanerReport cleanerReport = new();
     }
 }

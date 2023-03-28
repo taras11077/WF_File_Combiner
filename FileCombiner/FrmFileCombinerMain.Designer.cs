@@ -136,7 +136,7 @@
             // 
             btnClear.BackColor = Color.LightGray;
             btnClear.Cursor = Cursors.IBeam;
-            btnClear.Location = new Point(875, 467);
+            btnClear.Location = new Point(875, 420);
             btnClear.Name = "btnClear";
             btnClear.Size = new Size(190, 35);
             btnClear.TabIndex = 6;
@@ -165,7 +165,7 @@
             // chbMoveToTrash
             // 
             chbMoveToTrash.AutoSize = true;
-            chbMoveToTrash.Location = new Point(943, 508);
+            chbMoveToTrash.Location = new Point(943, 390);
             chbMoveToTrash.Name = "chbMoveToTrash";
             chbMoveToTrash.RightToLeft = RightToLeft.Yes;
             chbMoveToTrash.Size = new Size(122, 24);
@@ -198,7 +198,7 @@
             // lvwRemovedItems
             // 
             lvwRemovedItems.CheckBoxes = true;
-            lvwRemovedItems.Location = new Point(12, 23);
+            lvwRemovedItems.Location = new Point(4, 23);
             lvwRemovedItems.Name = "lvwRemovedItems";
             lvwRemovedItems.Scrollable = false;
             lvwRemovedItems.Size = new Size(1066, 299);
@@ -210,7 +210,7 @@
             // chbSelectAll
             // 
             chbSelectAll.AutoSize = true;
-            chbSelectAll.Location = new Point(971, 327);
+            chbSelectAll.Location = new Point(958, 328);
             chbSelectAll.Name = "chbSelectAll";
             chbSelectAll.RightToLeft = RightToLeft.Yes;
             chbSelectAll.Size = new Size(107, 24);
@@ -298,7 +298,7 @@
             // btnRenamer
             // 
             btnRenamer.BackColor = Color.LightGray;
-            btnRenamer.Location = new Point(875, 387);
+            btnRenamer.Location = new Point(875, 466);
             btnRenamer.Name = "btnRenamer";
             btnRenamer.Size = new Size(190, 35);
             btnRenamer.TabIndex = 28;
@@ -311,7 +311,7 @@
             // btnArhiver
             // 
             btnArhiver.BackColor = Color.LightGray;
-            btnArhiver.Location = new Point(875, 428);
+            btnArhiver.Location = new Point(875, 515);
             btnArhiver.Name = "btnArhiver";
             btnArhiver.Size = new Size(190, 35);
             btnArhiver.TabIndex = 29;
@@ -337,7 +337,7 @@
             // btnReport
             // 
             btnReport.BackColor = Color.LightGray;
-            btnReport.Location = new Point(875, 559);
+            btnReport.Location = new Point(875, 586);
             btnReport.Name = "btnReport";
             btnReport.Size = new Size(190, 35);
             btnReport.TabIndex = 31;

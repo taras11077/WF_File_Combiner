@@ -16,12 +16,12 @@ namespace FileCombiner
 {
     public partial class FrmCleaningReport : Form
     {
-        CleaningReport CleaningReport { get; set; }
+        CleanerReport CleanerReport { get; set; }
         int dirSize = 0;
-        public FrmCleaningReport(CleaningReport cleanReport)
+        public FrmCleaningReport(CleanerReport cleanReport)
         {
             InitializeComponent();
-            CleaningReport = cleanReport;
+            CleanerReport = cleanReport;
         }
 
         private void FrmCleaningReport_Load(object sender, EventArgs e)
@@ -41,19 +41,20 @@ namespace FileCombiner
             lvwCleaningReport.Columns.Add("Name", 200, HorizontalAlignment.Left);
             lvwCleaningReport.Columns.Add("Size, Kb", 80, HorizontalAlignment.Left);
             lvwCleaningReport.Columns.Add("Status", 85, HorizontalAlignment.Left);
+            lvwCleaningReport.Columns.Add("Last AccesTime", 150, HorizontalAlignment.Left);
             lvwCleaningReport.Columns.Add("Exception", 750, HorizontalAlignment.Left);
 
             lvwCleaningReport.Groups.Add(new ListViewGroup("Directories", HorizontalAlignment.Left));
             lvwCleaningReport.Groups.Add(new ListViewGroup("Files", HorizontalAlignment.Left));
 
-            foreach (CleaningReportItem item in CleaningReport.Items)
+            foreach (CleanerReportItem item in CleanerReport.Items)
             {
                 dirSize = 0;
                 GenerateItem(item);
             }
         }
 
-        private void GenerateItem(CleaningReportItem item)
+        private void GenerateItem(CleanerReportItem item)
         {
             ListViewItem lvItem = new ListViewItem();
             lvItem.Text = item.ProcessedItem.ToString();
@@ -86,7 +87,7 @@ namespace FileCombiner
                 lvItem.SubItems.Add("not deleted");
             else
                 lvItem.SubItems.Add("deleted");
-
+            lvItem.SubItems.Add(item.ProcessedItem.LastAccessTime.ToString());
             lvItem.SubItems.Add(item.Exception?.ToString());
 
             lvwCleaningReport.Items.Add(lvItem);
