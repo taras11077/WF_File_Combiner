@@ -38,66 +38,73 @@ namespace FileCombiner
             lvwArhiverReport.FullRowSelect = true;
 
             lvwArhiverReport.Columns.Add("ProcessedDirectory", 150, HorizontalAlignment.Left);
-            lvwArhiverReport.Columns.Add("ArhiveFileName", 200, HorizontalAlignment.Left);
-            lvwArhiverReport.Columns.Add("ArhiveSize", 100, HorizontalAlignment.Left);
-            lvwArhiverReport.Columns.Add("Failed archiving", 100,HorizontalAlignment.Left);
-            lvwArhiverReport.Columns.Add("Exception", 300, HorizontalAlignment.Left);
+            lvwArhiverReport.Columns.Add("DirSize, Kb", 100, HorizontalAlignment.Left);
+            lvwArhiverReport.Columns.Add("ArhiveFileName", 150, HorizontalAlignment.Left);
+            lvwArhiverReport.Columns.Add("ArhiveSize, Kb", 120, HorizontalAlignment.Left);
+            lvwArhiverReport.Columns.Add("Path", 370, HorizontalAlignment.Left);
+            lvwArhiverReport.Columns.Add("Failed archiving", 120, HorizontalAlignment.Left);
+            lvwArhiverReport.Columns.Add("Exception", 500, HorizontalAlignment.Left);
 
             foreach (ArhiveReportItem item in Report.Items)
             {
-                ListViewItem lvItem = new ListViewItem();
-                lvItem.Text = item.ProcessedDirectory.ToString();
-                lvItem.Tag = item;
-
-
-                if(item.Failed)
-                {
-                    lvItem.SubItems[0].Text = item.ProcessedDirectory.Name.ToString();
-                    lvItem.SubItems.Add(string.Empty);
-                    lvItem.SubItems.Add(string.Empty);
-                    lvItem.SubItems.Add(item.Failed.ToString());
-                    lvItem.SubItems.Add(item.Exception?.ToString());
-                }
-                else
-                {
-                    lvItem.SubItems[0].Text = item.ProcessedDirectory.Name.ToString();
-                    lvItem.SubItems.Add(item.ArhiveFileName.ToString());
-                    lvItem.SubItems.Add(string.Empty);
-                    lvItem.SubItems.Add(item.Failed.ToString());
-                    lvItem.SubItems.Add(string.Empty);
-                }
-               
-                
-
-                lvwArhiverReport.Items.Add(lvItem);
+                dirSize = 0;
+                GenerateItem(item);
             }
         }
-        /*
-        private void GenerateItem(DirectoryInfo dir)
+
+        private void GenerateItem(ArhiveReportItem item)
         {
 
-            if (dir == null)
-                return;
+            ListViewItem lvItem = new ListViewItem();
+            lvItem.Text = item.ProcessedDirectory.ToString();
+            lvItem.Tag = item;
 
-            ListViewItem item = new ListViewItem()
+            // вичисление размера исходной папки
+            double dirSize = (double)CalcDirSize(item.ProcessedDirectory) / 1000;
+
+            string arhiveName = string.Empty;
+            double arhiveSize = 0;
+
+            if (item.ArhiveFileName != "") // если архив создан
             {
-                Text = dir.Name,
-                Tag = dir,
-                ImageIndex = 1,
-            };
+                // виделение имени архива из полного имени
+                int slashInd = item.ArhiveFileName.LastIndexOf('\\');  //поиск индекса последнего слеша
+                arhiveName = item.ArhiveFileName.Substring(slashInd + 1, item.ArhiveFileName.Length - slashInd - 1);
 
-            int itemSize = CalcDirSize(dir);
+                // вичисление размера архива
+                System.IO.FileInfo file = new System.IO.FileInfo(item.ArhiveFileName);
+                arhiveSize = (double)file.Length / 1000;
+            }
 
-            item.SubItems[0].Text = dir.Name;
-            item.SubItems[0].Tag = itemSize; // присвоил size елемента свойству Tag нулевого SubItem
-            item.SubItems.Add(itemSize.ToString());
-            item.SubItems.Add(dir.LastAccessTime.ToString());
-            item.SubItems.Add(dir.FullName);
+            lvItem.SubItems[0].Text = item.ProcessedDirectory.Name.ToString();
+            lvItem.SubItems.Add($"{dirSize}");
+            lvItem.SubItems.Add(arhiveName.ToString());
+            lvItem.SubItems.Add($"{arhiveSize}");
+            lvItem.SubItems.Add(item.ArhiveFileName);
+            lvItem.SubItems.Add(item.Failed.ToString());
+            lvItem.SubItems.Add(item.Exception?.ToString());
 
-            lvwArhivedItems.Items.Add(item);
+            lvwArhiverReport.Items.Add(lvItem);
         }
-        */
 
+        int dirSize = 0;
+        private int CalcDirSize(DirectoryInfo d) //расчет размера директории
+        {
+            DirectoryInfo[] dirs = d.GetDirectories();
+            FileInfo[] files = d.GetFiles();
+
+            foreach (FileInfo file in files)
+            {
+                dirSize += (int)file.Length;
+            }
+
+            foreach (DirectoryInfo dir in dirs)
+            {
+                CalcDirSize(dir);
+            }
+
+            return dirSize;
+        }
 
         // изменение цвета кнопок при наведении курсора
         private void btnSetRootDir_MouseEnter(object sender, EventArgs e)

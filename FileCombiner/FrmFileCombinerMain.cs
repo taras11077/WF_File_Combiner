@@ -55,7 +55,7 @@ namespace FileCombiner.FileCleaner
         public FrmFileCombinerMain(FileCombinerMode frmMode = FileCombinerMode.Cleaner)
         {
             InitializeComponent();
-            this.frmMode = frmMode;           
+            this.frmMode = frmMode;
         }
 
         //Init
@@ -70,7 +70,7 @@ namespace FileCombiner.FileCleaner
             lvwRemovedItems.FullRowSelect = true;
 
             lvwRemovedItems.Columns.Add("Name", 200, HorizontalAlignment.Left);
-            lvwRemovedItems.Columns.Add("Size", 100, HorizontalAlignment.Left);
+            lvwRemovedItems.Columns.Add("Size, Kb", 100, HorizontalAlignment.Left);
             lvwRemovedItems.Columns.Add("Modification date", 150, HorizontalAlignment.Left);
             lvwRemovedItems.Columns.Add("Path", 500, HorizontalAlignment.Left);
             lvwRemovedItems.Columns.Add("Status", 100, HorizontalAlignment.Left);
@@ -78,9 +78,6 @@ namespace FileCombiner.FileCleaner
 
             lvwRemovedItems.Groups.Add(new ListViewGroup("Directories", HorizontalAlignment.Left));
             lvwRemovedItems.Groups.Add(new ListViewGroup("Files", HorizontalAlignment.Left));
-
-           
-
         }
         private void InitListViewResultInfo()
         {
@@ -92,20 +89,20 @@ namespace FileCombiner.FileCleaner
             lvwResultInfo.GridLines = true;
             lvwResultInfo.FullRowSelect = true;
 
-            lvwResultInfo.Columns.Add("STATUS", 100, HorizontalAlignment.Left);
+            lvwResultInfo.Columns.Add("STATUS", 70, HorizontalAlignment.Left);
             lvwResultInfo.Columns.Add("COUNT", 100, HorizontalAlignment.Left);
-            lvwResultInfo.Columns.Add("FULL SIZE", 100, HorizontalAlignment.Left);
+            lvwResultInfo.Columns.Add("FULL SIZE, Kb", 120, HorizontalAlignment.Left);
 
             ListViewItem finded = new ListViewItem();
             finded.SubItems[0].Text = "Finded";
             finded.SubItems.Add(lvwRemovedItems.Items.Count.ToString());
-            finded.SubItems.Add(CalcFindedFullSize().ToString());
+            finded.SubItems.Add(((double)CalcFindedFullSize()/1000).ToString());
             lvwResultInfo.Items.Add(finded);
 
             ListViewItem @checked = new ListViewItem();
             @checked.SubItems[0].Text = "Checked";
             @checked.SubItems.Add(lvwRemovedItems.CheckedItems.Count.ToString());
-            @checked.SubItems.Add(CalcCheckedFullSize().ToString());
+            @checked.SubItems.Add(((double)CalcCheckedFullSize()/1000).ToString());
             lvwResultInfo.Items.Add(@checked);
         }
         private void FrmFileCleanerMain_Load(object sender, EventArgs e)
@@ -247,7 +244,7 @@ namespace FileCombiner.FileCleaner
             // Cleaner - папки и файли
             // Renamer - только файли
             // Arhiver - только папки
-            switch (frmMode) 
+            switch (frmMode)
             {
                 case FileCombinerMode.Cleaner:
                     resultContainer.Dirs.ForEach(dir =>
@@ -303,9 +300,11 @@ namespace FileCombiner.FileCleaner
                 itemSize = (int)(typeInfo as FileInfo).Length;
             }
 
+            double size = (double)itemSize / 1000;
+
             item.SubItems[0].Text = typeInfo.Name;
             item.SubItems[0].Tag = itemSize; // присвоил size елемента свойству Tag нулевого SubItem
-            item.SubItems.Add(itemSize.ToString());
+            item.SubItems.Add($"{size}");
             item.SubItems.Add(typeInfo.LastAccessTime.ToString());
             item.SubItems.Add(typeInfo.FullName);
 
@@ -554,7 +553,7 @@ namespace FileCombiner.FileCleaner
         private void btnSetRootDir_MouseEnter(object sender, EventArgs e)
         {
             if (sender as Button == btnSetRootDir || sender as Button == btnAddDirPatterns || sender as Button == btnRemoveDirPatterns || sender as Button == btnAddFilePatterns || sender as Button == btnRemoveFilePatterns || sender as Button == btnClose || sender as Button == btnReport)
-                (sender as Button)!.BackColor = Color.LightSkyBlue;
+                (sender as Button)!.BackColor = Color.LightSteelBlue;
             else if (sender as Button == btnFindRecursive || sender as Button == btnFindSimple)
                 (sender as Button)!.BackColor = Color.SteelBlue;
             else if (sender as Button == btnClear)
@@ -567,7 +566,7 @@ namespace FileCombiner.FileCleaner
 
         private void btnSetRootDir_MouseLeave(object sender, EventArgs e)
         {
-            (sender as Button)!.BackColor = Color.LightSteelBlue;
+            (sender as Button)!.BackColor = Color.LightGray;
         }
 
         private void btnArhiver_Click(object sender, EventArgs e)

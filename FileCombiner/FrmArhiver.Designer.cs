@@ -64,7 +64,7 @@
             // 
             // btnArhive
             // 
-            btnArhive.Location = new Point(247, 411);
+            btnArhive.Location = new Point(249, 402);
             btnArhive.Name = "btnArhive";
             btnArhive.Size = new Size(150, 30);
             btnArhive.TabIndex = 1;
@@ -74,7 +74,7 @@
             // 
             // btnClose
             // 
-            btnClose.Location = new Point(696, 412);
+            btnClose.Location = new Point(696, 403);
             btnClose.Name = "btnClose";
             btnClose.Size = new Size(94, 29);
             btnClose.TabIndex = 2;
@@ -85,7 +85,7 @@
             // cmbArhiveMode
             // 
             cmbArhiveMode.FormattingEnabled = true;
-            cmbArhiveMode.Location = new Point(12, 412);
+            cmbArhiveMode.Location = new Point(12, 402);
             cmbArhiveMode.Name = "cmbArhiveMode";
             cmbArhiveMode.Size = new Size(200, 28);
             cmbArhiveMode.TabIndex = 3;

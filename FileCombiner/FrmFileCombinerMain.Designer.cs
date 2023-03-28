@@ -77,7 +77,7 @@
             // 
             // btnAddDirPatterns
             // 
-            btnAddDirPatterns.BackColor = Color.LightSteelBlue;
+            btnAddDirPatterns.BackColor = Color.LightGray;
             btnAddDirPatterns.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             btnAddDirPatterns.Location = new Point(14, 461);
             btnAddDirPatterns.Name = "btnAddDirPatterns";
@@ -100,7 +100,7 @@
             // 
             // btnFindRecursive
             // 
-            btnFindRecursive.BackColor = Color.LightSteelBlue;
+            btnFindRecursive.BackColor = Color.LightGray;
             btnFindRecursive.Location = new Point(505, 467);
             btnFindRecursive.Name = "btnFindRecursive";
             btnFindRecursive.Size = new Size(310, 35);
@@ -122,7 +122,7 @@
             // 
             // btnAddFilePatterns
             // 
-            btnAddFilePatterns.BackColor = Color.LightSteelBlue;
+            btnAddFilePatterns.BackColor = Color.LightGray;
             btnAddFilePatterns.Font = new Font("Segoe UI", 7.9F, FontStyle.Regular, GraphicsUnit.Point);
             btnAddFilePatterns.Location = new Point(260, 461);
             btnAddFilePatterns.Name = "btnAddFilePatterns";
@@ -136,7 +136,7 @@
             // 
             // btnClear
             // 
-            btnClear.BackColor = Color.LightSteelBlue;
+            btnClear.BackColor = Color.LightGray;
             btnClear.Cursor = Cursors.IBeam;
             btnClear.Location = new Point(875, 467);
             btnClear.Name = "btnClear";
@@ -177,7 +177,7 @@
             // 
             // btnSetRootDir
             // 
-            btnSetRootDir.BackColor = Color.LightSteelBlue;
+            btnSetRootDir.BackColor = Color.LightGray;
             btnSetRootDir.Location = new Point(14, 364);
             btnSetRootDir.Name = "btnSetRootDir";
             btnSetRootDir.Size = new Size(150, 30);
@@ -233,7 +233,7 @@
             // 
             // btnClose
             // 
-            btnClose.BackColor = Color.LightSteelBlue;
+            btnClose.BackColor = Color.LightGray;
             btnClose.Location = new Point(875, 635);
             btnClose.Name = "btnClose";
             btnClose.Size = new Size(190, 35);
@@ -262,7 +262,7 @@
             // 
             // btnRemoveDirPatterns
             // 
-            btnRemoveDirPatterns.BackColor = Color.LightSteelBlue;
+            btnRemoveDirPatterns.BackColor = Color.LightGray;
             btnRemoveDirPatterns.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             btnRemoveDirPatterns.Location = new Point(119, 461);
             btnRemoveDirPatterns.Name = "btnRemoveDirPatterns";
@@ -276,7 +276,7 @@
             // 
             // btnRemoveFilePatterns
             // 
-            btnRemoveFilePatterns.BackColor = Color.LightSteelBlue;
+            btnRemoveFilePatterns.BackColor = Color.LightGray;
             btnRemoveFilePatterns.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             btnRemoveFilePatterns.Location = new Point(365, 461);
             btnRemoveFilePatterns.Name = "btnRemoveFilePatterns";
@@ -299,7 +299,7 @@
             // 
             // btnRenamer
             // 
-            btnRenamer.BackColor = Color.LightSteelBlue;
+            btnRenamer.BackColor = Color.LightGray;
             btnRenamer.Location = new Point(875, 387);
             btnRenamer.Name = "btnRenamer";
             btnRenamer.Size = new Size(190, 35);
@@ -312,7 +312,7 @@
             // 
             // btnArhiver
             // 
-            btnArhiver.BackColor = Color.LightSteelBlue;
+            btnArhiver.BackColor = Color.LightGray;
             btnArhiver.Location = new Point(875, 428);
             btnArhiver.Name = "btnArhiver";
             btnArhiver.Size = new Size(190, 35);
@@ -325,7 +325,7 @@
             // 
             // btnFindSimple
             // 
-            btnFindSimple.BackColor = Color.LightSteelBlue;
+            btnFindSimple.BackColor = Color.LightGray;
             btnFindSimple.Location = new Point(505, 428);
             btnFindSimple.Name = "btnFindSimple";
             btnFindSimple.Size = new Size(310, 35);
@@ -338,7 +338,7 @@
             // 
             // btnReport
             // 
-            btnReport.BackColor = Color.LightSteelBlue;
+            btnReport.BackColor = Color.LightGray;
             btnReport.Location = new Point(875, 559);
             btnReport.Name = "btnReport";
             btnReport.Size = new Size(190, 35);

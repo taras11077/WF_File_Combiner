@@ -21,7 +21,7 @@ namespace FileProcessor.Renamer
             Files = files;
         }
 
-        public Renamer(List<FileInfo> files, RenamerMask mask)      // TODO: List<FileInfo>  ---> IEnumerable<FileInfo>
+        public Renamer(List<FileInfo> files, RenamerMask mask)      
         {
             Files = files;
 

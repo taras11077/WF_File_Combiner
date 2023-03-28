@@ -34,7 +34,7 @@
             // 
             // btnClose
             // 
-            btnClose.Location = new Point(694, 409);
+            btnClose.Location = new Point(1276, 396);
             btnClose.Name = "btnClose";
             btnClose.Size = new Size(94, 29);
             btnClose.TabIndex = 0;
@@ -46,7 +46,7 @@
             // 
             lvwArhiverReport.Location = new Point(12, 12);
             lvwArhiverReport.Name = "lvwArhiverReport";
-            lvwArhiverReport.Size = new Size(776, 351);
+            lvwArhiverReport.Size = new Size(1358, 351);
             lvwArhiverReport.TabIndex = 1;
             lvwArhiverReport.UseCompatibleStateImageBehavior = false;
             // 
@@ -55,7 +55,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.DarkSeaGreen;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(1382, 453);
             Controls.Add(lvwArhiverReport);
             Controls.Add(btnClose);
             Name = "FrmArhiverReport";

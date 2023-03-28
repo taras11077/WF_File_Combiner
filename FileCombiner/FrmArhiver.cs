@@ -46,14 +46,13 @@ namespace FileCombiner
             lvwArhivedItems.FullRowSelect = true;
 
             lvwArhivedItems.Columns.Add("Name", 300, HorizontalAlignment.Left);
-            lvwArhivedItems.Columns.Add("Size", 100, HorizontalAlignment.Left);
+            lvwArhivedItems.Columns.Add("Size, Kb", 100, HorizontalAlignment.Left);
             lvwArhivedItems.Columns.Add("Modification date", 150, HorizontalAlignment.Left);
             lvwArhivedItems.Columns.Add("Path", 500, HorizontalAlignment.Left);
             lvwArhivedItems.Columns.Add("Status", 100, HorizontalAlignment.Left);
 
             GenerateArhivedItems();
         }
-
 
         private void GenerateArhivedItems()
         {
@@ -75,15 +74,15 @@ namespace FileCombiner
             ListViewItem item = new ListViewItem()
             {
                 Text = dir.Name,
-                Tag = dir,
                 ImageIndex = 1,
             };
 
             int itemSize = CalcDirSize(dir);
 
+            item.Tag = itemSize;
+
             item.SubItems[0].Text = dir.Name;
-            item.SubItems[0].Tag = itemSize; // присвоил size елемента свойству Tag нулевого SubItem
-            item.SubItems.Add(itemSize.ToString());
+            item.SubItems.Add(((double)itemSize/1000).ToString());
             item.SubItems.Add(dir.LastAccessTime.ToString());
             item.SubItems.Add(dir.FullName);
 
@@ -111,9 +110,6 @@ namespace FileCombiner
         }
 
 
-
-
-
         private void btnArhive_Click(object sender, EventArgs e)
         {
             ArchiveEngine archiveEngine = new ArchiveEngine(mode);
@@ -122,7 +118,6 @@ namespace FileCombiner
 
             foreach (DirectoryInfo dir in Dirs)
             {
-
                 try
                 {
                     string outFile = archiveEngine.CompressDirectory(dir.FullName);
@@ -152,10 +147,7 @@ namespace FileCombiner
             {
                 mode = ArchiveEngineMode.Zip;
             }
-
         }
-
-
         private void btnClose_Click(object sender, EventArgs e)
         {
             Close();
