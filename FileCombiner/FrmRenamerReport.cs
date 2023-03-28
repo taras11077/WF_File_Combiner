@@ -45,6 +45,7 @@ namespace FileCombiner
                 ListViewItem lvItem = new ListViewItem();
                 lvItem.Text = item.ProcessedFile.ToString();
                 lvItem.Tag = item;
+                lvItem.ImageIndex = 0;
 
                 lvItem.SubItems[0].Text = item.ProcessedFile.Name.ToString();
                 lvItem.SubItems.Add(item.Failed.ToString());

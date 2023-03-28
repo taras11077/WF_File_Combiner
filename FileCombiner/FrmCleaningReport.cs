@@ -66,14 +66,17 @@ namespace FileCombiner
 
             if (item.ProcessedItem is FileInfo f)
             {
-                itemSize = f.Length;
+                itemSize = (double)f.Length/1000;
                 lvItem.Group = lvwCleaningReport.Groups[1];
+                lvItem.ImageIndex = 0;
                 lvItem.SubItems.Add($"{itemSize}");
+
             }
             else if (item.ProcessedItem is DirectoryInfo d)
             {
                 //itemSize = (double)calculator.CalcDirSize(d) / 1000;
                 lvItem.Group = lvwCleaningReport.Groups[0];
+                lvItem.ImageIndex = 1;
                 lvItem.SubItems.Add($"");
             }
 

@@ -54,11 +54,11 @@
             btnArhive.TabIndex = 2;
             btnArhive.Text = "ARHIVER";
             btnArhive.UseVisualStyleBackColor = false;
-            btnArhive.Click += btnAnalyzer_Click;
+            btnArhive.Click += btnArhiver_Click;
             // 
             // btnRenamer
             // 
-            btnRenamer.BackColor = Color.LemonChiffon;
+            btnRenamer.BackColor = SystemColors.ActiveCaption;
             btnRenamer.Location = new Point(24, 92);
             btnRenamer.Name = "btnRenamer";
             btnRenamer.Size = new Size(139, 29);
@@ -69,8 +69,8 @@
             // 
             // btnClose
             // 
-            btnClose.BackColor = Color.LightSteelBlue;
-            btnClose.Location = new Point(357, 399);
+            btnClose.BackColor = Color.LightGray;
+            btnClose.Location = new Point(343, 391);
             btnClose.Name = "btnClose";
             btnClose.Size = new Size(94, 29);
             btnClose.TabIndex = 4;
@@ -82,7 +82,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.ActiveCaption;
+            BackColor = Color.Beige;
             ClientSize = new Size(473, 450);
             Controls.Add(btnClose);
             Controls.Add(btnRenamer);

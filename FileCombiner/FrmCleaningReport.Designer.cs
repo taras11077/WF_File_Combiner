@@ -37,12 +37,13 @@
             // 
             // btnClose
             // 
+            btnClose.BackColor = Color.LightGray;
             btnClose.Location = new Point(694, 409);
             btnClose.Name = "btnClose";
             btnClose.Size = new Size(94, 29);
             btnClose.TabIndex = 0;
             btnClose.Text = "CLOSE";
-            btnClose.UseVisualStyleBackColor = true;
+            btnClose.UseVisualStyleBackColor = false;
             btnClose.Click += btnClose_Click;
             // 
             // lvwCleaningReport

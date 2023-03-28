@@ -115,7 +115,7 @@ namespace FileCombiner.FileCleaner
                     break;
 
                 case FileCombinerMode.Renamer:
-                    BackColor = Color.LemonChiffon;
+                    //BackColor = Color.LemonChiffon;
                     btnFindRecursive.Enabled = false;
                     btnAddDirPatterns.Enabled = false;
                     btnRemoveDirPatterns.Enabled = false;
@@ -130,7 +130,7 @@ namespace FileCombiner.FileCleaner
 
                     btnFindRecursive.Enabled = false;
                     btnAddFilePatterns.Enabled = false;
-                    btnRemoveFilePatterns.Enabled = true;
+                    btnRemoveFilePatterns.Enabled = false;
                     btnFindRecursive.Enabled = false;
 
                     btnRenamer.Enabled = false;
@@ -430,7 +430,6 @@ namespace FileCombiner.FileCleaner
                     remover.RemovedItems.Files.Add(f);
             }
 
-
             try
             {
                 Data.cleaningReport = remover.Remove(remover.trash);
@@ -531,13 +530,13 @@ namespace FileCombiner.FileCleaner
         private void btnSetRootDir_MouseEnter(object sender, EventArgs e)
         {
             if (sender as Button == btnSetRootDir || sender as Button == btnAddDirPatterns || sender as Button == btnRemoveDirPatterns || sender as Button == btnAddFilePatterns || sender as Button == btnRemoveFilePatterns || sender as Button == btnClose || sender as Button == btnReport)
-                (sender as Button)!.BackColor = Color.LightSteelBlue;
+                (sender as Button)!.BackColor = Color.LightSlateGray;
             else if (sender as Button == btnFindRecursive || sender as Button == btnFindSimple)
-                (sender as Button)!.BackColor = Color.SteelBlue;
+                (sender as Button)!.BackColor = Color.Khaki;
             else if (sender as Button == btnClear)
                 (sender as Button)!.BackColor = Color.IndianRed;
             else if (sender as Button == btnRenamer)
-                (sender as Button)!.BackColor = Color.Khaki;
+                (sender as Button)!.BackColor = Color.SteelBlue;
             else if (sender as Button == btnArhiver)
                 (sender as Button)!.BackColor = Color.MediumSeaGreen;
         }

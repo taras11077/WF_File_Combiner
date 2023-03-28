@@ -64,22 +64,26 @@
             // 
             // btnArhive
             // 
+            btnArhive.BackColor = Color.LightGray;
             btnArhive.Location = new Point(249, 402);
             btnArhive.Name = "btnArhive";
             btnArhive.Size = new Size(150, 30);
             btnArhive.TabIndex = 1;
             btnArhive.Text = "ARHIVE";
-            btnArhive.UseVisualStyleBackColor = true;
+            btnArhive.UseVisualStyleBackColor = false;
             btnArhive.Click += btnArhive_Click;
+            btnArhive.MouseEnter += btnSetRootDir_MouseEnter;
+            btnArhive.MouseLeave += btnSetRootDir_MouseLeave;
             // 
             // btnClose
             // 
+            btnClose.BackColor = Color.LightGray;
             btnClose.Location = new Point(696, 403);
             btnClose.Name = "btnClose";
             btnClose.Size = new Size(94, 29);
             btnClose.TabIndex = 2;
             btnClose.Text = "CLOSE";
-            btnClose.UseVisualStyleBackColor = true;
+            btnClose.UseVisualStyleBackColor = false;
             btnClose.Click += btnClose_Click;
             // 
             // cmbArhiveMode

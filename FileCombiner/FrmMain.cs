@@ -12,31 +12,22 @@ namespace FileCombiner
             InitializeComponent();
         }
 
-
         private void btnFileCleaner_Click_1(object sender, EventArgs e)
         {
             FrmFileCombinerMain frmMain = new FrmFileCombinerMain(FileCombinerMode.Cleaner);
             frmMain.ShowDialog();
-
         }
 
         private void btnRenamer_Click(object sender, EventArgs e)
         {
             FrmFileCombinerMain frmMain = new FrmFileCombinerMain(FileCombinerMode.Renamer);
             frmMain.ShowDialog();
-
         }
-
-        private void btnAnalyzer_Click(object sender, EventArgs e)
+        private void btnArhiver_Click(object sender, EventArgs e)
         {
             FrmFileCombinerMain frmMain = new FrmFileCombinerMain(FileCombinerMode.Arhiver);
             frmMain.ShowDialog();
-
-            //FrmArhiver frmArhiver = new FrmArhiver();
-            //frmArhiver.ShowDialog();
         }
-
-
 
         private void btnClose_Click(object sender, EventArgs e)
         {

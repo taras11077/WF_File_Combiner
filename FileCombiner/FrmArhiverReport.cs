@@ -80,6 +80,7 @@ namespace FileCombiner
                 arhiveSize = (double)file.Length / 1000;
             }
 
+            lvItem.ImageIndex = 1;
             lvItem.SubItems[0].Text = item.ProcessedDirectory.Name.ToString();
             lvItem.SubItems.Add($"{dirSize}");
             lvItem.SubItems.Add(arhiveName.ToString());

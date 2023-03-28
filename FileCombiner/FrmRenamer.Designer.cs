@@ -37,8 +37,8 @@
             lblSetMask = new Label();
             txtbSetPrefix = new TextBox();
             lvwRenamedItems = new ListView();
-            btnClose = new Button();
             iconImgList = new ImageList(components);
+            btnClose = new Button();
             SuspendLayout();
             // 
             // cmbRenameMode
@@ -85,7 +85,7 @@
             // lblSetMask
             // 
             lblSetMask.AutoSize = true;
-            lblSetMask.ForeColor = Color.LemonChiffon;
+            lblSetMask.ForeColor = SystemColors.ActiveCaption;
             lblSetMask.Location = new Point(245, 373);
             lblSetMask.Name = "lblSetMask";
             lblSetMask.Size = new Size(135, 20);
@@ -110,17 +110,6 @@
             lvwRenamedItems.TabIndex = 9;
             lvwRenamedItems.UseCompatibleStateImageBehavior = false;
             // 
-            // btnClose
-            // 
-            btnClose.BackColor = Color.LightSteelBlue;
-            btnClose.Location = new Point(692, 404);
-            btnClose.Name = "btnClose";
-            btnClose.Size = new Size(94, 29);
-            btnClose.TabIndex = 10;
-            btnClose.Text = "CLOSE";
-            btnClose.UseVisualStyleBackColor = false;
-            btnClose.Click += btnClose_Click;
-            // 
             // iconImgList
             // 
             iconImgList.ColorDepth = ColorDepth.Depth8Bit;
@@ -135,11 +124,22 @@
             iconImgList.Images.SetKeyName(6, "cancel--v1.png");
             iconImgList.Images.SetKeyName(7, "briefcase.png");
             // 
+            // btnClose
+            // 
+            btnClose.BackColor = Color.LightSteelBlue;
+            btnClose.Location = new Point(692, 404);
+            btnClose.Name = "btnClose";
+            btnClose.Size = new Size(94, 29);
+            btnClose.TabIndex = 10;
+            btnClose.Text = "CLOSE";
+            btnClose.UseVisualStyleBackColor = false;
+            btnClose.Click += btnClose_Click;
+            // 
             // FrmRenamer
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.LemonChiffon;
+            BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(802, 453);
             Controls.Add(btnClose);
             Controls.Add(lvwRenamedItems);

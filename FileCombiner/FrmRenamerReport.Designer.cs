@@ -28,13 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmRenamerReport));
             btnClose = new Button();
             lvwRenamedReport = new ListView();
+            iconImgList = new ImageList(components);
             SuspendLayout();
             // 
             // btnClose
             // 
-            btnClose.BackColor = Color.LightSteelBlue;
+            btnClose.BackColor = Color.LightGray;
             btnClose.Location = new Point(694, 409);
             btnClose.Name = "btnClose";
             btnClose.Size = new Size(94, 29);
@@ -48,14 +51,29 @@
             lvwRenamedReport.Location = new Point(0, 38);
             lvwRenamedReport.Name = "lvwRenamedReport";
             lvwRenamedReport.Size = new Size(800, 336);
+            lvwRenamedReport.SmallImageList = iconImgList;
             lvwRenamedReport.TabIndex = 0;
             lvwRenamedReport.UseCompatibleStateImageBehavior = false;
+            // 
+            // iconImgList
+            // 
+            iconImgList.ColorDepth = ColorDepth.Depth8Bit;
+            iconImgList.ImageStream = (ImageListStreamer)resources.GetObject("iconImgList.ImageStream");
+            iconImgList.TransparentColor = Color.Transparent;
+            iconImgList.Images.SetKeyName(0, "file.png");
+            iconImgList.Images.SetKeyName(1, "folder-invoices--v1.png");
+            iconImgList.Images.SetKeyName(2, "delete.png");
+            iconImgList.Images.SetKeyName(3, "delete-sign--v1.png");
+            iconImgList.Images.SetKeyName(4, "image-file.png");
+            iconImgList.Images.SetKeyName(5, "picture--v1.png");
+            iconImgList.Images.SetKeyName(6, "cancel--v1.png");
+            iconImgList.Images.SetKeyName(7, "briefcase.png");
             // 
             // FrmRenamerReport
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.LemonChiffon;
+            BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(800, 450);
             Controls.Add(lvwRenamedReport);
             Controls.Add(btnClose);
@@ -69,5 +87,6 @@
 
         private Button btnClose;
         private ListView lvwRenamedReport;
+        private ImageList iconImgList;
     }
 }

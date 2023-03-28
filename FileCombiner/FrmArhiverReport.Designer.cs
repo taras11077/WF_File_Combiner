@@ -28,8 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmArhiverReport));
             btnClose = new Button();
             lvwArhiverReport = new ListView();
+            iconImgList = new ImageList(components);
             SuspendLayout();
             // 
             // btnClose
@@ -47,8 +50,23 @@
             lvwArhiverReport.Location = new Point(12, 12);
             lvwArhiverReport.Name = "lvwArhiverReport";
             lvwArhiverReport.Size = new Size(1358, 351);
+            lvwArhiverReport.SmallImageList = iconImgList;
             lvwArhiverReport.TabIndex = 1;
             lvwArhiverReport.UseCompatibleStateImageBehavior = false;
+            // 
+            // iconImgList
+            // 
+            iconImgList.ColorDepth = ColorDepth.Depth8Bit;
+            iconImgList.ImageStream = (ImageListStreamer)resources.GetObject("iconImgList.ImageStream");
+            iconImgList.TransparentColor = Color.Transparent;
+            iconImgList.Images.SetKeyName(0, "file.png");
+            iconImgList.Images.SetKeyName(1, "folder-invoices--v1.png");
+            iconImgList.Images.SetKeyName(2, "delete.png");
+            iconImgList.Images.SetKeyName(3, "delete-sign--v1.png");
+            iconImgList.Images.SetKeyName(4, "image-file.png");
+            iconImgList.Images.SetKeyName(5, "picture--v1.png");
+            iconImgList.Images.SetKeyName(6, "cancel--v1.png");
+            iconImgList.Images.SetKeyName(7, "briefcase.png");
             // 
             // FrmArhiverReport
             // 
@@ -68,5 +86,6 @@
 
         private Button btnClose;
         private ListView lvwArhiverReport;
+        private ImageList iconImgList;
     }
 }

@@ -132,13 +132,13 @@ namespace FileCombiner
         // изменение цвета кнопок при наведении курсора
         private void btnSetRootDir_MouseEnter(object sender, EventArgs e)
         {
-            if (sender as Button == btnRename)
-                (sender as Button)!.BackColor = Color.Khaki;
+            if (sender as Button == btnRename || sender as Button == btnClose)
+                (sender as Button)!.BackColor = Color.SteelBlue;
         }
 
         private void btnSetRootDir_MouseLeave(object sender, EventArgs e)
         {
-            (sender as Button)!.BackColor = Color.Silver;
+            (sender as Button)!.BackColor = Color.LightSteelBlue;
         }
 
         private void btnClose_Click(object sender, EventArgs e)

@@ -8,6 +8,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -30,7 +31,7 @@ namespace FileCombiner
 
         private void FrmArhiver_Load_1(object sender, EventArgs e)
         {
-            string[] modes = { "zip",};
+            string[] modes = { "zip", };
             cmbArhiveMode.Items.AddRange(modes);
 
             InitListViewArhivedItems();
@@ -81,7 +82,7 @@ namespace FileCombiner
             item.Tag = itemSize;
 
             item.SubItems[0].Text = dir.Name;
-            item.SubItems.Add(((double)itemSize/1000).ToString());
+            item.SubItems.Add(((double)itemSize / 1000).ToString());
             item.SubItems.Add(dir.LastAccessTime.ToString());
             item.SubItems.Add(dir.FullName);
 
@@ -151,5 +152,17 @@ namespace FileCombiner
             Close();
         }
 
+
+        // изменение цвета кнопок при наведении курсора
+        private void btnSetRootDir_MouseEnter(object sender, EventArgs e)
+        {
+            if (sender as Button == btnArhive || sender as Button == btnClose)
+                (sender as Button)!.BackColor = Color.MediumSeaGreen;
+        }
+
+        private void btnSetRootDir_MouseLeave(object sender, EventArgs e)
+        {
+            (sender as Button)!.BackColor = Color.LightSteelBlue;
+        }
     }
 }
