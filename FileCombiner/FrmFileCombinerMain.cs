@@ -437,7 +437,7 @@ namespace FileCombiner.FileCleaner
                 resultContainer = new(remover.ListItems.Dirs, remover.ListItems.Files); // создание нового resulContainer после удаления елементов
                 GenerateFindedItems();                                                  // генепация елементов и создание нового ListView
 
-                MessageBox.Show("Selected items removed");
+                MessageBox.Show("Selected items removed\nYou can see the results by clicking VIEW REPORT");
             }
             catch (Exception ex)
             {

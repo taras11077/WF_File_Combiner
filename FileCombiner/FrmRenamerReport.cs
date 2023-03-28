@@ -36,8 +36,9 @@ namespace FileCombiner
             lvwRenamedReport.GridLines = true;
             lvwRenamedReport.FullRowSelect = true;
 
-            lvwRenamedReport.Columns.Add("Name", 330, HorizontalAlignment.Left);
-            lvwRenamedReport.Columns.Add("Failed", 75, HorizontalAlignment.Left);
+            lvwRenamedReport.Columns.Add("Processed files", 330, HorizontalAlignment.Left);
+            lvwRenamedReport.Columns.Add("Status", 75, HorizontalAlignment.Left);
+            lvwRenamedReport.Columns.Add("Last AccesTime", 150, HorizontalAlignment.Left);
             lvwRenamedReport.Columns.Add("Exception", 750, HorizontalAlignment.Left);
 
             foreach (ReportItem item in Report.Items)
@@ -48,7 +49,12 @@ namespace FileCombiner
                 lvItem.ImageIndex = 0;
 
                 lvItem.SubItems[0].Text = item.ProcessedFile.Name.ToString();
-                lvItem.SubItems.Add(item.Failed.ToString());
+                if (item.Failed)
+                    lvItem.SubItems.Add("not renamed");
+                else
+                    lvItem.SubItems.Add("renamed");
+
+                lvItem.SubItems.Add(item.ProcessedFile.LastAccessTime.ToString());
                 lvItem.SubItems.Add(item.Exception?.ToString());
 
                 lvwRenamedReport.Items.Add(lvItem);
@@ -64,12 +70,12 @@ namespace FileCombiner
         private void btnSetRootDir_MouseEnter(object sender, EventArgs e)
         {
             if (sender as Button == btnClose)
-                (sender as Button)!.BackColor = Color.Khaki;
+                (sender as Button)!.BackColor = Color.SteelBlue;
         }
 
         private void btnSetRootDir_MouseLeave(object sender, EventArgs e)
         {
-            (sender as Button)!.BackColor = Color.Silver;
+            (sender as Button)!.BackColor = Color.LightGray;
         }
     }
 }

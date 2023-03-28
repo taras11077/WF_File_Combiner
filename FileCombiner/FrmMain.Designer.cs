@@ -36,7 +36,7 @@
             // 
             // btnFileCleaner
             // 
-            btnFileCleaner.BackColor = Color.RosyBrown;
+            btnFileCleaner.BackColor = SystemColors.InactiveCaption;
             btnFileCleaner.Location = new Point(24, 37);
             btnFileCleaner.Name = "btnFileCleaner";
             btnFileCleaner.Size = new Size(136, 29);
@@ -44,10 +44,12 @@
             btnFileCleaner.Text = "CLEANER";
             btnFileCleaner.UseVisualStyleBackColor = false;
             btnFileCleaner.Click += btnFileCleaner_Click_1;
+            btnFileCleaner.MouseEnter += btnSetRootDir_MouseEnter;
+            btnFileCleaner.MouseLeave += btnSetRootDir_MouseLeave;
             // 
             // btnArhive
             // 
-            btnArhive.BackColor = Color.DarkSeaGreen;
+            btnArhive.BackColor = SystemColors.InactiveCaption;
             btnArhive.Location = new Point(27, 153);
             btnArhive.Name = "btnArhive";
             btnArhive.Size = new Size(136, 29);
@@ -55,10 +57,12 @@
             btnArhive.Text = "ARHIVER";
             btnArhive.UseVisualStyleBackColor = false;
             btnArhive.Click += btnArhiver_Click;
+            btnArhive.MouseEnter += btnSetRootDir_MouseEnter;
+            btnArhive.MouseLeave += btnSetRootDir_MouseLeave;
             // 
             // btnRenamer
             // 
-            btnRenamer.BackColor = SystemColors.ActiveCaption;
+            btnRenamer.BackColor = SystemColors.InactiveCaption;
             btnRenamer.Location = new Point(24, 92);
             btnRenamer.Name = "btnRenamer";
             btnRenamer.Size = new Size(139, 29);
@@ -66,10 +70,12 @@
             btnRenamer.Text = "RENAMER";
             btnRenamer.UseVisualStyleBackColor = false;
             btnRenamer.Click += btnRenamer_Click;
+            btnRenamer.MouseEnter += btnSetRootDir_MouseEnter;
+            btnRenamer.MouseLeave += btnSetRootDir_MouseLeave;
             // 
             // btnClose
             // 
-            btnClose.BackColor = Color.LightGray;
+            btnClose.BackColor = SystemColors.InactiveCaption;
             btnClose.Location = new Point(343, 391);
             btnClose.Name = "btnClose";
             btnClose.Size = new Size(94, 29);
@@ -77,12 +83,14 @@
             btnClose.Text = "CLOSE";
             btnClose.UseVisualStyleBackColor = false;
             btnClose.Click += btnClose_Click;
+            btnClose.MouseEnter += btnSetRootDir_MouseEnter;
+            btnClose.MouseLeave += btnSetRootDir_MouseLeave;
             // 
             // FrmMain
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.Beige;
+            BackColor = SystemColors.InactiveCaption;
             ClientSize = new Size(473, 450);
             Controls.Add(btnClose);
             Controls.Add(btnRenamer);

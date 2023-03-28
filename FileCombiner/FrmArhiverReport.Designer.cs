@@ -37,13 +37,16 @@
             // 
             // btnClose
             // 
+            btnClose.BackColor = Color.DarkSeaGreen;
             btnClose.Location = new Point(1276, 396);
             btnClose.Name = "btnClose";
             btnClose.Size = new Size(94, 29);
             btnClose.TabIndex = 0;
             btnClose.Text = "CLOSE";
-            btnClose.UseVisualStyleBackColor = true;
+            btnClose.UseVisualStyleBackColor = false;
             btnClose.Click += btnClose_Click_1;
+            btnClose.MouseEnter += btnSetRootDir_MouseEnter;
+            btnClose.MouseLeave += btnSetRootDir_MouseLeave;
             // 
             // lvwArhiverReport
             // 

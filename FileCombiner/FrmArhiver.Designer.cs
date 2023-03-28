@@ -64,7 +64,7 @@
             // 
             // btnArhive
             // 
-            btnArhive.BackColor = Color.LightGray;
+            btnArhive.BackColor = Color.DarkSeaGreen;
             btnArhive.Location = new Point(249, 402);
             btnArhive.Name = "btnArhive";
             btnArhive.Size = new Size(150, 30);
@@ -77,7 +77,7 @@
             // 
             // btnClose
             // 
-            btnClose.BackColor = Color.LightGray;
+            btnClose.BackColor = Color.DarkSeaGreen;
             btnClose.Location = new Point(696, 403);
             btnClose.Name = "btnClose";
             btnClose.Size = new Size(94, 29);
@@ -85,6 +85,8 @@
             btnClose.Text = "CLOSE";
             btnClose.UseVisualStyleBackColor = false;
             btnClose.Click += btnClose_Click;
+            btnClose.MouseEnter += btnSetRootDir_MouseEnter;
+            btnClose.MouseLeave += btnSetRootDir_MouseLeave;
             // 
             // cmbArhiveMode
             // 

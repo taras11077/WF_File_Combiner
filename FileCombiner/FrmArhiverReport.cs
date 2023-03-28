@@ -40,12 +40,12 @@ namespace FileCombiner
             lvwArhiverReport.GridLines = true;
             lvwArhiverReport.FullRowSelect = true;
 
-            lvwArhiverReport.Columns.Add("ProcessedDirectory", 150, HorizontalAlignment.Left);
-            lvwArhiverReport.Columns.Add("DirSize, Kb", 100, HorizontalAlignment.Left);
+            lvwArhiverReport.Columns.Add("Processed Directory", 150, HorizontalAlignment.Left);
+            lvwArhiverReport.Columns.Add("Directory Size, Kb", 150, HorizontalAlignment.Left);
             lvwArhiverReport.Columns.Add("ArhiveFileName", 150, HorizontalAlignment.Left);
             lvwArhiverReport.Columns.Add("ArhiveSize, Kb", 120, HorizontalAlignment.Left);
             lvwArhiverReport.Columns.Add("Path", 370, HorizontalAlignment.Left);
-            lvwArhiverReport.Columns.Add("Failed archiving", 120, HorizontalAlignment.Left);
+            lvwArhiverReport.Columns.Add("Status", 120, HorizontalAlignment.Left);
             lvwArhiverReport.Columns.Add("Exception", 500, HorizontalAlignment.Left);
 
             foreach (ArhiveReportItem item in Report.Items)
@@ -86,7 +86,12 @@ namespace FileCombiner
             lvItem.SubItems.Add(arhiveName.ToString());
             lvItem.SubItems.Add($"{arhiveSize}");
             lvItem.SubItems.Add(item.ArhiveFileName);
-            lvItem.SubItems.Add(item.Failed.ToString());
+
+            if (item.Failed)
+                lvItem.SubItems.Add("not arhived");
+            else
+                lvItem.SubItems.Add("arhived");
+
             lvItem.SubItems.Add(item.Exception?.ToString());
 
             lvwArhiverReport.Items.Add(lvItem);
@@ -101,7 +106,7 @@ namespace FileCombiner
 
         private void btnSetRootDir_MouseLeave(object sender, EventArgs e)
         {
-            (sender as Button)!.BackColor = Color.Silver;
+            (sender as Button)!.BackColor = Color.LightGray;
         }
 
         private void btnClose_Click_1(object sender, EventArgs e)

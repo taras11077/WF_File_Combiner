@@ -37,7 +37,7 @@
             // 
             // btnClose
             // 
-            btnClose.BackColor = Color.LightGray;
+            btnClose.BackColor = Color.LightSteelBlue;
             btnClose.Location = new Point(694, 409);
             btnClose.Name = "btnClose";
             btnClose.Size = new Size(94, 29);
@@ -45,6 +45,8 @@
             btnClose.Text = "CLOSE";
             btnClose.UseVisualStyleBackColor = false;
             btnClose.Click += btnClose_Click;
+            btnClose.MouseEnter += btnSetRootDir_MouseEnter;
+            btnClose.MouseLeave += btnSetRootDir_MouseLeave;
             // 
             // lvwRenamedReport
             // 

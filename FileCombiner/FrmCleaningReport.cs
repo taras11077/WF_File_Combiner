@@ -66,7 +66,7 @@ namespace FileCombiner
 
             if (item.ProcessedItem is FileInfo f)
             {
-                itemSize = (double)f.Length/1000;
+                itemSize = (double)f.Length / 1000;
                 lvItem.Group = lvwCleaningReport.Groups[1];
                 lvItem.ImageIndex = 0;
                 lvItem.SubItems.Add($"{itemSize}");
@@ -95,6 +95,18 @@ namespace FileCombiner
         private void btnClose_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        // изменение цвета кнопок при наведении курсора
+        private void btnSetRootDir_MouseEnter(object sender, EventArgs e)
+        {
+            if (sender as Button == btnClose)
+                (sender as Button)!.BackColor = Color.IndianRed;
+        }
+
+        private void btnSetRootDir_MouseLeave(object sender, EventArgs e)
+        {
+            (sender as Button)!.BackColor = Color.LightGray;
         }
     }
 }

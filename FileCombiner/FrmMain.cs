@@ -33,5 +33,28 @@ namespace FileCombiner
         {
             Close();
         }
+
+        // изменение цвета кнопок при наведении курсора
+        private void btnSetRootDir_MouseEnter(object sender, EventArgs e)
+        {
+            if (sender as Button == btnFileCleaner)
+                (sender as Button)!.BackColor = Color.IndianRed;
+            else if (sender as Button == btnRenamer)
+                (sender as Button)!.BackColor = Color.SteelBlue;
+            else if (sender as Button == btnArhive)
+                (sender as Button)!.BackColor = Color.MediumSeaGreen;
+            else if (sender as Button == btnClose)
+                (sender as Button)!.BackColor = Color.LightSteelBlue;
+
+        }
+
+        private void btnSetRootDir_MouseLeave(object sender, EventArgs e)
+        {
+            (sender as Button)!.BackColor = Color.LightSteelBlue;
+        }
+
+
+
+
     }
 }
