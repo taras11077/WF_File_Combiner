@@ -74,7 +74,7 @@ namespace FileCombiner.FileCleaner
             lvwRemovedItems.Columns.Add("Size, Kb", 100, HorizontalAlignment.Left);
             lvwRemovedItems.Columns.Add("Modification date", 150, HorizontalAlignment.Left);
             lvwRemovedItems.Columns.Add("Path", 500, HorizontalAlignment.Left);
-            
+
             lvwRemovedItems.Groups.Add(new ListViewGroup("Directories", HorizontalAlignment.Left));
             lvwRemovedItems.Groups.Add(new ListViewGroup("Files", HorizontalAlignment.Left));
         }
@@ -273,39 +273,39 @@ namespace FileCombiner.FileCleaner
                     break;
             }
         }
-        private void GenerateItem(FileSystemInfo typeInfo)
+        private void GenerateItem(FileSystemInfo itemInfo)
         { // генерация елемента списка с распределением по группам - папки/файли
-            if (typeInfo == null)
+            if (itemInfo == null)
                 return;
 
             ListViewItem item = new ListViewItem()
             {
-                Text = typeInfo.Name,
-                Tag = typeInfo,
+                Text = itemInfo.Name,
+                Tag = itemInfo,
             };
 
             Calculator calculator = new Calculator();
             int itemSize;
-            if (typeInfo is DirectoryInfo)
+            if (itemInfo is DirectoryInfo)
             {
                 item.Group = lvwRemovedItems.Groups[0];
                 item.ImageIndex = 1;
-                itemSize = calculator.CalcDirSize(typeInfo as DirectoryInfo);
+                itemSize = calculator.CalcDirSize(itemInfo as DirectoryInfo);
             }
             else
             {
                 item.Group = lvwRemovedItems.Groups[1];
                 item.ImageIndex = 0;
-                itemSize = (int)(typeInfo as FileInfo).Length;
+                itemSize = (int)(itemInfo as FileInfo).Length;
             }
 
             double size = (double)itemSize / 1000;
 
-            item.SubItems[0].Text = typeInfo.Name;
+            item.SubItems[0].Text = itemInfo.Name;
             item.SubItems[0].Tag = itemSize; // присвоил size елемента свойству Tag нулевого SubItem
             item.SubItems.Add($"{size}");
-            item.SubItems.Add(typeInfo.LastAccessTime.ToString());
-            item.SubItems.Add(typeInfo.FullName);
+            item.SubItems.Add(itemInfo.LastAccessTime.ToString());
+            item.SubItems.Add(itemInfo.FullName);
 
             lvwRemovedItems.Items.Add(item);
         }

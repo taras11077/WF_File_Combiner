@@ -96,7 +96,9 @@
             Controls.Add(btnRenamer);
             Controls.Add(btnArhive);
             Controls.Add(btnFileCleaner);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "FrmMain";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";
             ResumeLayout(false);
         }

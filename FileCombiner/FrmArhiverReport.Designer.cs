@@ -79,7 +79,9 @@
             ClientSize = new Size(1382, 453);
             Controls.Add(lvwArhiverReport);
             Controls.Add(btnClose);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "FrmArhiverReport";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "FrmArhiverReport";
             Load += FrmArhiverReport_Load;
             ResumeLayout(false);

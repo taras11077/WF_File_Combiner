@@ -107,7 +107,9 @@
             Controls.Add(btnClose);
             Controls.Add(btnArhive);
             Controls.Add(lvwArhivedItems);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "FrmArhiver";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "FrmArhiver";
             Load += FrmArhiver_Load_1;
             ResumeLayout(false);

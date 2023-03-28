@@ -387,8 +387,10 @@
             Controls.Add(btnFindRecursive);
             Controls.Add(lstbDirPatterns);
             Controls.Add(btnAddDirPatterns);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "FrmFileCombinerMain";
             ShowInTaskbar = false;
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "FrmFileCombinerMain";
             Load += FrmFileCleanerMain_Load;
             ResumeLayout(false);

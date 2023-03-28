@@ -79,7 +79,9 @@
             ClientSize = new Size(800, 450);
             Controls.Add(lvwCleaningReport);
             Controls.Add(btnClose);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "FrmCleaningReport";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "FrmCleaningReport";
             Load += FrmCleaningReport_Load;
             ResumeLayout(false);

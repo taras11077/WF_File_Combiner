@@ -151,7 +151,9 @@
             Controls.Add(btnRename);
             Controls.Add(cmbRenameMask);
             Controls.Add(cmbRenameMode);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "FrmRenamer";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "FrmFileRenamer";
             Load += FrmFileRenamer_Load;
             ResumeLayout(false);

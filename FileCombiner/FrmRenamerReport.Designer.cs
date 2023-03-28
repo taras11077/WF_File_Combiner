@@ -79,7 +79,9 @@
             ClientSize = new Size(800, 450);
             Controls.Add(lvwRenamedReport);
             Controls.Add(btnClose);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "FrmRenamerReport";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "FrmRenamerReport";
             Load += FrmRenamerReport_Load;
             ResumeLayout(false);

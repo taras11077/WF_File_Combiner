@@ -10,8 +10,6 @@ namespace FileProcessor.Cleaner
 {
     public class CleaningReportItem
     {
-        //public DirectoryInfo ProcessedDirectory { get; set; }
-        //public FileInfo ProcessedFile { get; set; }
         public FileSystemInfo ProcessedItem { get; set; }
 
         public bool Failed { get; set; } = false;
