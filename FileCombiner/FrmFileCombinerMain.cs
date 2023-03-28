@@ -89,9 +89,9 @@ namespace FileCombiner.FileCleaner
             lvwResultInfo.GridLines = true;
             lvwResultInfo.FullRowSelect = true;
 
-            lvwResultInfo.Columns.Add("STATUS", 70, HorizontalAlignment.Left);
-            lvwResultInfo.Columns.Add("COUNT", 100, HorizontalAlignment.Left);
-            lvwResultInfo.Columns.Add("FULL SIZE, Kb", 120, HorizontalAlignment.Left);
+            lvwResultInfo.Columns.Add("STATUS", 80, HorizontalAlignment.Left);
+            lvwResultInfo.Columns.Add("COUNT", 70, HorizontalAlignment.Left);
+            lvwResultInfo.Columns.Add("FULL SIZE, Kb", 150, HorizontalAlignment.Left);
 
             ListViewItem finded = new ListViewItem();
             finded.SubItems[0].Text = "Finded";
