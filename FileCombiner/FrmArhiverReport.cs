@@ -1,4 +1,5 @@
-﻿using FileProcessor.Archiver;
+﻿using FileProcessor;
+using FileProcessor.Archiver;
 using FileProcessor.Renamer;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,8 @@ namespace FileCombiner
     public partial class FrmArhiverReport : Form
     {
         ArhiveReport Report { get; set; }
+
+        int dirSize = 0;
 
         public FrmArhiverReport(ArhiveReport report)
         {
@@ -54,13 +57,14 @@ namespace FileCombiner
 
         private void GenerateItem(ArhiveReportItem item)
         {
-
             ListViewItem lvItem = new ListViewItem();
             lvItem.Text = item.ProcessedDirectory.ToString();
             lvItem.Tag = item;
 
+            Calculator calculator = new Calculator();
             // вичисление размера исходной папки
-            double dirSize = (double)CalcDirSize(item.ProcessedDirectory) / 1000;
+
+            double dirSize = (double)calculator.CalcDirSize(item.ProcessedDirectory) / 1000;
 
             string arhiveName = string.Empty;
             double arhiveSize = 0;
@@ -85,25 +89,6 @@ namespace FileCombiner
             lvItem.SubItems.Add(item.Exception?.ToString());
 
             lvwArhiverReport.Items.Add(lvItem);
-        }
-
-        int dirSize = 0;
-        private int CalcDirSize(DirectoryInfo d) //расчет размера директории
-        {
-            DirectoryInfo[] dirs = d.GetDirectories();
-            FileInfo[] files = d.GetFiles();
-
-            foreach (FileInfo file in files)
-            {
-                dirSize += (int)file.Length;
-            }
-
-            foreach (DirectoryInfo dir in dirs)
-            {
-                CalcDirSize(dir);
-            }
-
-            return dirSize;
         }
 
         // изменение цвета кнопок при наведении курсора

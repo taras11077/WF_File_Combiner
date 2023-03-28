@@ -74,9 +74,7 @@ namespace FileCombiner.FileCleaner
             lvwRemovedItems.Columns.Add("Size, Kb", 100, HorizontalAlignment.Left);
             lvwRemovedItems.Columns.Add("Modification date", 150, HorizontalAlignment.Left);
             lvwRemovedItems.Columns.Add("Path", 500, HorizontalAlignment.Left);
-            lvwRemovedItems.Columns.Add("Status", 100, HorizontalAlignment.Left);
-
-
+            
             lvwRemovedItems.Groups.Add(new ListViewGroup("Directories", HorizontalAlignment.Left));
             lvwRemovedItems.Groups.Add(new ListViewGroup("Files", HorizontalAlignment.Left));
         }
@@ -97,13 +95,13 @@ namespace FileCombiner.FileCleaner
             ListViewItem finded = new ListViewItem();
             finded.SubItems[0].Text = "Finded";
             finded.SubItems.Add(lvwRemovedItems.Items.Count.ToString());
-            finded.SubItems.Add(((double)CalcFindedFullSize()/1000).ToString());
+            finded.SubItems.Add(((double)CalcFindedFullSize() / 1000).ToString());
             lvwResultInfo.Items.Add(finded);
 
             ListViewItem @checked = new ListViewItem();
             @checked.SubItems[0].Text = "Checked";
             @checked.SubItems.Add(lvwRemovedItems.CheckedItems.Count.ToString());
-            @checked.SubItems.Add(((double)CalcCheckedFullSize()/1000).ToString());
+            @checked.SubItems.Add(((double)CalcCheckedFullSize() / 1000).ToString());
             lvwResultInfo.Items.Add(@checked);
         }
         private void FrmFileCleanerMain_Load(object sender, EventArgs e)
@@ -113,7 +111,6 @@ namespace FileCombiner.FileCleaner
                 case FileCombinerMode.Cleaner:
                     BackColor = Color.RosyBrown;
                     btnRenamer.Enabled = false;
-                    btnReport.Enabled = false;
                     btnArhiver.Enabled = false;
                     break;
 
@@ -436,7 +433,7 @@ namespace FileCombiner.FileCleaner
 
             try
             {
-                remover.Remove(remover.trash);
+                Data.cleaningReport = remover.Remove(remover.trash);
 
                 resultContainer = new(remover.ListItems.Dirs, remover.ListItems.Files); // создание нового resulContainer после удаления елементов
                 GenerateFindedItems();                                                  // генепация елементов и создание нового ListView
@@ -485,7 +482,8 @@ namespace FileCombiner.FileCleaner
                     break;
 
                 case FileCombinerMode.Cleaner:
-
+                    FrmCleaningReport cleanReport = new FrmCleaningReport(Data.cleaningReport);
+                    cleanReport.ShowDialog();
                     break;
 
                 case FileCombinerMode.Arhiver:

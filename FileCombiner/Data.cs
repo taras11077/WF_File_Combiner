@@ -1,5 +1,6 @@
 ﻿using FileProcessor;
 using FileProcessor.Archiver;
+using FileProcessor.Cleaner;
 using FileProcessor.Renamer;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,6 @@ namespace FileCombiner
     {
         public static Report renamerReport  = new();
         public static ArhiveReport arhiverReport = new();
-
+        public static CleaningReport cleaningReport = new();
     }
 }

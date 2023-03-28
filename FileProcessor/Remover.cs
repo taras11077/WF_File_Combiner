@@ -1,9 +1,13 @@
-﻿using Microsoft.VisualBasic.FileIO;
+﻿using FileProcessor.Cleaner;
+using FileProcessor.Renamer;
+using Microsoft.VisualBasic.FileIO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace FileProcessor
 {
@@ -14,41 +18,70 @@ namespace FileProcessor
         public ObjectContainer RemovedItems { get; set; } = new ObjectContainer();
 
 
-        public void Remove(bool trash)
+        public CleaningReport Remove(bool trash)
         {
+            CleaningReport cleaningReport = new CleaningReport();
+
+            
             foreach (FileInfo removedFile in RemovedItems.Files) // перебор отмеченних файлов
             {
-                string? filename = removedFile.FullName.ToString();
-
-                if (RemovedItems.Files.Count != 0)
+                try 
                 {
-                    if (trash)
-                        Microsoft.VisualBasic.FileIO.FileSystem.DeleteFile(filename, UIOption.OnlyErrorDialogs, RecycleOption.SendToRecycleBin);
-                    else
-                        File.Delete(filename);
+                    string? filename = removedFile.FullName.ToString();
 
-                    ListItems.Files.Remove(removedFile);
-                }
-            }
-            foreach (DirectoryInfo removedDir in RemovedItems.Dirs) // перебор отмеченних файлов
-            {
-                string? dirname = removedDir.FullName.ToString();
-                if (trash)
-                {
-                    Microsoft.VisualBasic.FileIO.FileSystem.DeleteDirectory(dirname, UIOption.OnlyErrorDialogs, RecycleOption.SendToRecycleBin);
-
-                    foreach (FileInfo listFile in ListItems.Files) // удаление из ListView всех вложенних в удаляемую папку елементов, независимо от того отмечени ли они на удаление
+                    if (RemovedItems.Files.Count != 0)
                     {
-                            if (listFile.FullName.ToString()!.Contains(removedDir.FullName.ToString()))
-                                ListItems.Files.Remove(listFile);
+                        if (trash)
+                            Microsoft.VisualBasic.FileIO.FileSystem.DeleteFile(filename, UIOption.OnlyErrorDialogs, RecycleOption.SendToRecycleBin);
+                        else
+                            File.Delete(filename);
+
+                        cleaningReport.PushSuccess(removedFile);
+
+                        ListItems.Files.Remove(removedFile);
                     }
                 }
-                else
-                  Directory.Delete(dirname);
+                catch (Exception ex)
+                {
+                    cleaningReport.PushError(removedFile, ex);
+                }
+            }
 
-                ListItems.Dirs.Remove(removedDir);
+
+            foreach (DirectoryInfo removedDir in RemovedItems.Dirs) // перебор отмеченних файлов
+            {
+                try
+                {
+                    string? dirname = removedDir.FullName.ToString();
+                    if (trash)
+                    {
+                        Microsoft.VisualBasic.FileIO.FileSystem.DeleteDirectory(dirname, UIOption.OnlyErrorDialogs, RecycleOption.SendToRecycleBin);
+
+                        foreach (FileInfo listFile in ListItems.Files) // удаление из ListView всех вложенних в удаляемую папку елементов, независимо от того отмечени ли они на удаление
+                        {
+                            if (listFile.FullName.ToString()!.Contains(removedDir.FullName.ToString()))
+                                ListItems.Files.Remove(listFile);
+                        }
+                    }
+                    else
+                        Directory.Delete(dirname);
+
+                    cleaningReport.PushSuccess(removedDir);
+
+                    ListItems.Dirs.Remove(removedDir);
+                }
+                catch (Exception ex)
+                {
+                    cleaningReport.PushError(removedDir, ex);
+                }
+
 
             }
+
+
+            return cleaningReport;
+
+
         }
     }
 }

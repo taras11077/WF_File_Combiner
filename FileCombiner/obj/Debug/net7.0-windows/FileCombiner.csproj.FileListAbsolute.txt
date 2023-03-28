@@ -24,3 +24,4 @@ D:\step\repos\HW\WF\FileCombiner\FileCombiner\obj\Debug\net7.0-windows\FileCombi
 D:\step\repos\HW\WF\FileCombiner\FileCombiner\obj\Debug\net7.0-windows\FileCombiner.FrmRenamer.resources
 D:\step\repos\HW\WF\FileCombiner\FileCombiner\obj\Debug\net7.0-windows\FileCombiner.FrmArhiver.resources
 D:\step\repos\HW\WF\FileCombiner\FileCombiner\obj\Debug\net7.0-windows\FileCombiner.FrmArhiverReport.resources
+D:\step\repos\HW\WF\FileCombiner\FileCombiner\obj\Debug\net7.0-windows\FileCombiner.FrmCleaningReport.resources

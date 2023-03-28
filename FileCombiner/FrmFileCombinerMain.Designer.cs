@@ -52,13 +52,11 @@
             btnRemoveDirPatterns = new Button();
             btnRemoveFilePatterns = new Button();
             txtbPathRootDir = new TextBox();
-            bindingSource1 = new BindingSource(components);
             btnRenamer = new Button();
             btnArhiver = new Button();
             btnFindSimple = new Button();
             btnReport = new Button();
             lblSearcheResults = new Label();
-            ((System.ComponentModel.ISupportInitialize)bindingSource1).BeginInit();
             SuspendLayout();
             // 
             // iconImgList
@@ -393,7 +391,6 @@
             ShowInTaskbar = false;
             Text = "FrmFileCombinerMain";
             Load += FrmFileCleanerMain_Load;
-            ((System.ComponentModel.ISupportInitialize)bindingSource1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -421,7 +418,6 @@
         private Button btnRemoveDirPatterns;
         private Button btnRemoveFilePatterns;
         private TextBox txtbPathRootDir;
-        private BindingSource bindingSource1;
         private Button btnRenamer;
         private Button btnArhiver;
         private Button btnFindSimple;
