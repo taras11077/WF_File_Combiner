@@ -16,7 +16,6 @@ namespace FileCombiner
 {
     public partial class FrmArhiver : Form
     {
-        //public Report renamerReport = new Report();
         private List<DirectoryInfo> Dirs { get; set; }
         private List<string> arhiveFiles { get; set; } = new List<string>();
 
@@ -31,7 +30,7 @@ namespace FileCombiner
 
         private void FrmArhiver_Load_1(object sender, EventArgs e)
         {
-            string[] modes = { "zip", "rar" };
+            string[] modes = { "zip",};
             cmbArhiveMode.Items.AddRange(modes);
 
             InitListViewArhivedItems();
@@ -89,7 +88,6 @@ namespace FileCombiner
             lvwArhivedItems.Items.Add(item);
         }
 
-        //Calculation
         int dirSize = 0;
         private int CalcDirSize(DirectoryInfo d) //расчет размера директории
         {

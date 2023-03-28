@@ -32,6 +32,7 @@ namespace FileCombiner.FileCleaner
     {
         private ObjectContainer resultContainer = new();
         FileCombinerMode frmMode = 0;
+        Calculator calculator = new Calculator();
 
         private List<string> dirPatterns = new()
             {
@@ -249,7 +250,7 @@ namespace FileCombiner.FileCleaner
                 case FileCombinerMode.Cleaner:
                     resultContainer.Dirs.ForEach(dir =>
                     {
-                        dirSize = 0;
+                        calculator.dirSize = 0;
                         GenerateItem(dir);
                     });
 
@@ -269,14 +270,14 @@ namespace FileCombiner.FileCleaner
                 case FileCombinerMode.Arhiver:
                     resultContainer.Dirs.ForEach(dir =>
                     {
-                        dirSize = 0;
+                        calculator.dirSize = 0;
                         GenerateItem(dir);
                     });
                     break;
             }
         }
         private void GenerateItem(FileSystemInfo typeInfo)
-        { // генерация елемента списка с распределением по группам папки/файли
+        { // генерация елемента списка с распределением по группам - папки/файли
             if (typeInfo == null)
                 return;
 
@@ -286,12 +287,13 @@ namespace FileCombiner.FileCleaner
                 Tag = typeInfo,
             };
 
+            Calculator calculator = new Calculator();
             int itemSize;
             if (typeInfo is DirectoryInfo)
             {
                 item.Group = lvwRemovedItems.Groups[0];
                 item.ImageIndex = 1;
-                itemSize = CalcDirSize(typeInfo as DirectoryInfo);
+                itemSize = calculator.CalcDirSize(typeInfo as DirectoryInfo);
             }
             else
             {
@@ -312,7 +314,6 @@ namespace FileCombiner.FileCleaner
         }
 
         //Checked
-
         // изменение свойства Checked вложенних файлов в соответствии с родительской папкой
         private void CheckFiles(DirectoryInfo d, ItemCheckedEventArgs e)
         {
@@ -342,27 +343,7 @@ namespace FileCombiner.FileCleaner
             InitListViewResultInfo(); // !!! сильно тормозит процесс, может просто переделать на кнопку Update?
         }
 
-
-        //Calculation
-        int dirSize = 0;
-
-        private int CalcDirSize(DirectoryInfo d) //расчет размера директории
-        {
-            DirectoryInfo[] dirs = d.GetDirectories();
-            FileInfo[] files = d.GetFiles();
-
-            foreach (FileInfo file in files)
-            {
-                dirSize += (int)file.Length;
-            }
-
-            foreach (DirectoryInfo dir in dirs)
-            {
-                CalcDirSize(dir);
-            }
-
-            return dirSize;
-        }
+        //Calculation sizeItems in  FindedList & CheckedList
         private int CalcFindedFullSize() // расчет размера всех найдених елементов
         {
             int size = 0;
@@ -492,7 +473,6 @@ namespace FileCombiner.FileCleaner
 
             lvwRemovedItems.Items.Clear();
         }
-
 
         //Renamer Report
         private void btnReport_Click(object sender, EventArgs e)
