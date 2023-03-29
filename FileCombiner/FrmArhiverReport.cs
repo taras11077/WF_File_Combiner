@@ -15,11 +15,11 @@ namespace FileCombiner
 {
     public partial class FrmArhiverReport : Form
     {
-        ArhiveReport Report { get; set; }
+        ArhiverReport Report { get; set; }
 
         int dirSize = 0;
 
-        public FrmArhiverReport(ArhiveReport report)
+        public FrmArhiverReport(ArhiverReport report)
         {
             InitializeComponent();
             Report = report;
@@ -48,14 +48,14 @@ namespace FileCombiner
             lvwArhiverReport.Columns.Add("Status", 120, HorizontalAlignment.Left);
             lvwArhiverReport.Columns.Add("Exception", 500, HorizontalAlignment.Left);
 
-            foreach (ArhiveReportItem item in Report.Items)
+            foreach (ArhiverReportItem item in Report.Items)
             {
                 dirSize = 0;
                 GenerateItem(item);
             }
         }
 
-        private void GenerateItem(ArhiveReportItem item)
+        private void GenerateItem(ArhiverReportItem item)
         {
             ListViewItem lvItem = new ListViewItem();
             lvItem.Text = item.ProcessedDirectory.ToString();

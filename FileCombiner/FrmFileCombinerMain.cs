@@ -115,14 +115,12 @@ namespace FileCombiner.FileCleaner
                     break;
 
                 case FileCombinerMode.Renamer:
-                    //BackColor = Color.LemonChiffon;
                     btnFindRecursive.Enabled = false;
                     btnAddDirPatterns.Enabled = false;
                     btnRemoveDirPatterns.Enabled = false;
                     btnArhiver.Enabled = false;
                     btnClear.Enabled = false;
                     chbMoveToTrash.Enabled = false;
-
                     break;
 
                 case FileCombinerMode.Arhiver:
@@ -132,7 +130,6 @@ namespace FileCombiner.FileCleaner
                     btnAddFilePatterns.Enabled = false;
                     btnRemoveFilePatterns.Enabled = false;
                     btnFindRecursive.Enabled = false;
-
                     btnRenamer.Enabled = false;
                     btnClear.Enabled = false;
                     chbMoveToTrash.Enabled = false;
@@ -570,6 +567,22 @@ namespace FileCombiner.FileCleaner
             frmArhiver.ShowDialog();
         }
 
+        private void FrmFileCombinerMain_Shown(object sender, EventArgs e)
+        {
+            switch (frmMode)
+            {
+                case FileCombinerMode.Cleaner:
+                    MessageBox.Show("Set RootDirectory, SearcheDirectory and SearcheFile Patterns");
+                    break;
 
+                case FileCombinerMode.Renamer:
+                    MessageBox.Show("Set RootDirectory and SearcheFile Patterns");
+                    break;
+
+                case FileCombinerMode.Arhiver:
+                    MessageBox.Show("Set RootDirectory and SearcheDirectory Patterns");
+                    break;
+            }
+        }
     }
 }

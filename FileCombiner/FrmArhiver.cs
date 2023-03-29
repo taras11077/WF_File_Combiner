@@ -113,7 +113,7 @@ namespace FileCombiner
         {
             ArchiveEngine archiveEngine = new ArchiveEngine(mode);
 
-            ArhiveReport arhiverReport = new ArhiveReport();
+            ArhiverReport arhiverReport = new ArhiverReport();
 
             foreach (DirectoryInfo dir in Dirs)
             {

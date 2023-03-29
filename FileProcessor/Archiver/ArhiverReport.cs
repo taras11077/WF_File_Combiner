@@ -7,18 +7,18 @@ using System.Threading.Tasks;
 
 namespace FileProcessor.Archiver
 {
-    public class ArhiveReport
+    public class ArhiverReport
     {
-        public List<ArhiveReportItem> Items { get; set; } = new List<ArhiveReportItem>();
+        public List<ArhiverReportItem> Items { get; set; } = new List<ArhiverReportItem>();
 
         public void PushSuccess(DirectoryInfo processedDir, string arhiveFileName)
         {
-            Items.Add(new ArhiveReportItem(processedDir, arhiveFileName));
+            Items.Add(new ArhiverReportItem(processedDir, arhiveFileName));
         }
 
         public void PushError(DirectoryInfo processedDir, Exception? ex)
         {
-            Items.Add(new ArhiveReportItem(processedDir, string.Empty, true, ex));
+            Items.Add(new ArhiverReportItem(processedDir, string.Empty, true, ex));
         }
 
 

@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace FileProcessor.Archiver
 {
-    public class ArhiveReportItem
+    public class ArhiverReportItem
     {
         public DirectoryInfo ProcessedDirectory { get; set; }
         public string ArhiveFileName { get; set; }
         public bool Failed { get; set; } = false;
         public Exception? Exception { get; set; } = null;
 
-        public ArhiveReportItem(DirectoryInfo processedDir, string arhiveFileName, bool failed = false, Exception? exception = null)
+        public ArhiverReportItem(DirectoryInfo processedDir, string arhiveFileName, bool failed = false, Exception? exception = null)
         {
             ProcessedDirectory = processedDir;
             ArhiveFileName = arhiveFileName;

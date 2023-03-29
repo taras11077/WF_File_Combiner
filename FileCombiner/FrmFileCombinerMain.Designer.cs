@@ -103,7 +103,7 @@
             btnFindRecursive.Name = "btnFindRecursive";
             btnFindRecursive.Size = new Size(310, 35);
             btnFindRecursive.TabIndex = 3;
-            btnFindRecursive.Text = "RECURSIVE SEARCH";
+            btnFindRecursive.Text = "RECURSIVE   SEARCH";
             btnFindRecursive.UseVisualStyleBackColor = false;
             btnFindRecursive.Click += btnFindRecursive_Click;
             btnFindRecursive.MouseEnter += btnSetRootDir_MouseEnter;
@@ -328,7 +328,7 @@
             btnFindSimple.Name = "btnFindSimple";
             btnFindSimple.Size = new Size(310, 35);
             btnFindSimple.TabIndex = 30;
-            btnFindSimple.Text = "SIMPLE SEARCH";
+            btnFindSimple.Text = "SIMPLE   SEARCH";
             btnFindSimple.UseVisualStyleBackColor = false;
             btnFindSimple.Click += btnFindSimple_Click;
             btnFindSimple.MouseEnter += btnSetRootDir_MouseEnter;
@@ -393,6 +393,7 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "FrmFileCombinerMain";
             Load += FrmFileCleanerMain_Load;
+            Shown += FrmFileCombinerMain_Shown;
             ResumeLayout(false);
             PerformLayout();
         }

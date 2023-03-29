@@ -1,5 +1,4 @@
-﻿
-using FileProcessor;
+﻿using FileProcessor;
 using FileProcessor.Archiver;
 using FileProcessor.Archiver.Exceptions;
 using FileProcessor.Renamer;
@@ -39,31 +38,12 @@ finder.ResultContainer.Files.ForEach(f =>
    Console.WriteLine(f.FullName);
 });
 
-
-
-
-//ArchiveEngine engine = new ArchiveEngine();
-
-//try
-//{
-//    engine.CompressDirectory(@"C:\Users\silver\Desktop\cleaner_test");
-//}
-//catch (ArchiverException ex)
-//{
-
-//    Console.WriteLine(ex.Message);
-//}
-
-
 //List<FileInfo> files = new List<FileInfo>(dir.GetFiles());
 
 Renamer renamer = new Renamer(finder.ResultContainer.Files, RenamerMask.UUID);
 RenamerReport report = renamer.RenameByMask("img_");
 
-
-
 Console.WriteLine();
-
 
 //Renamer renamer = new Renamer(finder.ResultContainer.Files);
 //renamer.UUIDMode();
