@@ -42,8 +42,7 @@ namespace FileCombiner
             else if (sender as Button == btnArhive)
                 (sender as Button)!.BackColor = Color.MediumSeaGreen;
             else if (sender as Button == btnClose)
-                (sender as Button)!.BackColor = Color.LightSteelBlue;
-
+                (sender as Button)!.BackColor = Color.LightSlateGray;
         }
 
         private void btnSetRootDir_MouseLeave(object sender, EventArgs e)

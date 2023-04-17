@@ -37,7 +37,7 @@
             // btnFileCleaner
             // 
             btnFileCleaner.BackColor = SystemColors.InactiveCaption;
-            btnFileCleaner.Location = new Point(24, 37);
+            btnFileCleaner.Location = new Point(50, 119);
             btnFileCleaner.Name = "btnFileCleaner";
             btnFileCleaner.Size = new Size(136, 29);
             btnFileCleaner.TabIndex = 1;
@@ -50,7 +50,7 @@
             // btnArhive
             // 
             btnArhive.BackColor = SystemColors.InactiveCaption;
-            btnArhive.Location = new Point(27, 153);
+            btnArhive.Location = new Point(50, 241);
             btnArhive.Name = "btnArhive";
             btnArhive.Size = new Size(136, 29);
             btnArhive.TabIndex = 2;
@@ -63,7 +63,7 @@
             // btnRenamer
             // 
             btnRenamer.BackColor = SystemColors.InactiveCaption;
-            btnRenamer.Location = new Point(24, 92);
+            btnRenamer.Location = new Point(50, 178);
             btnRenamer.Name = "btnRenamer";
             btnRenamer.Size = new Size(139, 29);
             btnRenamer.TabIndex = 3;
@@ -76,7 +76,7 @@
             // btnClose
             // 
             btnClose.BackColor = SystemColors.InactiveCaption;
-            btnClose.Location = new Point(343, 391);
+            btnClose.Location = new Point(71, 394);
             btnClose.Name = "btnClose";
             btnClose.Size = new Size(94, 29);
             btnClose.TabIndex = 4;
@@ -91,12 +91,14 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.InactiveCaption;
-            ClientSize = new Size(473, 450);
+            ClientSize = new Size(250, 500);
             Controls.Add(btnClose);
             Controls.Add(btnRenamer);
             Controls.Add(btnArhive);
             Controls.Add(btnFileCleaner);
-            FormBorderStyle = FormBorderStyle.FixedSingle;
+            FormBorderStyle = FormBorderStyle.None;
+            MaximumSize = new Size(250, 500);
+            MinimumSize = new Size(250, 500);
             Name = "FrmMain";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";
