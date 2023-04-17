@@ -16,6 +16,8 @@ using static System.Windows.Forms.ListView;
 using System.Text.Json.Serialization;
 using System.IO;
 using FileProcessor;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using Button = System.Windows.Forms.Button;
 
 namespace FileCombiner
 {
@@ -101,7 +103,7 @@ namespace FileCombiner
                 adaptedReportList.Add(adaptedItem);
             }
         }
-       
+
         private void GenerateListViewItem(AdaptedReportItem item)
         {
             ListViewItem lvItem = new ListViewItem();
@@ -122,26 +124,46 @@ namespace FileCombiner
         //сохранение в файл
         private void btnSave_Click_1(object sender, EventArgs e)
         {
-            if (lvwCleanerReport.Items == null)
-                return;
-
-            using FileStream fs = new FileStream($"cleanerReport3.json", FileMode.Create);
-
-            JsonSerializer.Serialize(fs, adaptedReportList, new JsonSerializerOptions()
+            try
             {
-                WriteIndented = true
-            });
+                if (saveFileDialogCleaner.ShowDialog() == DialogResult.Cancel)
+                    return;
 
-            fs.Close();
-            MessageBox.Show("Report saved");
+                string fileName = saveFileDialogCleaner.FileName;
+                saveFileDialogCleaner.InitialDirectory = Directory.GetParent(fileName)?.Name;
+
+                if (lvwCleanerReport.Items == null)
+                    return;
+
+                using FileStream fs = new FileStream(fileName, FileMode.Create);
+
+                JsonSerializer.Serialize(fs, adaptedReportList, new JsonSerializerOptions()
+                {
+                    WriteIndented = true
+                });
+
+                fs.Close();
+                MessageBox.Show("Report saved");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         //загрузка из файла
         private void btnLoad_Click_1(object sender, EventArgs e)
         {
+            if (openFileDialogCleaner.ShowDialog() == DialogResult.Cancel)
+                return;
+
+            //openFileDialogCleaner.InitialDirectory = @"D:\\step\\repos\\HW\\FileCombiner (my)\\FileCombiner\\CleanerReports";
+            string filename = openFileDialogCleaner.FileName;
+            openFileDialogCleaner.InitialDirectory = Directory.GetParent(filename)?.Name;          
+
             try
             {
-                using FileStream fs = new FileStream("cleanerReport3.json", FileMode.Open);
+                using FileStream fs = new FileStream(filename, FileMode.Open);
 
                 adaptedReportList = JsonSerializer.Deserialize<List<AdaptedReportItem>>(fs);
 
@@ -170,6 +192,5 @@ namespace FileCombiner
         {
             (sender as Button)!.BackColor = Color.RosyBrown;
         }
-
     }
 }

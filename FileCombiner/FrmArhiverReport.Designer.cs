@@ -35,12 +35,14 @@
             iconImgList = new ImageList(components);
             btnSave = new Button();
             btnLoad = new Button();
+            openFileDialogArhiver = new OpenFileDialog();
+            saveFileDialogArhiver = new SaveFileDialog();
             SuspendLayout();
             // 
             // btnClose
             // 
             btnClose.BackColor = Color.DarkSeaGreen;
-            btnClose.Location = new Point(1276, 396);
+            btnClose.Location = new Point(1253, 396);
             btnClose.Name = "btnClose";
             btnClose.Size = new Size(94, 29);
             btnClose.TabIndex = 0;
@@ -76,7 +78,7 @@
             // btnSave
             // 
             btnSave.BackColor = Color.DarkSeaGreen;
-            btnSave.Location = new Point(74, 396);
+            btnSave.Location = new Point(43, 396);
             btnSave.Name = "btnSave";
             btnSave.Size = new Size(150, 29);
             btnSave.TabIndex = 2;
@@ -89,7 +91,7 @@
             // btnLoad
             // 
             btnLoad.BackColor = Color.DarkSeaGreen;
-            btnLoad.Location = new Point(279, 396);
+            btnLoad.Location = new Point(240, 396);
             btnLoad.Name = "btnLoad";
             btnLoad.Size = new Size(150, 29);
             btnLoad.TabIndex = 3;
@@ -98,6 +100,10 @@
             btnLoad.Click += btnLoad_Click;
             btnLoad.MouseEnter += btnSetRootDir_MouseEnter;
             btnLoad.MouseLeave += btnSetRootDir_MouseLeave;
+            // 
+            // openFileDialogArhiver
+            // 
+            openFileDialogArhiver.FileName = "openFileDialog1";
             // 
             // FrmArhiverReport
             // 
@@ -124,5 +130,7 @@
         private ImageList iconImgList;
         private Button btnSave;
         private Button btnLoad;
+        private OpenFileDialog openFileDialogArhiver;
+        private SaveFileDialog saveFileDialogArhiver;
     }
 }

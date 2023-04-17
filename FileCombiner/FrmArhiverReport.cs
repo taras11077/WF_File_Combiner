@@ -59,30 +59,6 @@ namespace FileCombiner
             }
         }
 
-        //private void InitListViewArhiverReport()
-        //{
-        //    lvwArhiverReport.View = View.Details;
-
-        //    lvwArhiverReport.Scrollable = true;
-        //    lvwArhiverReport.MultiSelect = false;
-        //    lvwArhiverReport.GridLines = true;
-        //    lvwArhiverReport.FullRowSelect = true;
-
-        //    lvwArhiverReport.Columns.Add("Processed Directory", 150, HorizontalAlignment.Left);
-        //    lvwArhiverReport.Columns.Add("Directory Size, Kb", 150, HorizontalAlignment.Left);
-        //    lvwArhiverReport.Columns.Add("ArhiveFileName", 150, HorizontalAlignment.Left);
-        //    lvwArhiverReport.Columns.Add("ArhiveSize, Kb", 120, HorizontalAlignment.Left);
-        //    lvwArhiverReport.Columns.Add("Path", 370, HorizontalAlignment.Left);
-        //    lvwArhiverReport.Columns.Add("Status", 120, HorizontalAlignment.Left);
-        //    lvwArhiverReport.Columns.Add("Exception", 500, HorizontalAlignment.Left);
-
-        //    foreach (ArhiverReportItem item in ArhiverReport.Items)
-        //    {
-        //        //double dirSize = 0;
-        //        GenerateItem(item);
-        //    }
-        //}
-
         private void InitAdaptedReportList()
         {
             foreach (ArhiverReportItem item in ArhiverReport.Items)
@@ -143,10 +119,17 @@ namespace FileCombiner
         // сохранение в файл
         private void btnSave_Click(object sender, EventArgs e)
         {
+            if (saveFileDialogArhiver.ShowDialog() == DialogResult.Cancel)
+                return;
+
+            string fileName = saveFileDialogArhiver.FileName;
+            saveFileDialogArhiver.InitialDirectory = Directory.GetParent(fileName)?.Name;
+
+
             if (ArhiverReport.Items == null)
                 return;
 
-            using FileStream fs = new FileStream($"arhiverReport.json", FileMode.Create);
+            using FileStream fs = new FileStream(fileName, FileMode.Create);
 
             JsonSerializer.Serialize(fs, adaptedReportList, new JsonSerializerOptions()
             {
@@ -160,9 +143,15 @@ namespace FileCombiner
         //загрузка из файла
         private void btnLoad_Click(object sender, EventArgs e)
         {
+            if (openFileDialogArhiver.ShowDialog() == DialogResult.Cancel)
+                return;
+
+            string filename = openFileDialogArhiver.FileName;
+            openFileDialogArhiver.InitialDirectory = Directory.GetParent(filename)?.Name;
+
             try
             {
-                using FileStream fs = new FileStream("arhiverReport.json", FileMode.Open);
+                using FileStream fs = new FileStream(filename, FileMode.Open);
 
                 adaptedReportList = JsonSerializer.Deserialize<List<AdaptedReportItem>>(fs);
 

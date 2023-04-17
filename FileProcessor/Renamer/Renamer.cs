@@ -47,16 +47,13 @@ namespace FileProcessor.Renamer
             {
                 try
                 {
-                    //if (f.Name == "1.jpg")
-                    //    throw new Exception("test message");
-
                     string ext = f.Extension;
 
                     string randomChunk = generator.GetNext();
 
                     string newTitle = $"{prefix}{randomChunk}{ext}";
 
-                    string path = Path.Combine(f.Directory.FullName, newTitle); // TODO: ???
+                    string path = Path.Combine(f.Directory.FullName, newTitle);
 
                     f.MoveTo(path);
 

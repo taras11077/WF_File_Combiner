@@ -33,12 +33,16 @@
             btnClose = new Button();
             lvwRenamedReport = new ListView();
             iconImgList = new ImageList(components);
+            btnSave = new Button();
+            btnLoad = new Button();
+            saveFileDialogRenamer = new SaveFileDialog();
+            openFileDialogRenamer = new OpenFileDialog();
             SuspendLayout();
             // 
             // btnClose
             // 
             btnClose.BackColor = Color.LightSteelBlue;
-            btnClose.Location = new Point(694, 409);
+            btnClose.Location = new Point(681, 400);
             btnClose.Name = "btnClose";
             btnClose.Size = new Size(94, 29);
             btnClose.TabIndex = 0;
@@ -71,12 +75,48 @@
             iconImgList.Images.SetKeyName(6, "cancel--v1.png");
             iconImgList.Images.SetKeyName(7, "briefcase.png");
             // 
+            // btnSave
+            // 
+            btnSave.BackColor = Color.LightSteelBlue;
+            btnSave.Location = new Point(33, 400);
+            btnSave.Name = "btnSave";
+            btnSave.Size = new Size(150, 29);
+            btnSave.TabIndex = 1;
+            btnSave.Text = "SAVE REPORT";
+            btnSave.UseVisualStyleBackColor = false;
+            btnSave.Click += btnSave_Click;
+            btnSave.Enter += btnSetRootDir_MouseEnter;
+            btnSave.Leave += btnSetRootDir_MouseLeave;
+            btnSave.MouseEnter += btnSetRootDir_MouseEnter;
+            btnSave.MouseLeave += btnSetRootDir_MouseLeave;
+            // 
+            // btnLoad
+            // 
+            btnLoad.BackColor = Color.LightSteelBlue;
+            btnLoad.Location = new Point(219, 400);
+            btnLoad.Name = "btnLoad";
+            btnLoad.Size = new Size(150, 29);
+            btnLoad.TabIndex = 2;
+            btnLoad.Text = "LOAD REPORT";
+            btnLoad.UseVisualStyleBackColor = false;
+            btnLoad.Click += btnLoad_Click;
+            btnLoad.Enter += btnSetRootDir_MouseEnter;
+            btnLoad.Leave += btnSetRootDir_MouseLeave;
+            btnLoad.MouseEnter += btnSetRootDir_MouseEnter;
+            btnLoad.MouseLeave += btnSetRootDir_MouseLeave;
+            // 
+            // openFileDialogRenamer
+            // 
+            openFileDialogRenamer.FileName = "openFileDialog1";
+            // 
             // FrmRenamerReport
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnLoad);
+            Controls.Add(btnSave);
             Controls.Add(lvwRenamedReport);
             Controls.Add(btnClose);
             FormBorderStyle = FormBorderStyle.FixedSingle;
@@ -92,5 +132,9 @@
         private Button btnClose;
         private ListView lvwRenamedReport;
         private ImageList iconImgList;
+        private Button btnSave;
+        private Button btnLoad;
+        private SaveFileDialog saveFileDialogRenamer;
+        private OpenFileDialog openFileDialogRenamer;
     }
 }

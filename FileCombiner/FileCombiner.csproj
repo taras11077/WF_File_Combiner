@@ -27,4 +27,10 @@
     </EmbeddedResource>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="ReportsCleaner\" />
+    <Folder Include="ReportsArhiver\" />
+    <Folder Include="ReportsRenamer\" />
+  </ItemGroup>
+
 </Project>
