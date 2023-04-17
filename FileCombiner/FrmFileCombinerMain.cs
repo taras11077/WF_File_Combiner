@@ -1,29 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Microsoft.VisualBasic;
-using Microsoft.VisualBasic.FileIO;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-using System.Diagnostics;
-using System.DirectoryServices.ActiveDirectory;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
-using System.Security.Policy;
-using Button = System.Windows.Forms.Button;
-using System.Text.Json;
-using System.Diagnostics.CodeAnalysis;
-using Microsoft.VisualBasic.ApplicationServices;
-using System.Reflection;
-using System.IO;
-using ListView = System.Windows.Forms.ListView;
-using FileProcessor.Renamer;
-using FileCombiner.Enums;
-using static System.Windows.Forms.ListView;
+﻿using FileCombiner.Enums;
 using FileProcessor.Cleaner;
 using FileProcessor.Finder;
 using FileProcessor;
@@ -491,8 +466,6 @@ namespace FileCombiner.FileCleaner
 
             }
         }
-
-
 
         //Small details
         private void StartProgressBar()

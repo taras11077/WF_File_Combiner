@@ -1,16 +1,5 @@
-﻿using FileProcessor.Archiver;
-using FileProcessor.Renamer;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
+﻿using FileProcessor.Renamer;
 using System.Text.Json;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace FileCombiner
 {

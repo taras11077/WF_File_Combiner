@@ -1,29 +1,13 @@
-﻿using FileProcessor.Archiver;
-using FileProcessor.Cleaner;
-using FileProcessor.Renamer;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Microsoft.VisualBasic.ApplicationServices;
+﻿using FileProcessor.Cleaner;
 using System.Text.Json;
-using static System.Windows.Forms.ListView;
-using System.Text.Json.Serialization;
-using System.IO;
-using FileProcessor;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-using Button = System.Windows.Forms.Button;
+
 
 namespace FileCombiner
 {
     public partial class FrmCleanerReport : Form
     {
         private CleanerReport CleanerReport { get; set; }
+
 
         private List<AdaptedReportItem> adaptedReportList = new List<AdaptedReportItem>();
 

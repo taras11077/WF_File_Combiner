@@ -1,7 +1,5 @@
 using FileCombiner.Enums;
 using FileCombiner.FileCleaner;
-using FileProcessor.Renamer;
-using System.Security.Cryptography.X509Certificates;
 
 namespace FileCombiner
 {

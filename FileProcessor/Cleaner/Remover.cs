@@ -1,12 +1,4 @@
-﻿using FileProcessor.Renamer;
-using Microsoft.VisualBasic.FileIO;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data;
-using static System.Runtime.InteropServices.JavaScript.JSType;
+﻿using Microsoft.VisualBasic.FileIO;
 using FileProcessor.Finder;
 
 namespace FileProcessor.Cleaner
