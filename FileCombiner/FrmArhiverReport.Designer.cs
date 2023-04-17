@@ -33,6 +33,8 @@
             btnClose = new Button();
             lvwArhiverReport = new ListView();
             iconImgList = new ImageList(components);
+            btnSave = new Button();
+            btnLoad = new Button();
             SuspendLayout();
             // 
             // btnClose
@@ -71,12 +73,38 @@
             iconImgList.Images.SetKeyName(6, "cancel--v1.png");
             iconImgList.Images.SetKeyName(7, "briefcase.png");
             // 
+            // btnSave
+            // 
+            btnSave.Location = new Point(74, 396);
+            btnSave.Name = "btnSave";
+            btnSave.Size = new Size(94, 29);
+            btnSave.TabIndex = 2;
+            btnSave.Text = "SAVE";
+            btnSave.UseVisualStyleBackColor = true;
+            btnSave.Click += btnSave_Click;
+            btnSave.MouseEnter += btnSetRootDir_MouseEnter;
+            btnSave.MouseLeave += btnSetRootDir_MouseLeave;
+            // 
+            // btnLoad
+            // 
+            btnLoad.Location = new Point(209, 396);
+            btnLoad.Name = "btnLoad";
+            btnLoad.Size = new Size(94, 29);
+            btnLoad.TabIndex = 3;
+            btnLoad.Text = "LOAD";
+            btnLoad.UseVisualStyleBackColor = true;
+            btnLoad.Click += btnLoad_Click;
+            btnLoad.MouseEnter += btnSetRootDir_MouseEnter;
+            btnLoad.MouseLeave += btnSetRootDir_MouseLeave;
+            // 
             // FrmArhiverReport
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.DarkSeaGreen;
             ClientSize = new Size(1382, 453);
+            Controls.Add(btnLoad);
+            Controls.Add(btnSave);
             Controls.Add(lvwArhiverReport);
             Controls.Add(btnClose);
             FormBorderStyle = FormBorderStyle.FixedSingle;
@@ -92,5 +120,7 @@
         private Button btnClose;
         private ListView lvwArhiverReport;
         private ImageList iconImgList;
+        private Button btnSave;
+        private Button btnLoad;
     }
 }

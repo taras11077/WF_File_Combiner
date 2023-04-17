@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FileProcessor
+namespace FileProcessor.Finder
 {
     public class ObjectContainer
     {

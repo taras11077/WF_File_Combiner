@@ -1,5 +1,4 @@
-﻿using FileProcessor.Cleaner;
-using FileProcessor.Renamer;
+﻿using FileProcessor.Renamer;
 using Microsoft.VisualBasic.FileIO;
 using System;
 using System.Collections.Generic;
@@ -8,8 +7,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using static System.Runtime.InteropServices.JavaScript.JSType;
+using FileProcessor.Finder;
 
-namespace FileProcessor
+namespace FileProcessor.Cleaner
 {
     public class Remover
     {
@@ -22,17 +22,17 @@ namespace FileProcessor
         {
             CleanerReport cleaningReport = new CleanerReport();
 
-            
+
             foreach (FileInfo removedFile in RemovedItems.Files) // перебор отмеченних файлов
             {
-                try 
+                try
                 {
                     string? filename = removedFile.FullName.ToString();
 
                     if (RemovedItems.Files.Count != 0)
                     {
                         if (trash)
-                            Microsoft.VisualBasic.FileIO.FileSystem.DeleteFile(filename, UIOption.OnlyErrorDialogs, RecycleOption.SendToRecycleBin);
+                            FileSystem.DeleteFile(filename, UIOption.OnlyErrorDialogs, RecycleOption.SendToRecycleBin);
                         else
                             File.Delete(filename);
 
@@ -55,7 +55,7 @@ namespace FileProcessor
                     string? dirname = removedDir.FullName.ToString();
                     if (trash)
                     {
-                        Microsoft.VisualBasic.FileIO.FileSystem.DeleteDirectory(dirname, UIOption.OnlyErrorDialogs, RecycleOption.SendToRecycleBin);
+                        FileSystem.DeleteDirectory(dirname, UIOption.OnlyErrorDialogs, RecycleOption.SendToRecycleBin);
 
                         foreach (FileInfo listFile in ListItems.Files) // удаление из ListView всех вложенних в удаляемую папку елементов, независимо от того отмечени ли они на удаление
                         {

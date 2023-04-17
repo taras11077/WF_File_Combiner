@@ -11,6 +11,8 @@ namespace FileProcessor.Cleaner
     {
         public List<CleanerReportItem> Items { get; set; } = new List<CleanerReportItem>();
 
+        public CleanerReport() { }
+
         public void PushSuccess(FileSystemInfo processedItem)
         {
             Items.Add(new CleanerReportItem(processedItem));

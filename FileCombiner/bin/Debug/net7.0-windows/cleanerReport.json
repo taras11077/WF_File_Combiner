@@ -1,0 +1,21 @@
+[
+  {
+    "ProcessedItem": {
+      "FullName": "C:\\Users\\Master\\Desktop\\cleaner test\\icons\\10.png",
+      "Extension": ".png",
+      "Name": "10.png",
+      "Exists": true,
+      "CreationTime": "2023-03-21T16:59:53.31818+02:00",
+      "CreationTimeUtc": "2023-03-21T14:59:53.31818Z",
+      "LastAccessTime": "2023-03-29T13:34:43.2769008+03:00",
+      "LastAccessTimeUtc": "2023-03-29T10:34:43.2769008Z",
+      "LastWriteTime": "2023-03-21T15:09:52.5767066+02:00",
+      "LastWriteTimeUtc": "2023-03-21T13:09:52.5767066Z",
+      "LinkTarget": null,
+      "UnixFileMode": -1,
+      "Attributes": 32
+    },
+    "Failed": false,
+    "Exception": null
+  }
+]

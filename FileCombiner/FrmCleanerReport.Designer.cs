@@ -1,6 +1,6 @@
 ﻿namespace FileCombiner
 {
-    partial class FrmCleaningReport
+    partial class FrmCleanerReport
     {
         /// <summary>
         /// Required designer variable.
@@ -29,10 +29,12 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCleaningReport));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCleanerReport));
             btnClose = new Button();
-            lvwCleaningReport = new ListView();
+            lvwCleanerReport = new ListView();
             iconImgList = new ImageList(components);
+            btnSave = new Button();
+            btnLoad = new Button();
             SuspendLayout();
             // 
             // btnClose
@@ -48,14 +50,14 @@
             btnClose.MouseEnter += btnSetRootDir_MouseEnter;
             btnClose.MouseLeave += btnSetRootDir_MouseLeave;
             // 
-            // lvwCleaningReport
+            // lvwCleanerReport
             // 
-            lvwCleaningReport.Location = new Point(2, 36);
-            lvwCleaningReport.Name = "lvwCleaningReport";
-            lvwCleaningReport.Size = new Size(794, 343);
-            lvwCleaningReport.SmallImageList = iconImgList;
-            lvwCleaningReport.TabIndex = 1;
-            lvwCleaningReport.UseCompatibleStateImageBehavior = false;
+            lvwCleanerReport.Location = new Point(2, 36);
+            lvwCleanerReport.Name = "lvwCleanerReport";
+            lvwCleanerReport.Size = new Size(794, 343);
+            lvwCleanerReport.SmallImageList = iconImgList;
+            lvwCleanerReport.TabIndex = 1;
+            lvwCleanerReport.UseCompatibleStateImageBehavior = false;
             // 
             // iconImgList
             // 
@@ -71,26 +73,50 @@
             iconImgList.Images.SetKeyName(6, "cancel--v1.png");
             iconImgList.Images.SetKeyName(7, "briefcase.png");
             // 
-            // FrmCleaningReport
+            // btnSave
+            // 
+            btnSave.Location = new Point(72, 410);
+            btnSave.Name = "btnSave";
+            btnSave.Size = new Size(94, 29);
+            btnSave.TabIndex = 2;
+            btnSave.Text = "SAVE";
+            btnSave.UseVisualStyleBackColor = true;
+            btnSave.Click += btnSave_Click_1;
+            // 
+            // btnLoad
+            // 
+            btnLoad.Location = new Point(243, 413);
+            btnLoad.Name = "btnLoad";
+            btnLoad.Size = new Size(94, 29);
+            btnLoad.TabIndex = 3;
+            btnLoad.Text = "LOAD";
+            btnLoad.UseVisualStyleBackColor = true;
+            btnLoad.Click += btnLoad_Click_1;
+            // 
+            // FrmCleanerReport
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.RosyBrown;
             ClientSize = new Size(800, 450);
-            Controls.Add(lvwCleaningReport);
+            Controls.Add(btnLoad);
+            Controls.Add(btnSave);
+            Controls.Add(lvwCleanerReport);
             Controls.Add(btnClose);
             FormBorderStyle = FormBorderStyle.FixedSingle;
-            Name = "FrmCleaningReport";
+            Name = "FrmCleanerReport";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "FrmCleaningReport";
-            Load += FrmCleaningReport_Load;
+            Text = "FrmCleanerReport";
+            Load += FrmCleanerReport_Load;
             ResumeLayout(false);
         }
 
         #endregion
 
         private Button btnClose;
-        private ListView lvwCleaningReport;
+        private ListView lvwCleanerReport;
         private ImageList iconImgList;
+        private Button btnSave;
+        private Button btnLoad;
     }
 }

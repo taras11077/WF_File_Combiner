@@ -5,7 +5,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace FileProcessor
+namespace FileProcessor.Finder
 {
     internal class RegexFileAnalyzer
     {
@@ -54,7 +54,7 @@ namespace FileProcessor
                 patterns.Add(ConvertMaskToPattern(mask));
             }
 
-            return $"({String.Join("|", patterns)})";
+            return $"({string.Join("|", patterns)})";
         }
 
         private string ConvertMaskToPattern(string mask)

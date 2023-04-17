@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\step\\repos\\HW\\WF\\FileCombiner\\FileProcessor\\FileProcessor.csproj",
+      "projectUniqueName": "D:\\step\\repos\\HW\\FileCombiner (my)\\FileProcessor\\FileProcessor.csproj",
       "projectName": "FileProcessor",
-      "projectPath": "D:\\step\\repos\\HW\\WF\\FileCombiner\\FileProcessor\\FileProcessor.csproj",
+      "projectPath": "D:\\step\\repos\\HW\\FileCombiner (my)\\FileProcessor\\FileProcessor.csproj",
       "packagesPath": "C:\\Users\\Master\\.nuget\\packages\\",
-      "outputPath": "D:\\step\\repos\\HW\\WF\\FileCombiner\\FileProcessor\\obj\\",
+      "outputPath": "D:\\step\\repos\\HW\\FileCombiner (my)\\FileProcessor\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Master\\AppData\\Roaming\\NuGet\\NuGet.Config",

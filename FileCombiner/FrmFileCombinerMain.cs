@@ -1,5 +1,4 @@
-﻿using FileProcessor;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -25,6 +24,9 @@ using ListView = System.Windows.Forms.ListView;
 using FileProcessor.Renamer;
 using FileCombiner.Enums;
 using static System.Windows.Forms.ListView;
+using FileProcessor.Cleaner;
+using FileProcessor.Finder;
+using FileProcessor;
 
 namespace FileCombiner.FileCleaner
 {
@@ -478,7 +480,7 @@ namespace FileCombiner.FileCleaner
                     break;
 
                 case FileCombinerMode.Cleaner:
-                    FrmCleaningReport cleanReport = new FrmCleaningReport(Data.cleanerReport);
+                    FrmCleanerReport cleanReport = new FrmCleanerReport(Data.cleanerReport);
                     cleanReport.ShowDialog();
                     break;
 

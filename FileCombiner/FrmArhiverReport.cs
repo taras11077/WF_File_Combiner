@@ -1,5 +1,4 @@
-﻿using FileProcessor;
-using FileProcessor.Archiver;
+﻿using FileProcessor.Archiver;
 using FileProcessor.Renamer;
 using System;
 using System.Collections.Generic;
@@ -10,21 +9,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using FileProcessor;
+using FileProcessor.Cleaner;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace FileCombiner
 {
     public partial class FrmArhiverReport : Form
     {
-        ArhiverReport Report { get; set; }
+        ArhiverReport ArhiverReport { get; set; }
 
         int dirSize = 0;
 
         public FrmArhiverReport(ArhiverReport report)
         {
             InitializeComponent();
-            Report = report;
+            ArhiverReport = report;
         }
-
 
         private void FrmArhiverReport_Load(object sender, EventArgs e)
         {
@@ -48,7 +50,7 @@ namespace FileCombiner
             lvwArhiverReport.Columns.Add("Status", 120, HorizontalAlignment.Left);
             lvwArhiverReport.Columns.Add("Exception", 500, HorizontalAlignment.Left);
 
-            foreach (ArhiverReportItem item in Report.Items)
+            foreach (ArhiverReportItem item in ArhiverReport.Items)
             {
                 dirSize = 0;
                 GenerateItem(item);
@@ -58,7 +60,7 @@ namespace FileCombiner
         private void GenerateItem(ArhiverReportItem item)
         {
             ListViewItem lvItem = new ListViewItem();
-            lvItem.Text = item.ProcessedDirectory.ToString();
+            lvItem.Text = item.ProcessedDirectory.Name.ToString();
             lvItem.Tag = item;
 
             Calculator calculator = new Calculator();
@@ -76,7 +78,7 @@ namespace FileCombiner
                 arhiveName = item.ArhiveFileName.Substring(slashInd + 1, item.ArhiveFileName.Length - slashInd - 1);
 
                 // вичисление размера архива
-                System.IO.FileInfo file = new System.IO.FileInfo(item.ArhiveFileName);
+                FileInfo file = new FileInfo(item.ArhiveFileName);
                 arhiveSize = (double)file.Length / 1000;
             }
 
@@ -100,7 +102,7 @@ namespace FileCombiner
         // изменение цвета кнопок при наведении курсора
         private void btnSetRootDir_MouseEnter(object sender, EventArgs e)
         {
-            if (sender as Button == btnClose)
+            if (sender as Button == btnClose  || sender as Button == btnSave || sender as Button == btnLoad)
                 (sender as Button)!.BackColor = Color.MediumSeaGreen;
         }
 
@@ -113,10 +115,53 @@ namespace FileCombiner
         {
             Close();
         }
+
+
+
+
+        // сохранение в файл
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            if (ArhiverReport.Items == null)
+                return;
+
+            using FileStream fs = new FileStream($"arhiverReport1.json", FileMode.Create);
+
+            JsonSerializer.Serialize(fs, ArhiverReport.Items, new JsonSerializerOptions()
+            {
+                //ReferenceHandler = ReferenceHandler.Preserve,
+                //ReferenceHandler = ReferenceHandler.IgnoreCycles,
+                WriteIndented = true
+            });
+
+            fs.Close();
+            MessageBox.Show("Saved");
+        }
+
+        //загрузка из файла
+        private void btnLoad_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using FileStream fs = new FileStream("arhiverReport1.json", FileMode.Open);
+
+                List<ArhiverReportItem>? reportItems = new();
+
+                
+                reportItems = JsonSerializer.Deserialize<List<ArhiverReportItem>>(fs);
+
+                if (reportItems != null)
+                    ArhiverReport?.Items.AddRange(reportItems);
+
+                fs.Close();
+                InitListViewArhiverReport();
+            }
+
+            catch (FileNotFoundException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
     }
-
-
-
-
 }
 

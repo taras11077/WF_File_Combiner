@@ -1,6 +1,6 @@
-﻿using FileProcessor;
-using FileProcessor.Archiver;
+﻿using FileProcessor.Archiver;
 using FileProcessor.Archiver.Exceptions;
+using FileProcessor.Finder;
 using FileProcessor.Renamer;
 
 string path = @"C:\Users\Master\Desktop\cleaner test\icons";

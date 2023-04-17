@@ -18,7 +18,7 @@ namespace FileCombiner
     public partial class FrmArhiver : Form
     {
         private List<DirectoryInfo> Dirs { get; set; }
-        private List<string> arhiveFiles { get; set; } = new List<string>();
+        //private List<string> arhiveFiles { get; set; } = new List<string>();
 
         private string arhiveMode = string.Empty;
         private ArchiveEngineMode mode;
@@ -120,7 +120,7 @@ namespace FileCombiner
                 try
                 {
                     string outFile = archiveEngine.CompressDirectory(dir.FullName);
-                    arhiveFiles.Add(outFile);
+                    //arhiveFiles.Add(outFile);
 
                     arhiverReport.PushSuccess(dir, outFile);
                 }

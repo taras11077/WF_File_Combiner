@@ -32,11 +32,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\step\\repos\\HW\\WF\\FileCombiner\\FileCombiner\\FileCombiner.csproj",
+      "projectUniqueName": "D:\\step\\repos\\HW\\FileCombiner (my)\\FileCombiner\\FileCombiner.csproj",
       "projectName": "FileCombiner",
-      "projectPath": "D:\\step\\repos\\HW\\WF\\FileCombiner\\FileCombiner\\FileCombiner.csproj",
+      "projectPath": "D:\\step\\repos\\HW\\FileCombiner (my)\\FileCombiner\\FileCombiner.csproj",
       "packagesPath": "C:\\Users\\Master\\.nuget\\packages\\",
-      "outputPath": "D:\\step\\repos\\HW\\WF\\FileCombiner\\FileCombiner\\obj\\",
+      "outputPath": "D:\\step\\repos\\HW\\FileCombiner (my)\\FileCombiner\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Master\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -53,8 +53,8 @@
         "net7.0-windows7.0": {
           "targetAlias": "net7.0-windows",
           "projectReferences": {
-            "D:\\step\\repos\\HW\\WF\\FileCombiner\\FileProcessor\\FileProcessor.csproj": {
-              "projectPath": "D:\\step\\repos\\HW\\WF\\FileCombiner\\FileProcessor\\FileProcessor.csproj"
+            "D:\\step\\repos\\HW\\FileCombiner (my)\\FileProcessor\\FileProcessor.csproj": {
+              "projectPath": "D:\\step\\repos\\HW\\FileCombiner (my)\\FileProcessor\\FileProcessor.csproj"
             }
           }
         }

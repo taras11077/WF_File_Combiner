@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FileProcessor
+namespace FileProcessor.Finder
 {
     public class Finder
     {
@@ -29,14 +29,14 @@ namespace FileProcessor
             {
                 if (DirMasks.Contains(d.Name))
                     ResultContainer.Dirs.Add(d);
-                else if(recursive)
+                else if (recursive)
                     FindDirectories(d.FullName);
             }
         }
         public void FindFiles(string rootPath)
         {
             DirectoryInfo dir = new DirectoryInfo(rootPath);
-            
+
             FileInfo[] files = dir.GetFiles();
             ResultContainer.Files.AddRange(regexFileAnalyzer.AnalyzeFiles(files, FileMasks));
 
@@ -47,7 +47,7 @@ namespace FileProcessor
                     FindFiles(d.FullName);
             }
         }
-              
+
 
         public void FindAll(string rootPath)
         {

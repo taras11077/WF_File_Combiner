@@ -21,8 +21,8 @@ namespace FileCombiner
         private List<FileInfo> RenamedFiles;
         public RenamerReport renamerReport = new RenamerReport();
 
-        private string[]? modes;
-        private string[]? masks;
+       //private string[]? modes;
+        //private string[]? masks;
         private string renameMode = string.Empty;
         string prefix = string.Empty;
 
