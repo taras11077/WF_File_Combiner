@@ -94,6 +94,8 @@ namespace FileCombiner
         // сохранение в файл
         private void btnSave_Click(object sender, EventArgs e)
         {
+            openFileDialogRenamer.InitialDirectory = "D:\\step\\repos\\HW\\FileCombiner (my)\\FileCombiner\\ReportsRenamer";
+
             if (saveFileDialogRenamer.ShowDialog() == DialogResult.Cancel)
                 return;
 
@@ -118,12 +120,13 @@ namespace FileCombiner
         //загрузка из файла
         private void btnLoad_Click(object sender, EventArgs e)
         {
+            openFileDialogRenamer.InitialDirectory = "D:\\step\\repos\\HW\\FileCombiner (my)\\FileCombiner\\ReportsRenamer";
+
             if (openFileDialogRenamer.ShowDialog() == DialogResult.Cancel)
                 return;
 
             string filename = openFileDialogRenamer.FileName;
-            openFileDialogRenamer.InitialDirectory = Directory.GetParent(filename)?.Name;
-
+            
             try
             {
                 using FileStream fs = new FileStream(filename, FileMode.Open);

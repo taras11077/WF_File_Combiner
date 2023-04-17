@@ -124,6 +124,8 @@ namespace FileCombiner
         //сохранение в файл
         private void btnSave_Click_1(object sender, EventArgs e)
         {
+            openFileDialogCleaner.InitialDirectory = "D:\\step\\repos\\HW\\FileCombiner (my)\\FileCombiner\\ReportsCleaner";
+
             try
             {
                 if (saveFileDialogCleaner.ShowDialog() == DialogResult.Cancel)
@@ -154,12 +156,13 @@ namespace FileCombiner
         //загрузка из файла
         private void btnLoad_Click_1(object sender, EventArgs e)
         {
+            openFileDialogCleaner.InitialDirectory = "D:\\step\\repos\\HW\\FileCombiner (my)\\FileCombiner\\ReportsCleaner";
+
             if (openFileDialogCleaner.ShowDialog() == DialogResult.Cancel)
                 return;
-
-            //openFileDialogCleaner.InitialDirectory = @"D:\\step\\repos\\HW\\FileCombiner (my)\\FileCombiner\\CleanerReports";
+                       
             string filename = openFileDialogCleaner.FileName;
-            openFileDialogCleaner.InitialDirectory = Directory.GetParent(filename)?.Name;          
+            //openFileDialogCleaner.InitialDirectory = Directory.GetParent(filename)?.Name;          
 
             try
             {

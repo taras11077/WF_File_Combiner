@@ -119,13 +119,13 @@ namespace FileCombiner
         // сохранение в файл
         private void btnSave_Click(object sender, EventArgs e)
         {
+            openFileDialogArhiver.InitialDirectory = "D:\\step\\repos\\HW\\FileCombiner (my)\\FileCombiner\\ReportArhiver";
+
             if (saveFileDialogArhiver.ShowDialog() == DialogResult.Cancel)
                 return;
 
             string fileName = saveFileDialogArhiver.FileName;
-            saveFileDialogArhiver.InitialDirectory = Directory.GetParent(fileName)?.Name;
-
-
+           
             if (ArhiverReport.Items == null)
                 return;
 
@@ -143,12 +143,13 @@ namespace FileCombiner
         //загрузка из файла
         private void btnLoad_Click(object sender, EventArgs e)
         {
+            openFileDialogArhiver.InitialDirectory = "D:\\step\\repos\\HW\\FileCombiner (my)\\FileCombiner\\ReportArhiver";
+
             if (openFileDialogArhiver.ShowDialog() == DialogResult.Cancel)
                 return;
 
             string filename = openFileDialogArhiver.FileName;
-            openFileDialogArhiver.InitialDirectory = Directory.GetParent(filename)?.Name;
-
+          
             try
             {
                 using FileStream fs = new FileStream(filename, FileMode.Open);
