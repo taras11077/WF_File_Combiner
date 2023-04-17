@@ -22,8 +22,8 @@ namespace FileCombiner
     public partial class FrmCleanerReport : Form
     {
         private CleanerReport CleanerReport { get; set; }
-        //private int dirSize = 0;
-       
+        private int dirSize = 0;
+
         private List<AdaptedReportItem> adaptedReportList = new List<AdaptedReportItem>();
 
         public FrmCleanerReport(CleanerReport cleanReport)
@@ -38,42 +38,6 @@ namespace FileCombiner
             InitListViewCleanerReport();
         }
 
-        private void InitAdaptedReportList()
-        {
-            foreach (CleanerReportItem item in CleanerReport.Items)
-            {
-                AdaptedReportItem adaptedItem = new AdaptedReportItem();
-
-                adaptedItem.Name = item.ProcessedItem.Name.ToString();
-                
-                if (item.ProcessedItem is FileInfo f)
-                {
-                    adaptedItem.GroupIndex = 1;
-                    adaptedItem.ImageIndex = 0;
-
-                    adaptedItem.Size = (double)f.Length / 1000;
-                }
-                else if (item.ProcessedItem is DirectoryInfo)
-                {
-                    adaptedItem.GroupIndex = 0;
-                    adaptedItem.ImageIndex = 1;
-
-                    adaptedItem.Size = 0;
-                }
-
-                if (item.Failed)
-                    adaptedItem.Status = "not deleted";
-                else
-                    adaptedItem.Status = "deleted";
-
-                adaptedItem.LastAccessTime = item.ProcessedItem.LastAccessTime.ToString();
-
-                if(item.Exception!=null)
-                    adaptedItem.Exception = item.Exception.ToString();
-
-                adaptedReportList.Add(adaptedItem);
-            }
-        }
         private void InitListViewCleanerReport()
         {
             lvwCleanerReport.Columns.Clear();
@@ -97,19 +61,56 @@ namespace FileCombiner
 
             foreach (AdaptedReportItem item in adaptedReportList)
             {
-              GenerateItem(item);
+                GenerateListViewItem(item);
             }
         }
 
-        private void GenerateItem(AdaptedReportItem item)
+        private void InitAdaptedReportList()
+        {
+            foreach (CleanerReportItem item in CleanerReport.Items)
+            {
+                AdaptedReportItem adaptedItem = new AdaptedReportItem();
+
+                adaptedItem.Name = item.ProcessedItem.Name.ToString();
+
+                if (item.ProcessedItem is FileInfo f)
+                {
+                    adaptedItem.GroupIndex = 1;
+                    adaptedItem.ImageIndex = 0;
+
+                    adaptedItem.Size = (double)f.Length / 1000;
+                }
+                else if (item.ProcessedItem is DirectoryInfo)
+                {
+                    adaptedItem.GroupIndex = 0;
+                    adaptedItem.ImageIndex = 1;
+
+                    adaptedItem.Size = 0;
+                }
+
+                if (item.Failed)
+                    adaptedItem.Status = "not deleted";
+                else
+                    adaptedItem.Status = "deleted";
+
+                adaptedItem.LastAccessTime = item.ProcessedItem.LastAccessTime.ToString();
+
+                if (item.Exception != null)
+                    adaptedItem.Exception = item.Exception.ToString();
+
+                adaptedReportList.Add(adaptedItem);
+            }
+        }
+       
+        private void GenerateListViewItem(AdaptedReportItem item)
         {
             ListViewItem lvItem = new ListViewItem();
-            
+
             lvItem.Group = lvwCleanerReport.Groups[item.GroupIndex];
             lvItem.ImageIndex = item.ImageIndex;
 
             lvItem.Text = item.Name;
-            lvItem.SubItems[0].Text= item.Name;
+            lvItem.SubItems[0].Text = item.Name;
             lvItem.SubItems.Add($"{item.Size}");
             lvItem.SubItems.Add($"{item.Status}");
             lvItem.SubItems.Add($"{item.LastAccessTime}");
@@ -118,84 +119,12 @@ namespace FileCombiner
             lvwCleanerReport.Items.Add(lvItem);
         }
 
-        //private void GenerateSavedItem(AdaptedReportItem item)
-        //{
-        //    ListViewItem lvItem = new ListViewItem();
-
-        //    lvItem.Group = lvwCleanerReport.Groups[item.GroupIndex];
-        //    lvItem.ImageIndex = item.ImageIndex;
-
-        //    lvItem.Text = item.Name;
-        //    lvItem.SubItems.Add(item.Size.ToString());
-        //    lvItem.SubItems.Add(item.Status.ToString());
-        //    lvItem.SubItems.Add(item.LastAccessTime.ToString());
-        //    lvItem.SubItems.Add(item.Exception?.ToString());
-
-        //    lvwCleanerReport.Items.Add(lvItem);
-        //}
-/*
-        private void GenerateItemFromReport(CleanerReportItem item)
-        {
-            ListViewItem lvItem = new ListViewItem();
-            lvItem.Text = item.ProcessedItem.Name.ToString();
-            lvItem.Tag = item;
-
-            // вичисление размера исходной папки
-            Calculator calculator = new Calculator();
-            double itemSize = 0.0;
-
-            if (item.ProcessedItem is FileInfo f)
-            {
-                itemSize = (double)f.Length / 1000;
-                lvItem.Group = lvwCleanerReport.Groups[1];
-                lvItem.ImageIndex = 0;
-                lvItem.SubItems.Add($"{itemSize}");
-
-            }
-            else if (item.ProcessedItem is DirectoryInfo d)
-            {
-                //itemSize = (double)calculator.CalcDirSize(d) / 1000;
-                lvItem.Group = lvwCleanerReport.Groups[0];
-                lvItem.ImageIndex = 1;
-                lvItem.SubItems.Add($"");
-            }
-
-            lvItem.SubItems[0].Text = item.ProcessedItem.Name.ToString();
-
-            if (item.Failed)
-                lvItem.SubItems.Add("not deleted");
-            else
-                lvItem.SubItems.Add("deleted");
-
-            lvItem.SubItems.Add(item.ProcessedItem.LastAccessTime.ToString());
-            lvItem.SubItems.Add(item.Exception?.ToString());
-
-            lvwCleanerReport.Items.Add(lvItem);
-        }
-*/
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
-
-        // изменение цвета кнопок при наведении курсора
-        private void btnSetRootDir_MouseEnter(object sender, EventArgs e)
-        {
-            if (sender as Button == btnClose)
-                (sender as Button)!.BackColor = Color.IndianRed;
-        }
-
-        private void btnSetRootDir_MouseLeave(object sender, EventArgs e)
-        {
-            (sender as Button)!.BackColor = Color.LightGray;
-        }
-
         //сохранение в файл
         private void btnSave_Click_1(object sender, EventArgs e)
         {
             if (lvwCleanerReport.Items == null)
                 return;
-    
+
             using FileStream fs = new FileStream($"cleanerReport3.json", FileMode.Create);
 
             JsonSerializer.Serialize(fs, adaptedReportList, new JsonSerializerOptions()
@@ -204,7 +133,7 @@ namespace FileCombiner
             });
 
             fs.Close();
-            MessageBox.Show("Saved");
+            MessageBox.Show("Report saved");
         }
 
         //загрузка из файла
@@ -215,7 +144,7 @@ namespace FileCombiner
                 using FileStream fs = new FileStream("cleanerReport3.json", FileMode.Open);
 
                 adaptedReportList = JsonSerializer.Deserialize<List<AdaptedReportItem>>(fs);
-              
+
                 fs.Close();
                 InitListViewCleanerReport();
             }
@@ -225,5 +154,22 @@ namespace FileCombiner
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        // изменение цвета кнопок при наведении курсора
+        private void btnSetRootDir_MouseEnter(object sender, EventArgs e)
+        {
+            if (sender as Button == btnClose || sender as Button == btnSave || sender as Button == btnLoad)
+                (sender as Button)!.BackColor = Color.IndianRed;
+        }
+        private void btnSetRootDir_MouseLeave(object sender, EventArgs e)
+        {
+            (sender as Button)!.BackColor = Color.RosyBrown;
+        }
+
     }
 }

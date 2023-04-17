@@ -18,9 +18,8 @@ namespace FileCombiner
 {
     public partial class FrmArhiverReport : Form
     {
-        ArhiverReport ArhiverReport { get; set; }
-
-        int dirSize = 0;
+        private ArhiverReport ArhiverReport { get; set; }
+        private List<AdaptedReportItem> adaptedReportList = new List<AdaptedReportItem>();
 
         public FrmArhiverReport(ArhiverReport report)
         {
@@ -30,11 +29,15 @@ namespace FileCombiner
 
         private void FrmArhiverReport_Load(object sender, EventArgs e)
         {
+            InitAdaptedReportList();
             InitListViewArhiverReport();
         }
 
         private void InitListViewArhiverReport()
         {
+            lvwArhiverReport.Columns.Clear();
+            lvwArhiverReport.Items.Clear();
+
             lvwArhiverReport.View = View.Details;
 
             lvwArhiverReport.Scrollable = true;
@@ -50,74 +53,92 @@ namespace FileCombiner
             lvwArhiverReport.Columns.Add("Status", 120, HorizontalAlignment.Left);
             lvwArhiverReport.Columns.Add("Exception", 500, HorizontalAlignment.Left);
 
-            foreach (ArhiverReportItem item in ArhiverReport.Items)
+            foreach (AdaptedReportItem item in adaptedReportList)
             {
-                dirSize = 0;
-                GenerateItem(item);
+                GenerateListViewItem(item);
             }
         }
 
-        private void GenerateItem(ArhiverReportItem item)
+        //private void InitListViewArhiverReport()
+        //{
+        //    lvwArhiverReport.View = View.Details;
+
+        //    lvwArhiverReport.Scrollable = true;
+        //    lvwArhiverReport.MultiSelect = false;
+        //    lvwArhiverReport.GridLines = true;
+        //    lvwArhiverReport.FullRowSelect = true;
+
+        //    lvwArhiverReport.Columns.Add("Processed Directory", 150, HorizontalAlignment.Left);
+        //    lvwArhiverReport.Columns.Add("Directory Size, Kb", 150, HorizontalAlignment.Left);
+        //    lvwArhiverReport.Columns.Add("ArhiveFileName", 150, HorizontalAlignment.Left);
+        //    lvwArhiverReport.Columns.Add("ArhiveSize, Kb", 120, HorizontalAlignment.Left);
+        //    lvwArhiverReport.Columns.Add("Path", 370, HorizontalAlignment.Left);
+        //    lvwArhiverReport.Columns.Add("Status", 120, HorizontalAlignment.Left);
+        //    lvwArhiverReport.Columns.Add("Exception", 500, HorizontalAlignment.Left);
+
+        //    foreach (ArhiverReportItem item in ArhiverReport.Items)
+        //    {
+        //        //double dirSize = 0;
+        //        GenerateItem(item);
+        //    }
+        //}
+
+        private void InitAdaptedReportList()
+        {
+            foreach (ArhiverReportItem item in ArhiverReport.Items)
+            {
+                AdaptedReportItem adaptedItem = new AdaptedReportItem();
+
+                adaptedItem.Name = item.ProcessedDirectory.Name.ToString();
+                adaptedItem.ImageIndex = 1;
+
+                Calculator calculator = new Calculator();
+                // вичисление размера исходной папки
+                adaptedItem.Size = (double)calculator.CalcDirSize(item.ProcessedDirectory) / 1000;
+
+
+                if (item.ArhiveFileName != "") // если архив создан
+                {
+                    // виделение имени архива из полного имени
+                    int slashInd = item.ArhiveFileName.LastIndexOf('\\');  //поиск индекса последнего слеша
+                    adaptedItem.ArhiveName = item.ArhiveFileName.Substring(slashInd + 1, item.ArhiveFileName.Length - slashInd - 1);
+
+                    // вичисление размера архива
+                    FileInfo file = new FileInfo(item.ArhiveFileName);
+                    adaptedItem.ArhiveSize = (double)file.Length / 1000;
+                }
+
+                adaptedItem.Path = item.ArhiveFileName.ToString();
+
+                if (item.Failed)
+                    adaptedItem.Status = "not arhived";
+                else
+                    adaptedItem.Status = "arhived";
+
+                if (item.Exception != null)
+                    adaptedItem.Exception = item.Exception.ToString();
+
+                adaptedReportList.Add(adaptedItem);
+            }
+        }
+
+        private void GenerateListViewItem(AdaptedReportItem item)
         {
             ListViewItem lvItem = new ListViewItem();
-            lvItem.Text = item.ProcessedDirectory.Name.ToString();
-            lvItem.Tag = item;
 
-            Calculator calculator = new Calculator();
-            // вичисление размера исходной папки
+            lvItem.ImageIndex = item.ImageIndex;
 
-            double dirSize = (double)calculator.CalcDirSize(item.ProcessedDirectory) / 1000;
-
-            string arhiveName = string.Empty;
-            double arhiveSize = 0;
-
-            if (item.ArhiveFileName != "") // если архив создан
-            {
-                // виделение имени архива из полного имени
-                int slashInd = item.ArhiveFileName.LastIndexOf('\\');  //поиск индекса последнего слеша
-                arhiveName = item.ArhiveFileName.Substring(slashInd + 1, item.ArhiveFileName.Length - slashInd - 1);
-
-                // вичисление размера архива
-                FileInfo file = new FileInfo(item.ArhiveFileName);
-                arhiveSize = (double)file.Length / 1000;
-            }
-
-            lvItem.ImageIndex = 1;
-            lvItem.SubItems[0].Text = item.ProcessedDirectory.Name.ToString();
-            lvItem.SubItems.Add($"{dirSize}");
-            lvItem.SubItems.Add(arhiveName.ToString());
-            lvItem.SubItems.Add($"{arhiveSize}");
-            lvItem.SubItems.Add(item.ArhiveFileName);
-
-            if (item.Failed)
-                lvItem.SubItems.Add("not arhived");
-            else
-                lvItem.SubItems.Add("arhived");
-
-            lvItem.SubItems.Add(item.Exception?.ToString());
+            lvItem.Text = item.Name;
+            lvItem.SubItems[0].Text = item.Name;
+            lvItem.SubItems.Add($"{item.Size}");
+            lvItem.SubItems.Add($"{item.ArhiveName}");
+            lvItem.SubItems.Add($"{item.ArhiveSize}");
+            lvItem.SubItems.Add($"{item.Path}");
+            lvItem.SubItems.Add($"{item.Status}");
+            lvItem.SubItems.Add($"{item.Exception}");
 
             lvwArhiverReport.Items.Add(lvItem);
         }
-
-        // изменение цвета кнопок при наведении курсора
-        private void btnSetRootDir_MouseEnter(object sender, EventArgs e)
-        {
-            if (sender as Button == btnClose  || sender as Button == btnSave || sender as Button == btnLoad)
-                (sender as Button)!.BackColor = Color.MediumSeaGreen;
-        }
-
-        private void btnSetRootDir_MouseLeave(object sender, EventArgs e)
-        {
-            (sender as Button)!.BackColor = Color.LightGray;
-        }
-
-        private void btnClose_Click_1(object sender, EventArgs e)
-        {
-            Close();
-        }
-
-
-
 
         // сохранение в файл
         private void btnSave_Click(object sender, EventArgs e)
@@ -125,17 +146,15 @@ namespace FileCombiner
             if (ArhiverReport.Items == null)
                 return;
 
-            using FileStream fs = new FileStream($"arhiverReport1.json", FileMode.Create);
+            using FileStream fs = new FileStream($"arhiverReport.json", FileMode.Create);
 
-            JsonSerializer.Serialize(fs, ArhiverReport.Items, new JsonSerializerOptions()
+            JsonSerializer.Serialize(fs, adaptedReportList, new JsonSerializerOptions()
             {
-                //ReferenceHandler = ReferenceHandler.Preserve,
-                //ReferenceHandler = ReferenceHandler.IgnoreCycles,
                 WriteIndented = true
             });
 
             fs.Close();
-            MessageBox.Show("Saved");
+            MessageBox.Show("Report saved");
         }
 
         //загрузка из файла
@@ -143,15 +162,9 @@ namespace FileCombiner
         {
             try
             {
-                using FileStream fs = new FileStream("arhiverReport1.json", FileMode.Open);
+                using FileStream fs = new FileStream("arhiverReport.json", FileMode.Open);
 
-                List<ArhiverReportItem>? reportItems = new();
-
-                
-                reportItems = JsonSerializer.Deserialize<List<ArhiverReportItem>>(fs);
-
-                if (reportItems != null)
-                    ArhiverReport?.Items.AddRange(reportItems);
+                adaptedReportList = JsonSerializer.Deserialize<List<AdaptedReportItem>>(fs);
 
                 fs.Close();
                 InitListViewArhiverReport();
@@ -161,6 +174,23 @@ namespace FileCombiner
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+
+        // изменение цвета кнопок при наведении курсора
+        private void btnSetRootDir_MouseEnter(object sender, EventArgs e)
+        {
+            if (sender as Button == btnClose || sender as Button == btnSave || sender as Button == btnLoad)
+                (sender as Button)!.BackColor = Color.MediumSeaGreen;
+        }
+        private void btnSetRootDir_MouseLeave(object sender, EventArgs e)
+        {
+            (sender as Button)!.BackColor = Color.DarkSeaGreen;
+        }
+
+        private void btnClose_Click_1(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

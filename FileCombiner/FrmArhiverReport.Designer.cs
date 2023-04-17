@@ -75,24 +75,26 @@
             // 
             // btnSave
             // 
+            btnSave.BackColor = Color.DarkSeaGreen;
             btnSave.Location = new Point(74, 396);
             btnSave.Name = "btnSave";
-            btnSave.Size = new Size(94, 29);
+            btnSave.Size = new Size(150, 29);
             btnSave.TabIndex = 2;
-            btnSave.Text = "SAVE";
-            btnSave.UseVisualStyleBackColor = true;
+            btnSave.Text = "SAVE REPORT";
+            btnSave.UseVisualStyleBackColor = false;
             btnSave.Click += btnSave_Click;
             btnSave.MouseEnter += btnSetRootDir_MouseEnter;
             btnSave.MouseLeave += btnSetRootDir_MouseLeave;
             // 
             // btnLoad
             // 
-            btnLoad.Location = new Point(209, 396);
+            btnLoad.BackColor = Color.DarkSeaGreen;
+            btnLoad.Location = new Point(279, 396);
             btnLoad.Name = "btnLoad";
-            btnLoad.Size = new Size(94, 29);
+            btnLoad.Size = new Size(150, 29);
             btnLoad.TabIndex = 3;
-            btnLoad.Text = "LOAD";
-            btnLoad.UseVisualStyleBackColor = true;
+            btnLoad.Text = "LOAD REPORT";
+            btnLoad.UseVisualStyleBackColor = false;
             btnLoad.Click += btnLoad_Click;
             btnLoad.MouseEnter += btnSetRootDir_MouseEnter;
             btnLoad.MouseLeave += btnSetRootDir_MouseLeave;
