@@ -24,7 +24,6 @@ namespace FileCombiner
     public partial class FrmCleanerReport : Form
     {
         private CleanerReport CleanerReport { get; set; }
-        private int dirSize = 0;
 
         private List<AdaptedReportItem> adaptedReportList = new List<AdaptedReportItem>();
 
@@ -124,8 +123,10 @@ namespace FileCombiner
         //сохранение в файл
         private void btnSave_Click_1(object sender, EventArgs e)
         {
-            openFileDialogCleaner.InitialDirectory = "D:\\step\\repos\\HW\\FileCombiner (my)\\FileCombiner\\ReportsCleaner";
-
+            saveFileDialogCleaner.InitialDirectory = "D:\\step\\repos\\HW\\FileCombiner (my)\\FileCombiner\\ReportsCleaner";
+            saveFileDialogCleaner.AddExtension = true;
+            saveFileDialogCleaner.DefaultExt = "json";
+            
             try
             {
                 if (saveFileDialogCleaner.ShowDialog() == DialogResult.Cancel)

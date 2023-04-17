@@ -94,7 +94,9 @@ namespace FileCombiner
         // сохранение в файл
         private void btnSave_Click(object sender, EventArgs e)
         {
-            openFileDialogRenamer.InitialDirectory = "D:\\step\\repos\\HW\\FileCombiner (my)\\FileCombiner\\ReportsRenamer";
+            saveFileDialogRenamer.InitialDirectory = "D:\\step\\repos\\HW\\FileCombiner (my)\\FileCombiner\\ReportsRenamer";
+            saveFileDialogRenamer.AddExtension = true;
+            saveFileDialogRenamer.DefaultExt = "json";
 
             if (saveFileDialogRenamer.ShowDialog() == DialogResult.Cancel)
                 return;
