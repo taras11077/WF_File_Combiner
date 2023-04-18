@@ -40,9 +40,9 @@
             btnFileCleaner.BackColor = SystemColors.HotTrack;
             btnFileCleaner.FlatStyle = FlatStyle.Popup;
             btnFileCleaner.ForeColor = Color.MidnightBlue;
-            btnFileCleaner.Location = new Point(591, 112);
+            btnFileCleaner.Location = new Point(642, 105);
             btnFileCleaner.Name = "btnFileCleaner";
-            btnFileCleaner.Size = new Size(136, 29);
+            btnFileCleaner.Size = new Size(135, 30);
             btnFileCleaner.TabIndex = 1;
             btnFileCleaner.Text = "CLEANER";
             btnFileCleaner.UseVisualStyleBackColor = false;
@@ -55,9 +55,9 @@
             btnArhive.BackColor = SystemColors.HotTrack;
             btnArhive.FlatStyle = FlatStyle.Popup;
             btnArhive.ForeColor = Color.MidnightBlue;
-            btnArhive.Location = new Point(591, 255);
+            btnArhive.Location = new Point(642, 250);
             btnArhive.Name = "btnArhive";
-            btnArhive.Size = new Size(136, 29);
+            btnArhive.Size = new Size(135, 30);
             btnArhive.TabIndex = 2;
             btnArhive.Text = "ARHIVER";
             btnArhive.UseVisualStyleBackColor = false;
@@ -70,9 +70,9 @@
             btnRenamer.BackColor = SystemColors.HotTrack;
             btnRenamer.FlatStyle = FlatStyle.Popup;
             btnRenamer.ForeColor = Color.MidnightBlue;
-            btnRenamer.Location = new Point(588, 182);
+            btnRenamer.Location = new Point(639, 175);
             btnRenamer.Name = "btnRenamer";
-            btnRenamer.Size = new Size(139, 29);
+            btnRenamer.Size = new Size(135, 30);
             btnRenamer.TabIndex = 3;
             btnRenamer.Text = "RENAMER";
             btnRenamer.UseVisualStyleBackColor = false;
@@ -85,9 +85,9 @@
             btnClose.BackColor = SystemColors.HotTrack;
             btnClose.FlatStyle = FlatStyle.Popup;
             btnClose.ForeColor = Color.MidnightBlue;
-            btnClose.Location = new Point(633, 433);
+            btnClose.Location = new Point(659, 439);
             btnClose.Name = "btnClose";
-            btnClose.Size = new Size(94, 29);
+            btnClose.Size = new Size(95, 30);
             btnClose.TabIndex = 4;
             btnClose.Text = "CLOSE";
             btnClose.UseVisualStyleBackColor = false;
@@ -99,13 +99,13 @@
             // 
             label1.AutoSize = true;
             label1.BackColor = Color.Transparent;
-            label1.Font = new Font("Lucida Console", 18F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.Font = new Font("Lucida Console", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point);
             label1.ForeColor = SystemColors.HotTrack;
-            label1.Location = new Point(478, 40);
+            label1.Location = new Point(521, 29);
             label1.Name = "label1";
-            label1.Size = new Size(260, 30);
+            label1.Size = new Size(267, 34);
             label1.TabIndex = 5;
-            label1.Text = "File Combiner";
+            label1.Text = "FileCombiner";
             // 
             // FrmMain
             // 
@@ -114,18 +114,20 @@
             BackColor = SystemColors.InactiveCaption;
             BackgroundImage = Properties.Resources.image_7;
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(750, 500);
+            ClientSize = new Size(800, 500);
             Controls.Add(label1);
             Controls.Add(btnClose);
             Controls.Add(btnRenamer);
             Controls.Add(btnArhive);
             Controls.Add(btnFileCleaner);
             FormBorderStyle = FormBorderStyle.None;
-            MaximumSize = new Size(750, 500);
-            MinimumSize = new Size(750, 500);
+            MaximumSize = new Size(800, 500);
+            MinimumSize = new Size(800, 500);
             Name = "FrmMain";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";
+            MouseDown += FrmMain_MouseDown;
+            MouseMove += FrmMain_MouseMove;
             ResumeLayout(false);
             PerformLayout();
         }

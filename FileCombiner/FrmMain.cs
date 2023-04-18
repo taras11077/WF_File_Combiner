@@ -5,6 +5,10 @@ namespace FileCombiner
 {
     public partial class FrmMain : Form
     {
+        private double X { get; set; } = 0.0;
+        private double Y { get; set; } = 0.0;
+        private Point startClick;
+
         public FrmMain()
         {
             InitializeComponent();
@@ -44,13 +48,25 @@ namespace FileCombiner
             else if (sender as Button == btnClose)
                 (sender as Button)!.BackColor = Color.DarkOrange;
         }
-
         private void btnSetRootDir_MouseLeave(object sender, EventArgs e)
         {
             (sender as Button)!.BackColor = Color.RoyalBlue;
         }
 
-
+        //перетаскивание окна
+        private void FrmMain_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+                startClick = new(e.X, e.Y);
+        }
+        private void FrmMain_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                Point delta = new(e.X - startClick.X, e.Y - startClick.Y);
+                Location = new(Location.X + delta.X, Location.Y + delta.Y);
+            }
+        }
 
 
     }
