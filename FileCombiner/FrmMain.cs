@@ -36,18 +36,18 @@ namespace FileCombiner
         private void btnSetRootDir_MouseEnter(object sender, EventArgs e)
         {
             if (sender as Button == btnFileCleaner)
-                (sender as Button)!.BackColor = Color.IndianRed;
+                (sender as Button)!.BackColor = Color.DeepPink;
             else if (sender as Button == btnRenamer)
-                (sender as Button)!.BackColor = Color.SteelBlue;
+                (sender as Button)!.BackColor = Color.DeepSkyBlue;
             else if (sender as Button == btnArhive)
-                (sender as Button)!.BackColor = Color.MediumSeaGreen;
+                (sender as Button)!.BackColor = Color.SpringGreen;
             else if (sender as Button == btnClose)
-                (sender as Button)!.BackColor = Color.LightSlateGray;
+                (sender as Button)!.BackColor = Color.DarkOrange;
         }
 
         private void btnSetRootDir_MouseLeave(object sender, EventArgs e)
         {
-            (sender as Button)!.BackColor = Color.LightSteelBlue;
+            (sender as Button)!.BackColor = Color.RoyalBlue;
         }
 
 

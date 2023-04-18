@@ -103,7 +103,11 @@
             // 
             // openFileDialogArhiver
             // 
-            openFileDialogArhiver.FileName = "openFileDialog1";
+            openFileDialogArhiver.InitialDirectory = "\"D:\\\\step\\\\repos\\\\HW\\\\FileCombiner (my)\\\\FileCombiner\\\\ReportArhiver";
+            // 
+            // saveFileDialogArhiver
+            // 
+            saveFileDialogArhiver.InitialDirectory = "\"D:\\\\step\\\\repos\\\\HW\\\\FileCombiner (my)\\\\FileCombiner\\\\ReportArhiver";
             // 
             // FrmArhiverReport
             // 

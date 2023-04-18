@@ -120,7 +120,7 @@ namespace FileCombiner
             }
 
             Data.arhiverReport = arhiverReport;
-            MessageBox.Show("Arhiving completed\nYou can see the results by clicking VIEW REPORT");
+            MessageBox.Show("\tArhiving completed\nYou can see the results by clicking VIEW REPORT");
 
             Close();
         }

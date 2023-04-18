@@ -32,12 +32,15 @@
             btnArhive = new Button();
             btnRenamer = new Button();
             btnClose = new Button();
+            label1 = new Label();
             SuspendLayout();
             // 
             // btnFileCleaner
             // 
-            btnFileCleaner.BackColor = SystemColors.InactiveCaption;
-            btnFileCleaner.Location = new Point(50, 119);
+            btnFileCleaner.BackColor = SystemColors.HotTrack;
+            btnFileCleaner.FlatStyle = FlatStyle.Popup;
+            btnFileCleaner.ForeColor = Color.MidnightBlue;
+            btnFileCleaner.Location = new Point(591, 112);
             btnFileCleaner.Name = "btnFileCleaner";
             btnFileCleaner.Size = new Size(136, 29);
             btnFileCleaner.TabIndex = 1;
@@ -49,8 +52,10 @@
             // 
             // btnArhive
             // 
-            btnArhive.BackColor = SystemColors.InactiveCaption;
-            btnArhive.Location = new Point(50, 241);
+            btnArhive.BackColor = SystemColors.HotTrack;
+            btnArhive.FlatStyle = FlatStyle.Popup;
+            btnArhive.ForeColor = Color.MidnightBlue;
+            btnArhive.Location = new Point(591, 255);
             btnArhive.Name = "btnArhive";
             btnArhive.Size = new Size(136, 29);
             btnArhive.TabIndex = 2;
@@ -62,8 +67,10 @@
             // 
             // btnRenamer
             // 
-            btnRenamer.BackColor = SystemColors.InactiveCaption;
-            btnRenamer.Location = new Point(50, 178);
+            btnRenamer.BackColor = SystemColors.HotTrack;
+            btnRenamer.FlatStyle = FlatStyle.Popup;
+            btnRenamer.ForeColor = Color.MidnightBlue;
+            btnRenamer.Location = new Point(588, 182);
             btnRenamer.Name = "btnRenamer";
             btnRenamer.Size = new Size(139, 29);
             btnRenamer.TabIndex = 3;
@@ -75,8 +82,10 @@
             // 
             // btnClose
             // 
-            btnClose.BackColor = SystemColors.InactiveCaption;
-            btnClose.Location = new Point(71, 394);
+            btnClose.BackColor = SystemColors.HotTrack;
+            btnClose.FlatStyle = FlatStyle.Popup;
+            btnClose.ForeColor = Color.MidnightBlue;
+            btnClose.Location = new Point(633, 433);
             btnClose.Name = "btnClose";
             btnClose.Size = new Size(94, 29);
             btnClose.TabIndex = 4;
@@ -86,23 +95,39 @@
             btnClose.MouseEnter += btnSetRootDir_MouseEnter;
             btnClose.MouseLeave += btnSetRootDir_MouseLeave;
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.BackColor = Color.Transparent;
+            label1.Font = new Font("Lucida Console", 18F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.ForeColor = SystemColors.HotTrack;
+            label1.Location = new Point(478, 40);
+            label1.Name = "label1";
+            label1.Size = new Size(260, 30);
+            label1.TabIndex = 5;
+            label1.Text = "File Combiner";
+            // 
             // FrmMain
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.InactiveCaption;
-            ClientSize = new Size(250, 500);
+            BackgroundImage = Properties.Resources.image_7;
+            BackgroundImageLayout = ImageLayout.Stretch;
+            ClientSize = new Size(750, 500);
+            Controls.Add(label1);
             Controls.Add(btnClose);
             Controls.Add(btnRenamer);
             Controls.Add(btnArhive);
             Controls.Add(btnFileCleaner);
             FormBorderStyle = FormBorderStyle.None;
-            MaximumSize = new Size(250, 500);
-            MinimumSize = new Size(250, 500);
+            MaximumSize = new Size(750, 500);
+            MinimumSize = new Size(750, 500);
             Name = "FrmMain";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -110,5 +135,6 @@
         private Button btnArhive;
         private Button btnRenamer;
         private Button btnClose;
+        private Label label1;
     }
 }

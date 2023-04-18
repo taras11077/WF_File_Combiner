@@ -411,7 +411,7 @@ namespace FileCombiner.FileCleaner
                 resultContainer = new(remover.ListItems.Dirs, remover.ListItems.Files); // создание нового resulContainer после удаления елементов
                 GenerateFindedItems();                                                  // генепация елементов и создание нового ListView
 
-                MessageBox.Show("Selected items removed\nYou can see the results by clicking VIEW REPORT");
+                MessageBox.Show("\tSelected items removed\nYou can see the results by clicking VIEW REPORT");
             }
             catch (Exception ex)
             {
@@ -547,7 +547,7 @@ namespace FileCombiner.FileCleaner
             switch (frmMode)
             {
                 case FileCombinerMode.Cleaner:
-                    MessageBox.Show("Set RootDirectory, SearcheDirectory and SearcheFile Patterns");
+                    MessageBox.Show("Set RootDirectory, SearcheDirectory Patterns and SearcheFile Patterns");
                     break;
 
                 case FileCombinerMode.Renamer:

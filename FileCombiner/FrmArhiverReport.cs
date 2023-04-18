@@ -107,7 +107,7 @@ namespace FileCombiner
         // сохранение в файл
         private void btnSave_Click(object sender, EventArgs e)
         {
-            saveFileDialogArhiver.InitialDirectory = "D:\\step\\repos\\HW\\FileCombiner (my)\\FileCombiner\\ReportArhiver";
+            saveFileDialogArhiver.InitialDirectory = "D:\\step\\repos\\HW\\FileCombiner (my)\\FileCombiner\\ReportsArhiver";
             saveFileDialogArhiver.AddExtension = true;
             saveFileDialogArhiver.DefaultExt = "json";
 
@@ -115,7 +115,7 @@ namespace FileCombiner
                 return;
 
             string fileName = saveFileDialogArhiver.FileName;
-           
+
             if (ArhiverReport.Items == null)
                 return;
 
@@ -133,13 +133,13 @@ namespace FileCombiner
         //загрузка из файла
         private void btnLoad_Click(object sender, EventArgs e)
         {
-            openFileDialogArhiver.InitialDirectory = "D:\\step\\repos\\HW\\FileCombiner (my)\\FileCombiner\\ReportArhiver";
+            openFileDialogArhiver.InitialDirectory = "D:\\step\\repos\\HW\\FileCombiner (my)\\FileCombiner\\ReportsArhiver";
 
             if (openFileDialogArhiver.ShowDialog() == DialogResult.Cancel)
                 return;
 
             string filename = openFileDialogArhiver.FileName;
-          
+
             try
             {
                 using FileStream fs = new FileStream(filename, FileMode.Open);
