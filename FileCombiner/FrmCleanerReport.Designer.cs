@@ -35,8 +35,6 @@
             iconImgList = new ImageList(components);
             btnSave = new Button();
             btnLoad = new Button();
-            openFileDialogCleaner = new OpenFileDialog();
-            saveFileDialogCleaner = new SaveFileDialog();
             SuspendLayout();
             // 
             // btnClose
@@ -101,10 +99,6 @@
             btnLoad.MouseEnter += btnSetRootDir_MouseEnter;
             btnLoad.MouseLeave += btnSetRootDir_MouseLeave;
             // 
-            // openFileDialogCleaner
-            // 
-            openFileDialogCleaner.FileName = "openFileDialog1";
-            // 
             // FrmCleanerReport
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -130,7 +124,5 @@
         private ImageList iconImgList;
         private Button btnSave;
         private Button btnLoad;
-        private OpenFileDialog openFileDialogCleaner;
-        private SaveFileDialog saveFileDialogCleaner;
     }
 }

@@ -1,6 +1,7 @@
 ﻿using FileProcessor.Archiver;
 using FileProcessor;
 using System.Text.Json;
+using System.Windows.Forms;
 
 namespace FileCombiner
 {
@@ -39,7 +40,11 @@ namespace FileCombiner
             lvwArhiverReport.Columns.Add("ArhiveSize, Kb", 120, HorizontalAlignment.Left);
             lvwArhiverReport.Columns.Add("Path", 370, HorizontalAlignment.Left);
             lvwArhiverReport.Columns.Add("Status", 120, HorizontalAlignment.Left);
+            lvwArhiverReport.Columns.Add("Last AccesTime", 150, HorizontalAlignment.Left);
             lvwArhiverReport.Columns.Add("Exception", 500, HorizontalAlignment.Left);
+
+            lvwArhiverReport.Groups.Add(new ListViewGroup("Directories", HorizontalAlignment.Left));
+            lvwArhiverReport.Groups.Add(new ListViewGroup("Files", HorizontalAlignment.Left));
 
             foreach (AdaptedReportItem item in adaptedReportList)
             {
@@ -54,20 +59,20 @@ namespace FileCombiner
                 AdaptedReportItem adaptedItem = new AdaptedReportItem();
 
                 adaptedItem.Name = item.ProcessedDirectory.Name.ToString();
+                adaptedItem.GroupIndex = 0;
                 adaptedItem.ImageIndex = 1;
 
                 Calculator calculator = new Calculator();
-                // вичисление размера исходной папки
+                // вычисление размера исходной папки
                 adaptedItem.Size = (double)calculator.CalcDirSize(item.ProcessedDirectory) / 1000;
-
 
                 if (item.ArhiveFileName != "") // если архив создан
                 {
-                    // виделение имени архива из полного имени
+                    // выделение имени архива из полного имени
                     int slashInd = item.ArhiveFileName.LastIndexOf('\\');  //поиск индекса последнего слеша
                     adaptedItem.ArhiveName = item.ArhiveFileName.Substring(slashInd + 1, item.ArhiveFileName.Length - slashInd - 1);
 
-                    // вичисление размера архива
+                    // вычисление размера архива
                     FileInfo file = new FileInfo(item.ArhiveFileName);
                     adaptedItem.ArhiveSize = (double)file.Length / 1000;
                 }
@@ -78,6 +83,8 @@ namespace FileCombiner
                     adaptedItem.Status = "not arhived";
                 else
                     adaptedItem.Status = "arhived";
+
+                adaptedItem.LastAccessTime = item.ProcessedDirectory.LastAccessTime.ToString();
 
                 if (item.Exception != null)
                     adaptedItem.Exception = item.Exception.ToString();
@@ -90,6 +97,7 @@ namespace FileCombiner
         {
             ListViewItem lvItem = new ListViewItem();
 
+            lvItem.Group = lvwArhiverReport.Groups[item.GroupIndex];
             lvItem.ImageIndex = item.ImageIndex;
 
             lvItem.Text = item.Name;
@@ -99,6 +107,7 @@ namespace FileCombiner
             lvItem.SubItems.Add($"{item.ArhiveSize}");
             lvItem.SubItems.Add($"{item.Path}");
             lvItem.SubItems.Add($"{item.Status}");
+            lvItem.SubItems.Add($"{item.LastAccessTime}");
             lvItem.SubItems.Add($"{item.Exception}");
 
             lvwArhiverReport.Items.Add(lvItem);
@@ -107,14 +116,14 @@ namespace FileCombiner
         // сохранение в файл
         private void btnSave_Click(object sender, EventArgs e)
         {
-            saveFileDialogArhiver.InitialDirectory = "D:\\step\\repos\\HW\\FileCombiner (my)\\FileCombiner\\ReportsArhiver";
-            saveFileDialogArhiver.AddExtension = true;
-            saveFileDialogArhiver.DefaultExt = "json";
+            SaveFileDialog saveFileDialogArhiver = new SaveFileDialog();
+            saveFileDialogArhiver.InitialDirectory = System.IO.Path.Combine(Application.StartupPath, "ArhiverReports");// привязка папки по умолчанию относительно папки приложения
+            saveFileDialogArhiver.RestoreDirectory = true;
 
             if (saveFileDialogArhiver.ShowDialog() == DialogResult.Cancel)
                 return;
-
-            string fileName = saveFileDialogArhiver.FileName;
+            
+            string fileName = $"{saveFileDialogArhiver.FileName}_arhiver.json";
 
             if (ArhiverReport.Items == null)
                 return;
@@ -133,12 +142,19 @@ namespace FileCombiner
         //загрузка из файла
         private void btnLoad_Click(object sender, EventArgs e)
         {
-            openFileDialogArhiver.InitialDirectory = "D:\\step\\repos\\HW\\FileCombiner (my)\\FileCombiner\\ReportsArhiver";
+            OpenFileDialog openFileDialogArhiver = new OpenFileDialog();
+            openFileDialogArhiver.InitialDirectory = System.IO.Path.Combine(Application.StartupPath, "ArhiverReports");
+            openFileDialogArhiver.RestoreDirectory = true;
 
             if (openFileDialogArhiver.ShowDialog() == DialogResult.Cancel)
                 return;
 
             string filename = openFileDialogArhiver.FileName;
+            if (!filename.Contains("arhiver"))
+            {
+                MessageBox.Show("Error. Select the archiver file");
+                return;
+            }
 
             try
             {

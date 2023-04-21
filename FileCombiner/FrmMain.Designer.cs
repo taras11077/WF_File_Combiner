@@ -40,7 +40,7 @@
             btnFileCleaner.BackColor = SystemColors.HotTrack;
             btnFileCleaner.FlatStyle = FlatStyle.Popup;
             btnFileCleaner.ForeColor = Color.MidnightBlue;
-            btnFileCleaner.Location = new Point(642, 105);
+            btnFileCleaner.Location = new Point(642, 113);
             btnFileCleaner.Name = "btnFileCleaner";
             btnFileCleaner.Size = new Size(135, 30);
             btnFileCleaner.TabIndex = 1;
@@ -55,7 +55,7 @@
             btnArhive.BackColor = SystemColors.HotTrack;
             btnArhive.FlatStyle = FlatStyle.Popup;
             btnArhive.ForeColor = Color.MidnightBlue;
-            btnArhive.Location = new Point(642, 250);
+            btnArhive.Location = new Point(639, 237);
             btnArhive.Name = "btnArhive";
             btnArhive.Size = new Size(135, 30);
             btnArhive.TabIndex = 2;
@@ -85,7 +85,7 @@
             btnClose.BackColor = SystemColors.HotTrack;
             btnClose.FlatStyle = FlatStyle.Popup;
             btnClose.ForeColor = Color.MidnightBlue;
-            btnClose.Location = new Point(659, 439);
+            btnClose.Location = new Point(657, 425);
             btnClose.Name = "btnClose";
             btnClose.Size = new Size(95, 30);
             btnClose.TabIndex = 4;

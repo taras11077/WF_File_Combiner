@@ -35,8 +35,6 @@
             iconImgList = new ImageList(components);
             btnSave = new Button();
             btnLoad = new Button();
-            openFileDialogArhiver = new OpenFileDialog();
-            saveFileDialogArhiver = new SaveFileDialog();
             SuspendLayout();
             // 
             // btnClose
@@ -101,14 +99,6 @@
             btnLoad.MouseEnter += btnSetRootDir_MouseEnter;
             btnLoad.MouseLeave += btnSetRootDir_MouseLeave;
             // 
-            // openFileDialogArhiver
-            // 
-            openFileDialogArhiver.InitialDirectory = "\"D:\\\\step\\\\repos\\\\HW\\\\FileCombiner (my)\\\\FileCombiner\\\\ReportArhiver";
-            // 
-            // saveFileDialogArhiver
-            // 
-            saveFileDialogArhiver.InitialDirectory = "\"D:\\\\step\\\\repos\\\\HW\\\\FileCombiner (my)\\\\FileCombiner\\\\ReportArhiver";
-            // 
             // FrmArhiverReport
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -134,7 +124,5 @@
         private ImageList iconImgList;
         private Button btnSave;
         private Button btnLoad;
-        private OpenFileDialog openFileDialogArhiver;
-        private SaveFileDialog saveFileDialogArhiver;
     }
 }

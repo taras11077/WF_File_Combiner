@@ -122,6 +122,8 @@ namespace FileCombiner.FileCleaner
         // Settings
         private void btnSetRootDir_Click(object sender, EventArgs e)
         {
+            fbSetRootDirDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop); // установка папки по умолчанию Desktop
+
             if (fbSetRootDirDialog.ShowDialog() == DialogResult.Cancel)
                 return;
 

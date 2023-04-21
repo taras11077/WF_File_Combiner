@@ -8,8 +8,9 @@ namespace FileCombiner
     {
         private CleanerReport CleanerReport { get; set; }
 
-
         private List<AdaptedReportItem> adaptedReportList = new List<AdaptedReportItem>();
+
+
 
         public FrmCleanerReport(CleanerReport cleanReport)
         {
@@ -107,16 +108,17 @@ namespace FileCombiner
         //сохранение в файл
         private void btnSave_Click_1(object sender, EventArgs e)
         {
-            saveFileDialogCleaner.InitialDirectory = "D:\\step\\repos\\HW\\FileCombiner (my)\\FileCombiner\\ReportsCleaner";
-            saveFileDialogCleaner.AddExtension = true;
-            saveFileDialogCleaner.DefaultExt = "json";
-            
+            SaveFileDialog saveFileDialogCleaner = new SaveFileDialog();
+            saveFileDialogCleaner.InitialDirectory = System.IO.Path.Combine(Application.StartupPath, "CleanerReports");
+            saveFileDialogCleaner.RestoreDirectory = true;
+
             try
             {
                 if (saveFileDialogCleaner.ShowDialog() == DialogResult.Cancel)
                     return;
 
-                string fileName = saveFileDialogCleaner.FileName;
+                string fileName = $"{saveFileDialogCleaner.FileName}_cleaner.json";
+
                 saveFileDialogCleaner.InitialDirectory = Directory.GetParent(fileName)?.Name;
 
                 if (lvwCleanerReport.Items == null)
@@ -141,13 +143,20 @@ namespace FileCombiner
         //загрузка из файла
         private void btnLoad_Click_1(object sender, EventArgs e)
         {
-            openFileDialogCleaner.InitialDirectory = "D:\\step\\repos\\HW\\FileCombiner (my)\\FileCombiner\\ReportsCleaner";
+            OpenFileDialog openFileDialogCleaner = new OpenFileDialog();
+            openFileDialogCleaner.InitialDirectory = System.IO.Path.Combine(Application.StartupPath, "CleanerReports");
+            openFileDialogCleaner.RestoreDirectory = true;
 
             if (openFileDialogCleaner.ShowDialog() == DialogResult.Cancel)
                 return;
-                       
+
             string filename = openFileDialogCleaner.FileName;
-            //openFileDialogCleaner.InitialDirectory = Directory.GetParent(filename)?.Name;          
+
+            if (!filename.Contains("cleaner"))
+            {
+                MessageBox.Show("Error. Select the cleaner file");
+                return;
+            }
 
             try
             {

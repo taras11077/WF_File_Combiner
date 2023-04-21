@@ -35,8 +35,6 @@
             iconImgList = new ImageList(components);
             btnSave = new Button();
             btnLoad = new Button();
-            saveFileDialogRenamer = new SaveFileDialog();
-            openFileDialogRenamer = new OpenFileDialog();
             SuspendLayout();
             // 
             // btnClose
@@ -105,10 +103,6 @@
             btnLoad.MouseEnter += btnSetRootDir_MouseEnter;
             btnLoad.MouseLeave += btnSetRootDir_MouseLeave;
             // 
-            // openFileDialogRenamer
-            // 
-            openFileDialogRenamer.FileName = "openFileDialog1";
-            // 
             // FrmRenamerReport
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -134,7 +128,5 @@
         private ImageList iconImgList;
         private Button btnSave;
         private Button btnLoad;
-        private SaveFileDialog saveFileDialogRenamer;
-        private OpenFileDialog openFileDialogRenamer;
     }
 }

@@ -10,8 +10,8 @@ namespace FileCombiner
     {
         public string Name { get; set; } = string.Empty;
         public double Size { get; set; } = 0;
-        public int ImageIndex { get; set; } = -1;
-        public int GroupIndex { get; set; } = -1;
+        public int ImageIndex { get; set; } = 0;
+        public int GroupIndex { get; set; } = 1;
         public string LastAccessTime { get; set; } = string.Empty;
         public string ArhiveName { get; set; } = string.Empty;
         public double ArhiveSize { get; set; } = 0;

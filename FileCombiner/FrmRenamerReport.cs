@@ -1,5 +1,6 @@
 ﻿using FileProcessor.Renamer;
 using System.Text.Json;
+using System.Windows.Forms;
 
 namespace FileCombiner
 {
@@ -20,8 +21,6 @@ namespace FileCombiner
             InitListViewRenamedReport();
         }
 
-
-
         private void InitListViewRenamedReport()
         {
             lvwRenamedReport.View = View.Details;
@@ -36,6 +35,9 @@ namespace FileCombiner
             lvwRenamedReport.Columns.Add("Last AccesTime", 150, HorizontalAlignment.Left);
             lvwRenamedReport.Columns.Add("Exception", 750, HorizontalAlignment.Left);
 
+            lvwRenamedReport.Groups.Add(new ListViewGroup("Directories", HorizontalAlignment.Left));
+            lvwRenamedReport.Groups.Add(new ListViewGroup("Files", HorizontalAlignment.Left));
+
             foreach (AdaptedReportItem item in adaptedReportList)
             {
                 GenerateListViewItem(item);
@@ -49,6 +51,7 @@ namespace FileCombiner
                 AdaptedReportItem adaptedItem = new AdaptedReportItem();
 
                 adaptedItem.Name = item.ProcessedFile.Name.ToString();
+                adaptedItem.GroupIndex = 1;
                 adaptedItem.ImageIndex = 0;
 
                 adaptedItem.LastAccessTime = item.ProcessedFile.LastAccessTime.ToString();
@@ -69,6 +72,7 @@ namespace FileCombiner
         {
             ListViewItem lvItem = new ListViewItem();
 
+            lvItem.Group = lvwRenamedReport.Groups[item.GroupIndex];
             lvItem.ImageIndex = item.ImageIndex;
 
             lvItem.Text = item.Name;
@@ -83,16 +87,16 @@ namespace FileCombiner
         // сохранение в файл
         private void btnSave_Click(object sender, EventArgs e)
         {
-            saveFileDialogRenamer.InitialDirectory = "D:\\step\\repos\\HW\\FileCombiner (my)\\FileCombiner\\ReportsRenamer";
-            saveFileDialogRenamer.AddExtension = true;
-            saveFileDialogRenamer.DefaultExt = "json";
+            SaveFileDialog saveFileDialogRenamer = new SaveFileDialog();
+            saveFileDialogRenamer.InitialDirectory = System.IO.Path.Combine(Application.StartupPath, "RenamerReports"); // привязка папки по умолчанию, путь относительно папки приложения;
+            saveFileDialogRenamer.RestoreDirectory = true;
 
             if (saveFileDialogRenamer.ShowDialog() == DialogResult.Cancel)
                 return;
 
-            string fileName = saveFileDialogRenamer.FileName;
-            saveFileDialogRenamer.InitialDirectory = Directory.GetParent(fileName)?.Name;
+            string fileName = $"{saveFileDialogRenamer.FileName}_renamer.json";
 
+            saveFileDialogRenamer.InitialDirectory = Directory.GetParent(fileName)?.Name;
 
             if (Report.Items == null)
                 return;
@@ -111,13 +115,23 @@ namespace FileCombiner
         //загрузка из файла
         private void btnLoad_Click(object sender, EventArgs e)
         {
-            openFileDialogRenamer.InitialDirectory = "D:\\step\\repos\\HW\\FileCombiner (my)\\FileCombiner\\ReportsRenamer";
+            OpenFileDialog openFileDialogRenamer = new OpenFileDialog();
+            openFileDialogRenamer.InitialDirectory = System.IO.Path.Combine(Application.StartupPath, "RenamerReports");
+            openFileDialogRenamer.RestoreDirectory = false;
+
 
             if (openFileDialogRenamer.ShowDialog() == DialogResult.Cancel)
                 return;
 
             string filename = openFileDialogRenamer.FileName;
-            
+
+            if (!filename.Contains("renamer"))
+            {
+                MessageBox.Show("Error. Select the renamer file");
+                return;
+            }
+
+
             try
             {
                 using FileStream fs = new FileStream(filename, FileMode.Open);
@@ -127,6 +141,7 @@ namespace FileCombiner
                 fs.Close();
                 InitListViewRenamedReport();
             }
+
 
             catch (FileNotFoundException ex)
             {
@@ -148,6 +163,6 @@ namespace FileCombiner
         private void btnSetRootDir_MouseLeave(object sender, EventArgs e)
         {
             (sender as Button)!.BackColor = Color.LightSteelBlue;
-        }        
+        }
     }
 }
