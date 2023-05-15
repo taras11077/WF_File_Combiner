@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "96w6IJqx2wP7oGnVT0TsXkHTPocox7637fww231a/BoCyxwI9/QqGuAK/6Yzezgx59kh0Hp7zLw8umuEFONU2A==",
+  "dgSpecHash": "GBwc0Iyxwt4VEIO0t9+jl/wpoRgYtu7VjYMHcfbcVIPgSjCT50ueYh/uyzqTUU2qrz0wKH+bTVSUYLwdbhGDjA==",
   "success": true,
-  "projectFilePath": "D:\\step\\repos\\HW\\FileCombiner (my)\\TestApp\\TestApp.csproj",
+  "projectFilePath": "D:\\step\\repos\\HW\\WF\\FileCombiner\\TestApp\\TestApp.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

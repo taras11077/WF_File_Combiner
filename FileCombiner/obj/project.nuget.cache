@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "brP+r4kNEzKjsmlIxJ889+2ZvdhR391UHiNNXHaudIormWN57wIyRBAInXSOsfjkFVZWA2fiMmCQDDaSqM/1kg==",
+  "dgSpecHash": "9OR8rzEWBGx025No4Dw+5Gg/tztHSTFeYYQS+A9J/A+OwogNczB1GvqnrkCxMbX4ozRE0y6nTamiZ7hRLpAtGw==",
   "success": true,
-  "projectFilePath": "D:\\step\\repos\\HW\\FileCombiner (my)\\FileCombiner\\FileCombiner.csproj",
+  "projectFilePath": "D:\\step\\repos\\HW\\WF\\FileCombiner\\FileCombiner\\FileCombiner.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
