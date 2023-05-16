@@ -7,8 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FileCombiner", "FileCombine
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FileProcessor", "FileProcessor\FileProcessor.csproj", "{5635AEBF-BB6C-4E3B-A77A-181ADB8F3820}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestApp", "TestApp\TestApp.csproj", "{AF0B8AA0-3B82-4BA6-98E7-7A75E0F253F2}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,10 +21,6 @@ Global
 		{5635AEBF-BB6C-4E3B-A77A-181ADB8F3820}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5635AEBF-BB6C-4E3B-A77A-181ADB8F3820}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5635AEBF-BB6C-4E3B-A77A-181ADB8F3820}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AF0B8AA0-3B82-4BA6-98E7-7A75E0F253F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AF0B8AA0-3B82-4BA6-98E7-7A75E0F253F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AF0B8AA0-3B82-4BA6-98E7-7A75E0F253F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AF0B8AA0-3B82-4BA6-98E7-7A75E0F253F2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

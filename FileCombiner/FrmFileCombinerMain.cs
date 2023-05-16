@@ -214,9 +214,9 @@ namespace FileCombiner.FileCleaner
             lvwRemovedItems.Items.Clear();
             chbSelectAll.Checked = false;
 
-            // вибор режима отображения списка найденних елементов для разних обработчиков файлов
-            // Cleaner - папки и файли
-            // Renamer - только файли
+            // выбор режима отображения списка найденных елементов для разных обработчиков файлов
+            // Cleaner - папки и файлы
+            // Renamer - только файлы
             // Arhiver - только папки
             switch (frmMode)
             {
@@ -250,7 +250,7 @@ namespace FileCombiner.FileCleaner
             }
         }
         private void GenerateItem(FileSystemInfo itemInfo)
-        { // генерация елемента списка с распределением по группам - папки/файли
+        { // генерация елемента списка с распределением по группам - папки/файлы
             if (itemInfo == null)
                 return;
 
@@ -287,7 +287,7 @@ namespace FileCombiner.FileCleaner
         }
 
         //Checked
-        // изменение свойства Checked вложенних файлов в соответствии с родительской папкой
+        // изменение свойства Checked вложенных файлов в соответствии с родительской папкой
         private void CheckFiles(DirectoryInfo d, ItemCheckedEventArgs e)
         {
             resultContainer.Files.ForEach(file =>
@@ -313,11 +313,12 @@ namespace FileCombiner.FileCleaner
             if (e.Item.Tag is DirectoryInfo d)
                 CheckFiles(d, e);
 
-            InitListViewResultInfo(); // !!! сильно тормозит процесс, может просто переделать на кнопку Update?
+            InitListViewResultInfo();
+
         }
 
         //Calculation sizeItems in  FindedList & CheckedList
-        private int CalcFindedFullSize() // расчет размера всех найдених елементов
+        private int CalcFindedFullSize() // расчет размера всех найденых елементов
         {
             int size = 0;
 
@@ -331,7 +332,7 @@ namespace FileCombiner.FileCleaner
                     bool flag = true;
                     foreach (DirectoryInfo dir in resultContainer.Dirs)
                     {
-                        if (f.FullName.Contains(dir.FullName)) // проверка на непринадлежность файла папке из списка найдених папок
+                        if (f.FullName.Contains(dir.FullName)) // проверка на непринадлежность файла папке из списка найденых папок
                         {
                             flag = false;
                             break;
@@ -357,12 +358,12 @@ namespace FileCombiner.FileCleaner
                 {
                     bool flag = true;
                     // если в CheckedItems есть папка(она чекнутая) и ее имя в имени файла, 
-                    // то цикл преривается (с флагом=false) и его размер не учитивается в сумму чекнутих елементов
+                    // то цикл прерывается (с флагом=false) и его размер не учитывается в сумму чекнутых елементов
                     // если такой папки нет, то цикл проходит до конца (flag=true) и размер файла добавляется в сумму
 
                     foreach (ListViewItem item2 in lvwRemovedItems.CheckedItems)
                     {
-                        if ((item2.Tag is DirectoryInfo dir) && f.FullName.Contains(dir.FullName)) // проверка на непринадлежность файла папке из списка найдених папок
+                        if ((item2.Tag is DirectoryInfo dir) && f.FullName.Contains(dir.FullName)) // проверка на непринадлежность файла папке из списка найденых папок
                         {
                             flag = false;
                             break;
@@ -411,7 +412,7 @@ namespace FileCombiner.FileCleaner
                 Data.cleanerReport = remover.Remove(remover.trash);
 
                 resultContainer = new(remover.ListItems.Dirs, remover.ListItems.Files); // создание нового resulContainer после удаления елементов
-                GenerateFindedItems();                                                  // генепация елементов и создание нового ListView
+                GenerateFindedItems();                                                  // генерация елементов и создание нового ListView
 
                 MessageBox.Show("\tSelected items removed\nYou can see the results by clicking VIEW REPORT");
             }
@@ -439,7 +440,7 @@ namespace FileCombiner.FileCleaner
                 if (item.Tag is FileInfo file)
                     renamedFiles.Add(file);
 
-            // создание и переход в дочернюю форму Renamer c уже готовим списком файлов отобранних для переименования
+            // создание и переход в дочернюю форму Renamer c уже готовым списком файлов отобранных для переименования
             FrmRenamer frmRenamer = new FrmRenamer(renamedFiles);
             frmRenamer.ShowDialog();
 
@@ -538,7 +539,7 @@ namespace FileCombiner.FileCleaner
                     arhivedDirs.Add(dir);
             }
 
-            // создание и переход в дочернюю форму frnArhiver c уже готовими списком папок отобранних для архивирования
+            // создание и переход в дочернюю форму frnArhiver c уже готовым списком папок отобранних для архивирования
 
             FrmArhiver frmArhiver = new FrmArhiver(arhivedDirs);
             frmArhiver.ShowDialog();
@@ -549,15 +550,15 @@ namespace FileCombiner.FileCleaner
             switch (frmMode)
             {
                 case FileCombinerMode.Cleaner:
-                    MessageBox.Show("Set RootDirectory, SearcheDirectory Patterns and SearcheFile Patterns");
+                    MessageBox.Show("Set Root Directory, Searche Directory patterns and Searche File patterns");
                     break;
 
                 case FileCombinerMode.Renamer:
-                    MessageBox.Show("Set RootDirectory and SearcheFile Patterns");
+                    MessageBox.Show("Set Root Directory and Searche File patterns");
                     break;
 
                 case FileCombinerMode.Arhiver:
-                    MessageBox.Show("Set RootDirectory and SearcheDirectory Patterns");
+                    MessageBox.Show("Set Root Directory and Searche Directory patterns");
                     break;
             }
         }

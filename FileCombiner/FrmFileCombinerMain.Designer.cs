@@ -293,7 +293,6 @@
             txtbPathRootDir.PlaceholderText = "Set Root Dir path";
             txtbPathRootDir.Size = new Size(630, 27);
             txtbPathRootDir.TabIndex = 26;
-            txtbPathRootDir.Text = "C:\\Users\\Master\\Desktop";
             // 
             // btnRenamer
             // 
@@ -302,7 +301,7 @@
             btnRenamer.Name = "btnRenamer";
             btnRenamer.Size = new Size(190, 35);
             btnRenamer.TabIndex = 28;
-            btnRenamer.Text = "RENAMER";
+            btnRenamer.Text = "RENAME";
             btnRenamer.UseVisualStyleBackColor = false;
             btnRenamer.Click += btnRename_Click;
             btnRenamer.MouseEnter += btnSetRootDir_MouseEnter;
@@ -315,7 +314,7 @@
             btnArhiver.Name = "btnArhiver";
             btnArhiver.Size = new Size(190, 35);
             btnArhiver.TabIndex = 29;
-            btnArhiver.Text = "ARHIVER";
+            btnArhiver.Text = "ARHIVE";
             btnArhiver.UseVisualStyleBackColor = false;
             btnArhiver.Click += btnArhiver_Click;
             btnArhiver.MouseEnter += btnSetRootDir_MouseEnter;
